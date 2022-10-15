@@ -349,20 +349,6 @@
 							  Por favor, elija un tipo de producto.
 							  </div>
 					  </div>
-                
-                        <div class="col-12">
-							<div class="form-check">
-							  <input class="form-check-input" type="checkbox" value="Acepto las condiciones" id="invalidCheck" name="condiciones" required>
-							<label class="form-check-label" for="invalidCheck">
-								Acepta los términos y condiciones
-							</label>
-							<div class="valid-feedback">
-							  Correcto!
-							</div>
-							<div class="invalid-feedback">
-							  Por favor, acepte los términos y condiciones.
-							</div>
-                        </div> 
                     <p class="block">
                         <button class="btn btn-primary width-100" name="accion" value="Registrar">Enviar</button>
                     </p>
