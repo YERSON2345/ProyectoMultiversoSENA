@@ -1,0 +1,111 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <display-name>Disquera</display-name>
+
+    <welcome-file-list>  
+   <welcome-file>index.jsp</welcome-file>  
+     </welcome-file-list> 
+
+<servlet>
+<servlet-name>controller.usuarioController</servlet-name>
+<servlet-class>controller.usuarioController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.usuarioController</servlet-name>
+<url-pattern>/usuario</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.proveedorController</servlet-name>
+<servlet-class>controller.proveedorController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.proveedorController</servlet-name>
+<url-pattern>/proveedor</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.clienteController</servlet-name>
+<servlet-class>controller.clienteController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.clienteController</servlet-name>
+<url-pattern>/cliente</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.comprasController</servlet-name>
+<servlet-class>controller.comprasController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.comprasController</servlet-name>
+<url-pattern>/compras</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.productoController</servlet-name>
+<servlet-class>controller.productoController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.productoController</servlet-name>
+<url-pattern>/producto</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.tipoProductoController</servlet-name>
+<servlet-class>controller.tipoProductoController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.tipoProductoController</servlet-name>
+<url-pattern>/tipoProducto</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.detalleComprasController</servlet-name>
+<servlet-class>controller.detalleComprasController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.detalleComprasController</servlet-name>
+<url-pattern>/detalleCompras</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.ventaController</servlet-name>
+<servlet-class>controller.ventaController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.ventaController</servlet-name>
+<url-pattern>/ventas</url-pattern>
+</servlet-mapping>
+
+<servlet>
+<servlet-name>controller.salidasController</servlet-name>
+<servlet-class>controller.salidasController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>controller.salidasController</servlet-name>
+<url-pattern>/salidas</url-pattern>
+</servlet-mapping>
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+</web-app>
