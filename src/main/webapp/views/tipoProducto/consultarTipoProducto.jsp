@@ -151,11 +151,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -269,7 +264,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Blank Page</h1>
+					<h1 class="h3 mb-3">Consultar Producto</h1>
 
 					<div class="row">
 						<div class="col-12">
@@ -279,35 +274,14 @@
 										<div class="header-tools">
 											<div class="tools">
 												<ul>
-													<li><span><input type="checkbox"></span></li>
 													<li>
-														<button>
-															<i class="material-icons">add_circle</i>
-														</button>
-													</li>
-													<li>
-														<button>
-															<i class="material-icons">edit</i>
-														</button>
-													</li>
-													<li>
-														<button>
-															<i class="material-icons">delete</i>
-														</button>
-													</li>
-													<li>
-														<button>
-															<i class="material-icons">share</i>
-														</button>
+														<br><br>
 													</li>
 												</ul>
 											</div>
-											<div class="search">
-												<input type="text" class="search-input">
-											</div>
 										</div>
 								
-										<table class="datatable">
+										<table class="datatable" id="datatable">
 											<thead>
 												<tr>
 												<th></th>
@@ -348,96 +322,72 @@
                               </td>
                           </tr>
                         </c:forEach>
-											</tbody>
-										</table>
-								
-										<div class="footer-tools">
-											<div class="list-items">
-												Show
-												<select name="n-entries" id="n-entries" class="n-entries">
-													<option value="15">5</option>
-													<option value="10" selected>10</option>
-													<option value="15">15</option>
-												</select>
-												entries
-											</div>
-								
-											<div class="pages">
-												<ul>
-													<li><span class="active">1</span></li>
-													<li><button>2</button></li>
-													<li><button>3</button></li>
-													<li><button>4</button></li>
-													<li><span>...</span></li>
-													<li><button>9</button></li>
-													<li><button>10</button></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-								</div>
-							</div>
-						</div>
-					</div>
-
+					</tbody>
+				</table>
 				</div>
-			</main>
-
-			<footer class="footer">
+				</div>
+				<div class="card-body">
+				</div>
+				</div>
+				</div>
+				</div>
+				
+				</div>
+				</main>
+				
+				<footer class="footer">
 				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="#" target="_blank"><strong>Multiverso</strong></a> &copy;
-							</p>
-						</div>
-					</div>
+				<div class="row text-muted">
+				<div class="col-6 text-start">
+				<p class="mb-0">
+				<a class="text-muted" href="#" target="_blank"><strong>Multiverso</strong></a> &copy;
+				</p>
 				</div>
-			</footer>
-		</div>
-	</div>
-
-			<!-- Estilos de tabla -->
-			<style>
+				</div>
+				</div>
+				</footer>
+				</div>
+				</div>
+				
+				<!-- Estilos de tabla -->
+				<style>
 				.dataTables_length{
-			padding-left: 30px;
-			padding-top: 15px;
-			width: 45%;
-		}
-		
-		.dataTables_filter{
-			margin-right: 15px;
-			float: right;
-			width: 30%;
-		}
-		
-		.datatable-container .dataTables_wrapper .dataTables_filter label input{
-			margin-top: 10px;
-			width: 75%;
-			background-color: var(--dt-input-background-color);
-			box-sizing: border-box;
-			border-radius: var(--dt-border-radius);
-			border: solid 1px var(--dt-border-color);
-			color: var(--dt-input-color); 
-		}
-		
-		.dataTables_info{
-			padding-left: 15px;
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
-		
-		.dataTables_paginate{
-			float: left;
-			padding-bottom: 15px;
-			padding-right: 30px;
-			padding-top: 30px;
-		
-		}
-		
-		select{
+				padding-left: 30px;
+				padding-top: 15px;
+				width: 45%;
+				}
+				
+				.dataTables_filter{
+				margin-right: 15px;
+				float: right;
+				width: 30%;
+				}
+				
+				.datatable-container .dataTables_wrapper .dataTables_filter label input{
+				margin-top: 10px;
+				width: 75%;
+				background-color: var(--dt-input-background-color);
+				box-sizing: border-box;
+				border-radius: var(--dt-border-radius);
+				border: solid 1px var(--dt-border-color);
+				color: var(--dt-input-color); 
+				}
+				
+				.dataTables_info{
+				padding-left: 15px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				}
+				
+				.dataTables_paginate{
+				float: left;
+				padding-bottom: 15px;
+				padding-right: 30px;
+				padding-top: 30px;
+				
+				}
+				
+				select{
 				font-size: 16px;
 				width: 60px;
 				font-family: 'Verdana', sans-serif;
@@ -455,27 +405,27 @@
 				appearance: none;
 				background-color: #fff;
 				background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-				  linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%);
+				linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%);
 				background-repeat: no-repeat, repeat;
 				background-position: right .7em top 50%, 0 0;
 				background-size: .65em auto, 100%;
-		}
-	
-		.datatable-container{
-			width: 870px;
-		}
-			</style>
-		
-			<script src="assets/js/app.js"></script>
-			<script src="assets/js/jquery-3.3.1.min.js"></script>
-		
-			<!-- Datatables -->
-			<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-		
-			<script>
+				}
+				
+				.datatable-container{
+				width: 900px;
+				}
+				</style>
+				
+				<script src="assets/js/app.js"></script>
+				<script src="assets/js/jquery-3.3.1.min.js"></script>
+				
+				<!-- Datatables -->
+				<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+				
+				<script>
 				$(document).ready( function () {
 				$('#datatable').DataTable({
-			language: {
+				language: {
 				processing:     "Cargando...",
 				search:         "Buscar:",
 				lengthMenu:    "Hay un total de _MENU_ tablas en el menú.",
@@ -487,21 +437,19 @@
 				zeroRecords:    "No hemos podidos encontrar ningún resultado a su busqueda.",
 				emptyTable:     "No hemos encontrado ningún resultado.",
 				paginate: {
-					first:      "Siguiente",
-					previous:   "Atrás",
-					next:       "Siguiente",
-					last:       "Dernier"
+				first:      "Siguiente",
+				previous:   "Atrás",
+				next:       "Siguiente",
+				last:       "Dernier"
 				},
 				aria: {
-					sortAscending:  ": activer pour trier la colonne par ordre croissant",
-					sortDescending: ": activer pour trier la colonne par ordre décroissant"
+				sortAscending:  ": activer pour trier la colonne par ordre croissant",
+				sortDescending: ": activer pour trier la colonne par ordre décroissant"
 				}
-			}
-		});
+				}
+				});
 				} );
-			</script>
-
-</body>
-
-
-</html>
+				</script>
+				
+				</body>
+				</html>

@@ -149,11 +149,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -349,6 +344,8 @@
 							  Por favor, elija un tipo de producto.
 							  </div>
 					  </div>
+					  <br>
+					  <br>
                     <p class="block">
                         <button class="btn btn-primary width-100" name="accion" value="Registrar">Enviar</button>
                     </p>

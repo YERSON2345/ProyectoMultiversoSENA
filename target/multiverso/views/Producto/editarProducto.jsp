@@ -149,11 +149,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -270,30 +265,54 @@
             <div class="contact-form">
                 <h3>Editar Producto</h3>
                 <c:forEach var="producto" items="${producto}">
-        			<form action="producto" method="post">
+        			<form action="producto" method="post" class="needs-validation" novalidate>
                     <p>
-                        <label class="font-weight-bold">Observaciones Del Producto<span class="text-danger">*</span></label> 
-                        <input type="text" name="observacionesProducto" value="${producto.getObservacionesProducto()}" placeholder="Observaciones Del Producto" class="form-control">
+				<div class="from-group">
+                    <label for="validationCustom01 observaciones" class="font-weight-bold">Observaciones Del Producto<span class="text-danger">*</span></label>
+						<div class="col-sm-10">
+                        <input type="text" id="validationCustom01" name="observacionesProducto" value="${producto.getObservacionesProducto()}" placeholder="Observaciones Del Producto" class="form-control" required>
+						<div class="valid-feedback">
+							¡Observaciones del producto insertado con éxito!
+						</div>
+						<div class="invalid-feedback">
+							Por favor, coloque la observacion del producto.
+						</div>
+					</div>
+				</div>
                      </p>
                      <p>
-                        <label class="font-weight-bold">Nombre Del Producto<span class="text-danger">*</span></label> 
-                        <input type="text" name="nombre" value="${producto.getNombreProducto()}" placeholder="Nombre Del Producto" class="form-control">
+						<div class="form-group">
+                        <label for="validationCustom01 nombre" class="font-weight-bold">Nombre Del Producto<span class="text-danger">*</span></label> 
+						<div class="col-sm-10">
+                        <input type="text" id="validationCustom01" name="nombre" value="${producto.getNombreProducto()}" placeholder="Nombre Del Producto" class="form-control" required>
+						<div class="valid-feedback">
+							¡Nombre del producto insertado con éxito!
+						  </div>
+						  <div class="invalid-feedback">
+							Por favor, coloque el nombre del producto.
+						  </div>
+					</div>
+				</div>
                      </p>
                      <p>
-                        <label class="font-weight-bold">Precio Del Producto<span class="text-danger">*</span></label> 
-                        <input type="number" name="precio" value="${producto.getPrecioProducto()}" placeholder="Precio Del Producto" class="form-control">
+						<div class="form-group">
+                        <label class="font-weight-bold">Precio Del Producto<span class="text-danger">*</span></label>
+						<div class="col-sm-10"> 
+                        <input type="number" name="precio" value="${producto.getPrecioProducto()}" placeholder="Precio Del Producto" class="form-control" required>
+						<div class="valid-feedback">
+							¡precio del producto insertado con éxito!
+						  </div>
+						  <div class="invalid-feedback">
+							Por favor, coloque el precio del producto.
+						  </div>
+						</div>
+					</div>
                      </p>
                      <p>
                      <input type="checkbox" name="estadoProducto" id="estadoProducto" value="${producto.getEstadoProducto()}">
                 <label for="estadoProducto">Activo</label>
                 
                      <p>
-                        <div class="form-group mb-5">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label text-muted">Aceptar terminos y condiciones</label>
-                            </div>
-                        </div>
                      </p>  
                     <p class="block">
                         <button name="accion" class="btn btn-primary" value="Editar">Enviar</button>
@@ -320,6 +339,29 @@
 	</div>
 
 	<script src="assets/js/app.js"></script>
+
+	<script>
+		(function () {
+		  'use strict'
+		  
+		  var forms = document.querySelectorAll('.needs-validation')
+		
+		  Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+			  form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+				  event.preventDefault()
+				  event.stopPropagation()
+				}
+		
+				form.classList.add('was-validated')
+			  }, false)
+			})
+		})()
+		</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
 
 </body>
 </html>

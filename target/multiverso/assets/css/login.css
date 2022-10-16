@@ -7,7 +7,6 @@
 
 }
 
-
 body{
     font-family: 'Roboto', sans-serif;
     font-size: 1.1rem;
@@ -16,9 +15,6 @@ body{
     color: var(--color-light);
     letter-spacing: .05rem;
 
-}
-input{
-    color: var(--color-light)!important;
 }
 
 .bg-light{
@@ -32,9 +28,7 @@ input{
 .p-6{
     padding: 4rem 7rem;
 }
-.contact-box{
-    padding: 3rem;
-}
+
 .btn{
     font-weight: 400;
     padding: 1rem 2rem;
@@ -45,8 +39,8 @@ input{
 }
 
 .form-control{
-    background-color: var(--color-dark--xx);
-    border: 2px solid var(--color-dark--xx);
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
     border-radius: .2rem;
     padding: 1.5rem 1rem;
 }
@@ -59,7 +53,6 @@ input{
 }
 .testimonial{
     bottom: 10px;
-    color: black!important;
 }
 @media(max-width: 575.98px){
     .p-6{
@@ -76,5 +69,6 @@ input{
 @media(max-width: 1200px){
     .register-bg{
         min-height: 50vh;
+
     }
 }

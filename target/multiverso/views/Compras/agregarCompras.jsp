@@ -148,11 +148,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -267,22 +262,62 @@
         <div class="contact-wrapper animated bounceInUp">
             <div class="contact-form">
                 <h3>Agregar Compras</h3>
-                <form action="compras" method="post">
+                <form action="compras" method="post" class="needs-validation" novalidate>
                      <p>
-                        <label class="font-weight-bold">N° Orden<span class="text-danger">*</span></label> 
-                        <input type="number" name="NoOrden" placeholder="N° Orden" class="form-control">
+						<div class="form-group">
+                        <label for="validationCustom01 observaciones" class="font-weight-bold">N° Orden<span class="text-danger">*</span></label>
+						<div class="col-sm-10">
+                        <input type="number" id="validationCustom01" name="NoOrden" placeholder="N° Orden" class="form-control" required>
+						<div class="valid-feedback">
+							¡Numero de Orden insertado con éxito!
+						  </div>
+						  <div class="invalid-feedback">
+							Por favor, coloque el Numero de Orden.
+						  </div>
+						</div>
+					</div>
                      </p>
 					 <p>
-                        <label class="font-weight-bold">Fecha De Vencimiento Del Producto<span class="text-danger">*</span></label> 
-                        <input type="date" name="fecha" placeholder="Fecha De Vencimiento Del Producto" class="form-control">
+						<div class="form-group">
+                        <label for="validationCustom01 observaciones" class="font-weight-bold">Fecha De Vencimiento Del Producto<span class="text-danger">*</span></label> 
+						<div class="col-sm-10">
+                        <input type="date" id="validationCustom01" name="fecha" placeholder="Fecha De Vencimiento Del Producto" class="form-control" required>
+						<div class="valid-feedback">
+							¡Fecha de Vencimiento insertado con éxito!
+						  </div>
+						  <div class="invalid-feedback">
+							Por favor, coloque la Fecha de Vencimiento.
+						  </div>
+						</div>
+					</div>
                      </p>
                      <p>
-                        <label class="font-weight-bold">Cantidad Del Producto<span class="text-danger">*</span></label> 
-                        <input type="number" name="cantidad" placeholder="Cantidad De la Compra" class="form-control">
+						<div class="form-group">
+                        <label for="validationCustom01 observaciones" class="font-weight-bold">Cantidad Del Producto<span class="text-danger">*</span></label> 
+						<div class="col-sm-10">
+                        <input type="number" id="validationCustom01" name="cantidad" placeholder="Cantidad De la Compra" class="form-control" required>
+						<div class="valid-feedback">
+							¡Cantidad del Producto insertado con éxito!
+						  </div>
+						  <div class="invalid-feedback">
+							Por favor, coloque la Cantidad del Producto.
+						  </div>
+						</div>
+					</div>
                      </p>
                      <p>
-                        <label class="font-weight-bold">Precio De Total De La Compra<span class="text-danger">*</span></label> 
-                        <input type="number" name="precio" placeholder="Precio De la compra" class="form-control">
+						<div class="form-group">
+                        <label for="validationCustom01 observaciones" class="font-weight-bold">Precio De Total De La Compra<span class="text-danger">*</span></label>
+						<div class="col-sm-10"> 
+                        <input type="number" id="validationCustom01" name="precio" placeholder="Precio De la compra" class="form-control" required>
+						<div class="valid-feedback">
+							¡Precio de la Compra insertado con éxito!
+						  </div>
+						  <div class="invalid-feedback">
+							Por favor, coloque el Precio de la Compra.
+						  </div>
+						</div>
+					</div>
                      </p>
 					 
 					 <div class="col-md-3">
@@ -317,12 +352,6 @@
 							  </div>
 					  </div>
                      <p>
-                        <div class="form-group mb-5">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label text-muted">Aceptar terminos y condiciones</label>
-                            </div>
-                        </div>
                      </p>  
                     <p class="block">
                         <button class="btn btn-primary width-100" name="accion" value="Registrar">Enviar</button>
@@ -348,5 +377,28 @@
 	</div>
 
 	<script src="assets/js/app.js"></script>
+
+	<script>
+	(function () {
+		'use strict'
+		
+		var forms = document.querySelectorAll('.needs-validation')
+	  
+		Array.prototype.slice.call(forms)
+		  .forEach(function (form) {
+			form.addEventListener('submit', function (event) {
+			  if (!form.checkValidity()) {
+				event.preventDefault()
+				event.stopPropagation()
+			  }
+	  
+			  form.classList.add('was-validated')
+			}, false)
+		  })
+	  })()
+	  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
 
     </body>

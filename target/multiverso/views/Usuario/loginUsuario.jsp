@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap">
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-    <link href="assets/css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/perobueno.css" rel="stylesheet" type="text/css"/>
     <title>Login</title>
   </head>
   <body>
@@ -26,46 +25,77 @@
             </div>
             <div class="col-xl-7 col-lg-12 d-flex">
                 <div class="container aling-self-center p-6">
-                    <h1 class="font-weight-bold">Inicia tu cuenta</h1>
-                    <div class="form-group">
-                        <button class="btn btn-outline-dark d-inline-block text-light mr-2 mb-3"><i class="icon ion-logo-google lead aling-middle mr-2  width-100"></i>Goggle</button>
-                        <button class="btn btn-outline-dark d-inline-block text-light mb-3"><i class="icon ion-logo-facebook lead aling-middle mr-2 width-100"></i>Facebook</button>
-                    </div>
-                    <p class="text-muted mb5">Ingresa la siguiente información para ingresar</p>
-                    <form action="srvUsuario" method="POST" id="signupForm">
+                    <h1 class="font-weight-bold">Acceder | MULTIVERSO</h1>
+
+                    <p class="text-muted mb5">Ingresa la siguiente información para acceder al sistema</p>
+                    <form action="srvUsuario" method="POST" class="needs-validation" novalidate id="signupForm">
+  
+    
                         <div class="form-group mb-3">
-                            <label class="font-weight-bold">Correo electronico <span class="text-danger">*</span> </label>
-                            <input type="email" class="form-control" placeholder="Ingresa tu correo" name="Correo">
+                            <label class="font-weight-bold">Correo electronico<span class="text-danger">*</span> </label>
+                            <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="email" class="form-control" id="validationCustomUsername" placeholder="Ingresa tu correo" name="Correo" aria-describedby="inputGroupPrepend" required>
+                            <div class="invalid-feedback">
+                                Introduce un correo electronico valido (example@gmail.com).
+                               </div>
+                              <div class="valid-feedback">
+                                El correo es valido!
+                              </div>
                         </div>
-                    <div class="form-group mb-3">
-                        <label class="font-weight-bold">Contraseña <span class="text-danger">*</span> </label>
-                        <input type="password" class="form-control" placeholder="Ingresa tu contraseña" name="Contrasena">
-                    </div>
-                    <div class="form-group mb-5">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label text-muted">Aceptar terminos y condiciones</label>
                         </div>
-                    </div>
-                    <input type="submit" name="accion" value="verificar" class="btn btn-primary btn-block"/>
-                </form>
+                        <div class="form-group mb-3">
+                            <label class="font-weight-bold">Contraseña <span class="text-danger">*</span> </label>
+                          <input type="password" class="form-control" id="validationCustom01" placeholder="Ingresa tu contraseña" minlength="8" maxlength="100" name="Contrasena" required>
+                          <div class="valid-feedback">
+                            Contraseña Valida!
+                          </div>
+                          <div class="invalid-feedback">
+                            La contraseña debe contar con minimo 8 caracteres.
+                           </div>
+     
+                          </div>
+                        <div class="form-group mb-3">
+                          <button class="btn btn-primary" type="submit">Ingresar</button>
+                        </div>
+                      </form>
                 <br>
-                <small class="d-inline-block text-muted">¿No tienes cuenta?<a href="">Registrate aqui</a></small>
+                
+                <small class="d-inline-block text-muted">¿No tienes cuenta?<a href="usuario?condicion=formulario"> Registrate aqui</a></small>
                 <br>
                 </div>
             </div>
         </div>
     </section>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
     <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
-   <script src="assets/js/funciones.js" type="text/JavaScript"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

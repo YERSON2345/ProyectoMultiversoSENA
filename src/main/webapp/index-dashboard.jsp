@@ -145,10 +145,7 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="#">
-	  <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Agregar</span>
-	</a>
-	<a class="sidebar-link" href="#">
+	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
 			</li>

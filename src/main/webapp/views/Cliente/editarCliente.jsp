@@ -133,12 +133,6 @@
 				Proveedor
 			</li>
 
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="proveedor?condicion=formulario">
-
-	  <i class="align-middle" data-feather="truck"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
 		<li class="sidebar-item">
 	<a class="sidebar-link" href="proveedor?condicion=consultarProveedor">
 		<i class="align-middle" data-feather="archive"></i> <span class="align-middle">Consultar</span>
@@ -149,11 +143,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>

@@ -1,210 +1,237 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Deerhost Template">
-    <meta name="keywords" content="Deerhost, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DEERHOST | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/index-principio/styles.css" type="text/css">
-</head>
-
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas__menu__overlay"></div>
-    <div class="offcanvas__menu__wrapper">
-        <div class="canvas__close">
-            <span class="fa fa-times-circle-o"></span>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="index.jsp"><img src="assets/img/logo.png" alt=""></a>
-        </div>
-        <nav class="offcanvas__menu mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./hosting.html">Hosting</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="./pricing.html">Pricing</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                        <li><a href="./404.html">404</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">News</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__auth">
-            <ul>
-                <li><a href="#"><span class="fa fa-user"></span> Login / Register</a></li>
-            </ul>
-        </div>
-        <div class="offcanvas__info">
-            <ul>
-                <li><span class="icon_phone"></span> +1 123-456-7890</li>
-                <li><span class="fa fa-envelope"></span> Support@gmail.com</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container">
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Inicio|Multiverso</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="assets/css/index-good/style.css">
+      <!-- responsive-->
+      <link rel="stylesheet" href="assets/css/index-good/responsive.css">
+      <!-- awesome fontfamily -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
+   <!-- body -->
+   <body class="main-layout">
+      <!-- loader  -->
+      <div class="loader_bg">
+         <div class="loader"><img src="assets/img/load.gif"/></div>
+      </div>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+         <div class="header">
+            <div class="container-fluid">
+               <div class="row d_flex">
+                  <div class=" col-md-2 col-sm-3 col logo_section">
+                     <div class="full">
+                        <div class="center-desk">
+                           <div class="logo">
+                              <a href="index.html"><img class="multiverso" src="assets/img/multiversoo.jpeg" alt="#" /></a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-8 col-sm-9">
+                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                           <ul class="navbar-nav mr-auto">
+                              <li class="nav-item active">
+                                 <a class="nav-link" href="#">Inicio</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="producto?accion=listar">Inventario</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="ventas?condicion=dashboard">Dashboard</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="usuario?condicion=formulario">Registrarse</a>
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="usuario?condicion=login">Login</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- end header -->
+      <!-- start slider section -->
+      <div id="top_section" class="banner_main">
+         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__logo">
-                        <a href="index.jsp"><h2 class="texto_m">MULTIVERSO</h2></a>
-                    </div>
-                </div>
-            </div>
-            <div class="canvas__open">
-                <span class="fa fa-bars"></span>
-            </div>
-        </div>
-    </header>
-    <!-- Header End -->
-
-    <!-- Hero Section Begin -->
-    <section class="hero-section">
-        <div class="hero__slider owl-carousel">
-            <div> 
-                <img class="hero__item set-bg" src="assets/img/hero-1.jpg">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <h5>Que tengas una buena experiencia</h5>
-                                <h2>Bienvenido a Multiverso</h2>
-                                <a href="ventas?condicion=dashboard" class="primary-btn">Acceder al dashboard</a>
-                            </div>
+               <div class="col-md-12">
+                  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                     <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                     </ol>
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <div class="container-fluid">
+                              <div class="carousel-caption relative">
+                                 <div class="bluid">
+                                    <br><br><br><br><br>
+                                    <h1>Mul<br> </h1>
+                                    <a class="read_more" href="ventas?condicion=dashboard">Dashboard</a>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="hero__img">
-                                <img src="assets/img/multiversoo.jpeg">
-                            </div>
+                        <div class="carousel-item">
+                           <div class="container-fluid">
+                              <div class="carousel-caption relative">
+                                 <div class="bluid">
+                                    <br><br><br><br><br>
+                                    <h1>ti<br> </h1>
+                                    <a class="read_more" href="producto?accion=listar">Inventario</a>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                    </div>
-            </div>
-            <div>
-                <img class="hero__item set-bg" src="assets/img/hero-1.jpg">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <h5>Aquí podras registrar en el inventario</h5>
-                                <h2>Bienvenido al inventario</h2>
-                                <a href="ventas?condicion=dashboard" class="primary-btn">Inventario</a>
-                            </div>
+                        <div class="carousel-item">
+                           <div class="container-fluid">
+                              <div class="carousel-caption relative">
+                                 <div class="bluid">
+                                    <br><br><br><br><br>
+                                    <h1>ver<br> </h1>
+                                    <a class="read_more" href="ventas?condicion=dashboard">Dashboard</a>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="hero__img">
-                                <img src="assets/img/inventario.jpg">
-                            </div>
+                        <div class="carousel-item">
+                           <div class="container-fluid">
+                              <div class="carousel-caption relative">
+                                 <div class="bluid">
+                                    <br><br><br><br><br>
+                                    <h1>so <br> </h1>
+                                    <a class="read_more" href="producto?accion=listar">Inventario</a>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-                    </div>
+                     </div>
+                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                     <i class="fa fa-angle-left" aria-hidden="true"></i>
+                     <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                     <i class="fa fa-angle-right" aria-hidden="true"></i>
+                     <span class="sr-only">Next</span>
+                     </a>
+                  </div>
+               </div>
             </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
-
-    <!-- Choose Plan Section Begin -->
-    <section class="choose-plan-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="plan__text">
-                        <ul>
-                            
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Choose Plan Section End -->
-
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="footer__top">
-
-        </div>
-        <div class="footer__text set-bg" src="assets/img/footer-bg.png">
+         </div>
+      </div>
+      <!-- end slider section -->
+      <!-- footer -->
+      <footer>
+         <div class="footer">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="footer__text-about">
-                            <div class="footer__logo">
-                                <a href="index.jsp"><h2 class="texto_m">MULTIVERSO</h2></a>
-                            </div>
-                            <p>Multiverso es una empresa que se dedica a vender productos por mercado libre, este sistema de información facilita los procesos de inventario al momento de registrar ventas y compras  </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="footer__text-widget">
-                                <h5>Compañia</h5>
-                            <ul>
-                                <li><a href="#">Sobre</a></li>
-                                <li><a href="#">Multimedia</a></li>
-                                <li><a href="#">Productos y compras</a></li>
-                                <li><a href="#">Ventas</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="footer__text-widget">
-                            <h5>CONTACTANOS</h5>
-                            <ul class="footer__widget-info">
-                                <li><span class="fa fa-map-marker"></span> 500 Pilos, Suba, Rincón<br />
-                                    ZZ-96110 Colombia</li>
-                                <li><span class="fa fa-mobile"></span> 125-711-811 | 125-668-886</li>
-                                <li><span class="fa fa-headphones"></span> multiversoSupport.hosting@gmail.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer__text-copyright">
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Derechos Reservados | Todos los derechos de autor <i class="fa fa-heart" aria-hidden="true"></i> para <a href="https://colorlib.com" target="_blank">Multiverso.</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                </div>
+               <div class="row">
+                  <div class="col-md-3">
+                     <a class="logo_footer" href="index.html"><img src="assets/img/multiversoo.jpeg" alt="#" /></a>
+                  </div>
+                  <div class="col-md-3 col-sm-6"
+                  >
+                     <div class="Informa helpful">
+                        <h3>Enlaces utiles</h3>
+                        <ul>
+                           <li><a href="#">Inicio</a></li>
+                           <li><a href="producto?condicion=consultarProducto">Inventario</a></li>
+                           <li><a href="ventas?condicion=dashboard">Dashboard</a></li>
+                           <li><a href="usuario?condicion=formulario">Registrarse</a></li>
+                           <li><a href="usuario?condicion=form">Login</a></li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="Informa">
+                        <h3>Compañia</h3>
+                        <ul>
+                           <li>Bienvenido a Multiverso                         
+                           </li>
+                           <li>una microempresa la cual                    
+                           </li>
+                           <li>se basa en llevar inventario,                     
+                           </li>
+                           <li>ventas,etc...                            
+                           </li>
+                           <li>Al toque mi rey                        
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6">
+                     <div class="Informa conta">
+                        <h3>Contactanos</h3>
+                        <ul>
+                           <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> Pilos, Suba, Rincón 
+                              </a>
+                           </li>
+                           <li> <a href="Javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Call +57 3123155542
+                              </a>
+                           </li>
+                           <li> <a href="Javascript:void(0)"> <i class="fa fa-envelope" aria-hidden="true"></i> multiSupport@gmail.com
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.slicknav.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
-
+            <div class="copyright text_align_left">
+               <div class="container">
+                  <div class="row d_flex">
+                     <div class="col-md-6">
+                        <p>© 2020 All Rights Reserved.  <a href="https://html.design/"> Multiverso</a></p>
+                     </div>
+                     <div class="col-md-6">
+                        <ul class="social_icon text_align_center">
+                           <li> <a href="Javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
+                           <li> <a href="Javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                           <li> <a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                           <li> <a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                           <li> <a href="Javascript:void(0)"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- end footer -->
+      <!-- Javascript files-->
+      <script src="assets/js/JS-index/jquery.min.js"></script>
+      <script src="assets/js/JS-index/bootstrap.bundle.min.js"></script>
+      <script src="assets/js/jquery-3.0.0.min.js"></script>
+      <script src="assets/js/JS-index/custom.js"></script>
+   </body>
 </html>

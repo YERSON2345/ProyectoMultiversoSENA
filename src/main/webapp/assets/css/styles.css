@@ -29,9 +29,6 @@ body{
 .p-6{
     padding: 4rem 7rem;
 }
-.contact-box{
-    padding: 3rem;
-}
 .btn{
     font-weight: 400;
     padding: 1rem 2rem;
@@ -42,8 +39,8 @@ body{
 }
 
 .form-control{
-    background-color: var(--color-dark--xx);
-    border: 2px solid var(--color-dark--xx);
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
     border-radius: .2rem;
     padding: 1.5rem 1rem;
 }
@@ -60,9 +57,6 @@ body{
 @media(max-width: 575.98px){
     .p-6{
         padding: 2rem;
-    }
-    .contact-box{
-        padding: 0;
     }
     .width-100{
         width: 100%;
