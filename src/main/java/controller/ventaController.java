@@ -36,6 +36,8 @@ public class ventaController extends HttpServlet {
         case "consultarventa":
         listar(req,resp);
         break;
+        case "cosultarvp":
+        listarfunciones(req,resp);
         case "formulario":
         consultarproducto(req, resp);
         consultarnodoccliente(req,resp);
@@ -80,6 +82,30 @@ public class ventaController extends HttpServlet {
         System.out.println("El dashboard ha sido abierto correctamente");
       } catch (Exception e) {
         System.out.println("El dashboard NO ha sido abierto"+e.getMessage().toString());
+      }
+    }
+
+    private void listarventa(HttpServletRequest req, HttpServletResponse resp) {
+    if(req.getParameter("id")!=null){
+        r.setIdDetalleVenta(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
+    }
+    try {
+        List genero=rd.listarVenta(r.getIdDetalleVenta());
+        req.setAttribute("venta", genero);
+        req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req, resp);//direccion de vista
+        System.out.println("Datos listados correctamente para la edicion");
+    } catch (Exception e) {
+        System.out.println("Hay problemas al listar los datos "+e.getMessage().toString());
+    }
+}
+
+    private void listarfunciones(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/venta/actualizarVenta.jsp").forward(req,resp);
+        System.out.println("El formulario ha sido abierto correctamente");
+      } catch (Exception e) {
+        System.out.println("El formulario NO ha sido abierto"+e.getMessage().toString());
       }
     }
 
@@ -137,11 +163,18 @@ public class ventaController extends HttpServlet {
         r.setNoDocCliente(Integer.parseInt(req.getParameter("noDocCliente")));
       }
       try {
+        // Actualizar stock de ventas a producto
+        int cantidadProducto = Integer.parseInt(req.getParameter("catidadProducto"));
+        int cantidadVendida = Integer.parseInt(req.getParameter("cantidadVendida"));
+        String nombreProducto = req.getParameter("nombreProducto");
+        ventaVo resultado = new ventaVo();
+        int resultados = resultado.restarExistencias(cantidadProducto, cantidadVendida);
+        int resultados2 = resultados;
+
           rd.insertar(r);
+          rd.ActualizarStock(resultados2, nombreProducto);
           System.out.println("Registro insertado correctamente");
-          List ventas=rd.listar();
-          req.setAttribute("ventas", ventas);
-          req.getRequestDispatcher("views/venta/consultarventa.jsp").forward(req, resp);
+          listar(req, resp);
       } catch (Exception e) {
           System.out.println("Error en la inserción del registro "+e.getMessage().toString());
       }

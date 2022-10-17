@@ -16,9 +16,9 @@ public class ventaDao {
     String sql=null; //variable para guardar sentencias
     int r;
 
-    public List<ventaVo> listar() throws SQLException{
+    public List<ventaVo>listar() throws SQLException{
       List<ventaVo> ventas=new ArrayList<>();
-      sql="SELECT U.idDetalleVenta,U.cantidadVendida,U.precioTotal,U.idProductoFK, U.noDocCliente,C.nombreProducto,O.nombreCliente FROM Ventas U INNER JOIN Producto C ON U.idProductoFK = C.idProducto INNER JOIN Cliente O ON O.noDocCliente = U.noDocCliente";
+      sql="SELECT U.idDetalleVenta,U.cantidadVendida,U.precioTotal,U.idProductoFK, U.noDocCliente,C.nombreProducto,C.cantidadProducto,O.nombreCliente FROM Ventas U INNER JOIN Producto C ON U.idProductoFK = C.idProducto INNER JOIN Cliente O ON O.noDocCliente = U.noDocCliente";
       try {
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
@@ -44,6 +44,35 @@ public class ventaDao {
       }
       return ventas;
 }
+
+  public List<productoVo> listarproductos() throws SQLException{
+      List<productoVo> producto=new ArrayList<>();
+      sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
+      try{
+          con=Conexion.conectar();
+          ps=con.prepareStatement(sql);
+          rs=ps.executeQuery(sql);
+          while(rs.next()){
+            productoVo filas=new productoVo();
+              filas.setIdProducto(rs.getInt("idProducto"));
+              filas.setObservacionesProducto(rs.getString("observacionesProducto"));
+              filas.setNombreProducto(rs.getString("nombreProducto"));
+              filas.setCantidadProducto(rs.getInt("cantidadProducto"));
+              filas.setPrecioProducto(rs.getInt("precioProducto"));
+              filas.setIdTipoProducto(rs.getInt("idTipoProducto"));
+              filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+              producto.add(filas);
+          }
+          ps.close();
+          System.out.println("consulta exitosa");
+      }catch(Exception e){
+          System.out.println("La consulta no se pudo");
+      }
+      finally{
+          con.close();
+      }
+      return producto;
+  }
 
 public int insertar(ventaVo ventas) throws SQLException{   
   sql="INSERT INTO ventas(cantidadVendida,precioTotal,idProductoFK,noDocCliente) values(?,?,?,?)";
@@ -141,6 +170,20 @@ public void eliminar(int id) throws SQLException{
   }
  }
 
-public void ActualizarStock(int cant, int id) {
-}
+public void ActualizarStock(int cantidadProducto, String nombreProducto) throws SQLException{
+
+    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE nombreProducto='"+nombreProducto+"';";
+    try{
+       con=Conexion.conectar();
+       ps=con.prepareStatement(sql);
+       ps.executeUpdate();
+       ps.close();
+       System.out.println("Se actualizo el producto correctamente");
+    } catch(Exception e){
+        System.out.println("Error al editar"+e.getMessage().toString());
+    }
+        finally{
+            con.close();
+        }
+    }
 }

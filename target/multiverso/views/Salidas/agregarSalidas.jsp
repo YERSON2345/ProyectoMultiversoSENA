@@ -22,7 +22,10 @@
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
-
+	 <!-- BOOSTRAP VALIDACIÓN -->
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+ 
 	<!-- Contenido dashboard -->
 	<link rel="stylesheet" href="assets/css/style.css">
 
@@ -266,7 +269,7 @@
 							<div class="contact-form">
 								<h3>Agregar Salida</h3>
 								<c:forEach var="salir" items="${salir}">
-								<form action="salidas" method="post">
+								<form action="salidas" method="post" class="needs-validation" novalidate>
 									<div class="form-group">
 										<h3>Informacion del producto:</h3>
 								
@@ -304,16 +307,27 @@
 										
 										<label class="col-sm-2 control-label">Cantidad que desea descontar</label>
 										<div class="col-sm-5">
-										<input name="cantidad"type="number" class ="form-control" placeholder="20 unidades">
+										<input name="cantidad" type="number" class ="form-control" id="validationCustom20" min="1" max="${salir.getCantidadProducto()}" ma placeholder="20, 30, 40..." required>
+										<div class="invalid-feedback">
+											Por favor, tenga en cuenta la cantidad del producto existente.
+										  </div>
+										  <div class="valid-feedback">
+											Se ve bien!
+										   </div>
 										</div>
-
 									</div>
 									<br>
 									<div class ="form-group">
 								
 										<label class="col-sm-2 control-label">Motivo por el cual se va a descontar</label>
 										<div class="col-sm-10">
-										<input name="motivo"type="textarea" class ="form-control"  placeholder="Escriba el motivo por el cual se va a descontar dicha cantidad del producto del inventario">
+										<input name="motivo"type="textarea" class ="form-control" id="validationCustom01"  placeholder="Escriba el motivo por el cual se va a descontar dicha cantidad del producto del inventario" required>
+										<div class="valid-feedback">
+											Se ve bien!
+										  </div>
+										  <div class="invalid-feedback">
+											Por favor, escriba el motivo por el cual desea descontar dicha cantidad de producto.
+										  </div>
 										</div>
 									</div>
 									<br>
@@ -344,24 +358,27 @@
 				
 				
 					<script>
-						(function () {
-						  'use strict'
-						  
-						  var forms = document.querySelectorAll('.needs-validation')
-						
-						  Array.prototype.slice.call(forms)
-							.forEach(function (form) {
-							  form.addEventListener('submit', function (event) {
-								if (!form.checkValidity()) {
-								  event.preventDefault()
-								  event.stopPropagation()
-								}
-						
-								form.classList.add('was-validated')
-							  }, false)
-							})
-						})()
-						</script>
+						// Example starter JavaScript for disabling form submissions if there are invalid fields
+					(function () {
+					  'use strict'
+					
+					  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+					  var forms = document.querySelectorAll('.needs-validation')
+					
+					  // Loop over them and prevent submission
+					  Array.prototype.slice.call(forms)
+						.forEach(function (form) {
+						  form.addEventListener('submit', function (event) {
+							if (!form.checkValidity()) {
+							  event.preventDefault()
+							  event.stopPropagation()
+							}
+					
+							form.classList.add('was-validated')
+						  }, false)
+						})
+					})()
+					</script>
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="assets/js/dashboard/jquery/jquery-2.2.4.min.js"></script>
@@ -375,6 +392,12 @@
     <script src="assets/js/dashboard/active.js"></script>
 				<!-- Plantilla anterior -->
 				<script src="assets/js/app.js"></script>
+
+				    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+					<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+					<!-- Include all compiled plugins (below), or include individual files as needed -->
+					<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+				   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
 
 </body>
 

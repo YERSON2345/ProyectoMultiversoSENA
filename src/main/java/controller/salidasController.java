@@ -32,6 +32,7 @@ public class salidasController extends HttpServlet {
       case "eliminar":
       devolverExistencias(req, resp);
       eliminar(req, resp);
+      listar(req,resp);
       break;
       case "editar":
       editar(req, resp);
@@ -207,7 +208,13 @@ private void devolverExistencias(HttpServletRequest req, HttpServletResponse res
         r.setIdSalida(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
     }
     try {
-        List genero=rd.listarGenero(r.getIdSalida());
+      int cantidadActualProducto=Integer.parseInt(req.getParameter("cantidadActualProducto"));
+      int cantidadDescontada=Integer.parseInt(req.getParameter("cantidadDescontada"));
+      salidasVo resultado = new salidasVo();
+      req.setAttribute("area", resultado.sumarExistencias(cantidadActualProducto,cantidadDescontada)); 
+      int resultados = resultado.sumarExistencias(cantidadActualProducto,cantidadDescontada);
+      int resultadoss = resultados;
+        List genero=rd.listarGenero(r.getIdSalida(),resultadoss);
         req.setAttribute("datos", genero);
         req.getRequestDispatcher("views/Salidas/editarSalidas.jsp").forward(req, resp);//direccion de vista
         System.out.println("Datos listados correctamente para la edicion");
@@ -223,12 +230,8 @@ private void devolverExistencias(HttpServletRequest req, HttpServletResponse res
     try {
         rd.eliminar(r.getIdSalida());;
         System.out.println("El registro se ha eliminado correctamente");
-        listar(req, resp);
     } catch (Exception e) {
         System.out.println("Error al eliminar el resgistro"+e.getMessage().toString());
     }
 }
 }
-
-
-

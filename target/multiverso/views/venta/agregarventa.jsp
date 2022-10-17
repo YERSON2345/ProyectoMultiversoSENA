@@ -148,11 +148,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -269,13 +264,25 @@
         <div class="contact-wrapper animated bounceInUp">
             <div class="contact-form">
                 <h3>Agregar venta</h3>
+				<c:forEach var="venta" items="${venta}">
                 <form action="ventas" method="post" class="needs-validation" novalidate>
+
+					<div class="form-group">
+						<h3>Informacion del producto:</h3>
+				
+						<label class="col-sm-2 control-label">
+							Numero de orden: ${venta.getNoOrdenCompra()} <br>
+							Producto: ${venta.getNombreProducto()} <br>
+							Cantidad: ${venta.getCantidadProducto()} <br>
+						</label>
+
+					</div>
 
 					<div class="form-group">
 							<label for="cantidadVendida validationCustom01" class="col-sm-2 control-label">Cantidad vendida</label>
 						<div class="col-sm-10">
-							<input placeholder="Cantidad vendida (10, 20, 30, ...)" type="text" id="cantidadVendida validationCustom01" name="cantidadVendida" class="form-control" required>
-		
+							<input placeholder="Cantidad vendida (10, 20, 30, ...)" type="text" id="cantidadVendida validationCustom01" name="cantidadVendida" class="form-control" value="${ventas.getCantidadVendida()}" required>
+							
 							<div class="valid-feedback">
 							  ¡Cantidad colocado con éxito!
 							</div>
@@ -289,7 +296,7 @@
 						<div class="input-group mb-3">
 							<span class="input-group-text">$</span>
 							<span class="input-group-text">0.01</span>
-							<input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" placeholder="$10.000, $5.000, ..." id="precioTotal validationCustom02" name="precioTotal" required>
+							<input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" placeholder="$10.000, $5.000, ..." id="precioTotal validationCustom02" name="precioTotal" class="form-control" required>
 	
 							<div class="valid-feedback">
 								¡Precio colocado con éxito!
@@ -300,28 +307,10 @@
 						  </div>
 
 					<div class="input-group mb-3">
-						<label for="validationCustom04" class="input-group-text" for="inputGroupSelect01">Producto</label>
-						<select class="form-select" id="inputGroupSelect01 idProducto validationCustom04" name="idProducto" required>
-							<option selected disabled value="">Seleccione</option>
-							<c:forEach var="producto" items="${producto}">
-								<option value="${producto.getIdProducto()}">${producto.getNombreProducto()}</option>
-							</c:forEach>
-						</select>
-						<div class="valid-feedback">
-							¡Todo correcto!
-						</div>
-						<div class="invalid-feedback">
-							  Por favor, elija un producto.
-						</div>
-					</div>
-
-					<div class="input-group mb-3">
 						<label for="validationCustom04" class="input-group-text" for="inputGroupSelect01">Cliente</label>
 						<select class="form-select" id="inputGroupSelect01 noDocCliente validationCustom04" name="noDocCliente" required>
 							<option selected disabled value="">Seleccione</option>
-							<c:forEach var="noDocCliente" items="${noDocCliente}">
-								<option value="${noDocCliente.getNoDocCliente()}">${noDocCliente.getNombreCliente()}</option>
-							</c:forEach>
+							<option value="${venta.getNoDocCliente()}">${noDocCliente.getNombreCliente()}</option>
 						</select>
 						<div class="valid-feedback">
 							¡Todo correcto!
@@ -336,6 +325,7 @@
                         <button class="btn btn-primary width-100" name="condicion" value="insertar">Agregar ventas</button>
                     </p>
                 </form>
+			</c:forEach>
             </div>
         </div>
     </div>

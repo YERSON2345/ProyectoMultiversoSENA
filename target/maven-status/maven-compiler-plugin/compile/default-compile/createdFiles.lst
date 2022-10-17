@@ -25,6 +25,7 @@ model\comprasDao.class
 model\rolVo.class
 controller\tipoProductoController.class
 model\comprasVo.class
+model\ventaclass.class
 model\detalleComprasDao.class
 model\ventaVo.class
 model\proveedorDao.class

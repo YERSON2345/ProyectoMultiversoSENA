@@ -45,7 +45,7 @@ public class salidasDao {
       }
       return compras;
   }
-  public List<salidasVo> listarGenero(int id) throws SQLException{
+  public List<salidasVo> listarGenero(int id, int cantidad) throws SQLException{
     List<salidasVo> genero=new ArrayList<>();
     sql="SELECT U.idSalida,I.noOrdenCompra, U.cantidadSalidas, U.motivoSalidas, U.idDetalleCompras, O.nombreProducto,O.cantidadProducto FROM salidasCompras U INNER JOIN detalleCompras C ON U.idDetalleCompras = C.idDetalleCompras INNER JOIN Producto O ON O.idProducto = C.idProducto INNER JOIN Compras I ON C.noOrdenCompra = I.noOrdenCompra WHERE U.idSalida = "+id;//variable para la BD
     try {
@@ -62,6 +62,9 @@ public class salidasDao {
             filas.setIdDetalleCompras(rs.getInt("idDetalleCompras"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
             filas.setCantidadProducto(rs.getInt("cantidadProducto"));
+            filas.setMotivoSalidas(rs.getString("motivoSalidas"));
+            filas.setCantidadTotal(cantidad);
+
             genero.add(filas);
         }
         ps.close();
@@ -227,3 +230,4 @@ public void actualizarExistenciasP(int cantidadProducto, String nombreProducto) 
   }
 
 }
+

@@ -287,7 +287,7 @@
                                     <h4><a href="#" class="post-headline">Está es una guía de como agregar datos</a></h4>
                                     <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
                                     <div class="post-meta">
-                                        <p>By <a href="#">Michael Correa</a></p>
+                                        <p>By <a href="https://www.facebook.com/Incognito.8794329814298724">Michael Correa</a></p>
                                         <p>3 comments</p>
                                     </div>
                                 </div>
@@ -332,6 +332,8 @@
                                     <a href="#" class="post-tag">¿Cómo usar la página?</a>
                                     <h4><a href="#" class="post-headline">Está es una guía para usar bien la página</a></h4>
                                     <p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</p>
+									<div id="prueba">Si sirve :D</div>
+									<button id="boton">Click aquí</button>
                                     <div class="post-meta">
                                         <p>By <a href="#">Michael Correa</a></p>
                                         <p>3 comments</p>

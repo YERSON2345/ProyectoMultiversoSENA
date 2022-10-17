@@ -281,6 +281,10 @@
 						<div class="form-group">
                         <label for="validationCustom01 observaciones" class="font-weight-bold">Fecha De Vencimiento Del Producto<span class="text-danger">*</span></label> 
 						<div class="col-sm-10">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">
+								  No vence el producto
+								</label><br>
                         <input type="date" id="validationCustom01" name="fecha" placeholder="Fecha De Vencimiento Del Producto" class="form-control" required>
 						<div class="valid-feedback">
 							¡Fecha de Vencimiento insertado con éxito!

@@ -16,13 +16,17 @@ public class salidasVo extends salidasClass {
     private int cantidadProducto;
 
     private int resultadoResta;
+    private int cantidadTotal;
     
     public salidasVo(){
 
     }
 
+
+
     public salidasVo(salidasDao rd, int idSalida, int cantidadSalida, String motivoSalidas, int idDetalleCompras,
-            int idCompra, int noOrdenCompra, String nombreProducto, int cantidadProducto, int resultadoResta) {
+            int idCompra, int noOrdenCompra, String nombreProducto, int cantidadProducto, int resultadoResta,
+            int cantidadTotal) {
         this.rd = rd;
         this.idSalida = idSalida;
         this.cantidadSalida = cantidadSalida;
@@ -33,9 +37,8 @@ public class salidasVo extends salidasClass {
         this.nombreProducto = nombreProducto;
         this.cantidadProducto = cantidadProducto;
         this.resultadoResta = resultadoResta;
+        this.cantidadTotal = cantidadTotal;
     }
-
-
 
 
 
@@ -43,49 +46,25 @@ public class salidasVo extends salidasClass {
         return rd;
     }
 
-
-
-
-
     public void setRd(salidasDao rd) {
         this.rd = rd;
     }
-
-
-
-
 
     public int getIdSalida() {
         return idSalida;
     }
 
-
-
-
-
     public void setIdSalida(int idSalida) {
         this.idSalida = idSalida;
     }
-
-
-
-
 
     public int getCantidadSalida() {
         return cantidadSalida;
     }
 
-
-
-
-
     public void setCantidadSalida(int cantidadSalida) {
         this.cantidadSalida = cantidadSalida;
     }
-
-
-
-
 
     public String getMotivoSalidas() {
         return motivoSalidas;
@@ -111,37 +90,67 @@ public class salidasVo extends salidasClass {
         this.idCompra = idCompra;
     }
 
+
+
     public int getNoOrdenCompra() {
         return noOrdenCompra;
     }
+
+
 
     public void setNoOrdenCompra(int noOrdenCompra) {
         this.noOrdenCompra = noOrdenCompra;
     }
 
+
+
     public String getNombreProducto() {
         return nombreProducto;
     }
+
+
 
     public void setNombreProducto(String nombreProducto) {
         this.nombreProducto = nombreProducto;
     }
 
+
+
     public int getCantidadProducto() {
         return cantidadProducto;
     }
+
+
 
     public void setCantidadProducto(int cantidadProducto) {
         this.cantidadProducto = cantidadProducto;
     }
 
+
+
     public int getResultadoResta() {
         return resultadoResta;
     }
 
+
+
     public void setResultadoResta(int resultadoResta) {
         this.resultadoResta = resultadoResta;
     }
+
+
+
+    public int getCantidadTotal() {
+        return cantidadTotal;
+    }
+
+
+
+    public void setCantidadTotal(int cantidadTotal) {
+        this.cantidadTotal = cantidadTotal;
+    }
+
+
 
     @Override
     public int restarExistencias(int B,int A) {

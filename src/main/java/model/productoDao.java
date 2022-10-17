@@ -56,7 +56,7 @@ public class productoDao {
 
   public List<productoVo> listar() throws SQLException{
       List<productoVo> producto=new ArrayList<>();
-      sql="SELECT *FROM Producto";
+      sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.estadoProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
@@ -70,6 +70,7 @@ public class productoDao {
               filas.setCantidadProducto(rs.getInt("cantidadProducto"));
               filas.setPrecioProducto(rs.getInt("precioProducto"));
               filas.setIdTipoProducto(rs.getInt("idTipoProducto"));
+              filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
               producto.add(filas);
           }
           ps.close();
@@ -82,6 +83,36 @@ public class productoDao {
       }
       return producto;
   }
+
+  public List<productoVo> listarStock() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setIdProducto(rs.getInt("idProducto"));
+            filas.setObservacionesProducto(rs.getString("observacionesProducto"));
+            filas.setNombreProducto(rs.getString("nombreProducto"));
+            filas.setCantidadProducto(rs.getInt("cantidadProducto"));
+            filas.setPrecioProducto(rs.getInt("precioProducto"));
+            filas.setIdTipoProducto(rs.getInt("idTipoProducto"));
+            filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+            producto.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("La consulta no se pudo");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+
   public int registrar (productoVo producto) throws SQLException{
        sql="INSERT INTO Producto(observacionesProducto,nombreProducto,estadoProducto,cantidadProducto,precioProducto,idTipoProducto) values(?,?,?,?,?,?)";
       try{

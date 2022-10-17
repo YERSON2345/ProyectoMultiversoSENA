@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +26,7 @@
 <body>
     <script type="text/javascript">
         function eliminar(){
-         		var respuesta = confirm("¿Desea realmente eliminar el registro?"+"Si elimina el registro, se volveran a agregar los productos descontados en el inventario");
+         		var respuesta = confirm("¿Desea eliminar el registro?");
         	if(respuesta==true){
         		return true;
         	}
@@ -36,8 +35,7 @@
          	}
         }
     </script>
-	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
+	<div class="wrapper"><nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.jsp">
           <span class="align-middle">MULTIVERSO</span>
@@ -261,6 +259,7 @@
 						</ul>
 					</div>
 				</nav>
+	
 
 			<main class="content">
 				<div class="container-fluid p-0">
@@ -286,10 +285,11 @@
 											<thead>
 												<tr>
 												<th></th>
+												<th>Numero de orden de compra</th>
 												<th>Producto</th>
 												<th>Cantidad descontada</th>
 												<th>Motivo</th>
-												<td>Numero de orden de compra</td>
+												
                                                 <th>Acciones</th>
 												</tr>
 											</thead>
@@ -298,14 +298,17 @@
                                                 <c:forEach var="ventas" items="${salidas}">
 												    <tr>
                                                         <td></td>
+														<td>${ventas.getNoOrdenCompra()}</td>
 													    <td>${ventas.getNombreProducto()}</td>
                                                         <td>${ventas.getCantidadSalida()}</td>
                                                         <td>${ventas.getMotivoSalidas()}</td>
-                                                        <td>${ventas.getNoOrdenCompra()}</td>
+                                                    
                                                         <td class="text-left">
-															<a href="salidas?condicion=editar&id=${ventas.getIdSalida()}">
+															<a href="salidas?condicion=editar&id=${ventas.getIdSalida()}&cantidadActualProducto=${ventas.getCantidadProducto()}&cantidadDescontada=${ventas.getCantidadSalida()}">
 																<button class="btn btn-primary">Actualizar</button>
 															</a>
+															<br>
+															<br>
 															<a href="salidas?condicion=eliminar&id=${ventas.getIdSalida()}&nombreP=${ventas.getNombreProducto()}&cantidadS=${ventas.getCantidadSalida()}&cantidadP=${ventas.getCantidadProducto()}" onclick="return eliminar()">
 																<button class="btn btn-danger">Eliminar</button>
 															</a>
@@ -314,133 +317,133 @@
                                                 </c:forEach>
 											</tbody>
 										</table>
-									</div>
-								</div>
-								<div class="card-body">
-								</div>
-							</div>
-						</div>
-					</div>
+</div>
+</div>
+<div class="card-body">
+</div>
+</div>
+</div>
+</div>
 
-				</div>
-			</main>
+</div>
+</main>
 
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" href="#" target="_blank"><strong>Multiverso</strong></a> &copy;
-							</p>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-	</div>
+<footer class="footer">
+<div class="container-fluid">
+<div class="row text-muted">
+<div class="col-6 text-start">
+<p class="mb-0">
+<a class="text-muted" href="#" target="_blank"><strong>Multiverso</strong></a> &copy;
+</p>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
 
-		<!-- Estilos de tabla -->
-		<style>
-			.dataTables_length{
-		padding-left: 30px;
-		padding-top: 15px;
-		width: 45%;
+<!-- Estilos de tabla -->
+<style>
+	.dataTables_length{
+	padding-left: 30px;
+	padding-top: 15px;
+	width: 75%;
 	}
 	
 	.dataTables_filter{
-		margin-right: 15px;
-		float: right;
-		width: 30%;
+	margin-right: 15px;
+	float: right;
+	width: 30%;
 	}
 	
 	.datatable-container .dataTables_wrapper .dataTables_filter label input{
-		margin-top: 10px;
-		width: 75%;
-		background-color: var(--dt-input-background-color);
-		box-sizing: border-box;
-		border-radius: var(--dt-border-radius);
-		border: solid 1px var(--dt-border-color);
-		color: var(--dt-input-color); 
+	margin-top: 10px;
+	width: 75%;
+	background-color: var(--dt-input-background-color);
+	box-sizing: border-box;
+	border-radius: var(--dt-border-radius);
+	border: solid 1px var(--dt-border-color);
+	color: var(--dt-input-color); 
 	}
 	
 	.dataTables_info{
-		padding-left: 15px;
-		padding-top: 10px;
-		padding-bottom: 10px;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	}
 	
 	.dataTables_paginate{
-		float: left;
-		padding-bottom: 15px;
-		padding-right: 30px;
-		padding-top: 30px;
+	float: left;
+	padding-bottom: 15px;
+	padding-right: 30px;
+	padding-top: 30px;
 	
 	}
 	
 	select{
-			font-size: 16px;
-			width: 60px;
-			font-family: 'Verdana', sans-serif;
-			font-weight: 400;
-			color: #444;
-			line-height: 1.3;
-			padding: .4em 1.4em .3em .8em;
-			max-width: 100%; 
-			box-sizing: border-box;
-			border: 1px solid #aaa;
-			box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
-			border-radius: .3em;
-			-moz-appearance: none;
-			-webkit-appearance: none;
-			appearance: none;
-			background-color: #fff;
-			background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-			  linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%);
-			background-repeat: no-repeat, repeat;
-			background-position: right .7em top 50%, 0 0;
-			background-size: .65em auto, 100%;
+	font-size: 16px;
+	width: 60px;
+	font-family: 'Verdana', sans-serif;
+	font-weight: 400;
+	color: #444;
+	line-height: 1.3;
+	padding: .4em 1.4em .3em .8em;
+	max-width: 100%; 
+	box-sizing: border-box;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+	border-radius: .3em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+	linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
 	}
-
+	
 	.datatable-container{
-		width: 870px;
+	width: 1000px;
 	}
-		</style>
-	
-		<script src="assets/js/app.js"></script>
-		<script src="assets/js/jquery-3.3.1.min.js"></script>
-	
-		<!-- Datatables -->
-		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-	
-		<script>
-			$(document).ready( function () {
-			$('#datatable').DataTable({
-		language: {
-			processing:     "Cargando...",
-			search:         "Buscar:",
-			lengthMenu:    "Hay un total de _MENU_ tablas en el menú.",
-			info:           "Hay _START_ de _END_ resultados ahora mismo (cantidad total de resultados _TOTAL_).",
-			infoEmpty:      "Hay 0 de 0 tablas ahora mismo",
-			infoFiltered:   "(La cantidad máxima de tablas es _MAX_)",
-			infoPostFix:    "",
-			loadingRecords: "Carga en curso...",
-			zeroRecords:    "No hemos podidos encontrar ningún resultado a su busqueda.",
-			emptyTable:     "No hemos encontrado ningún resultado.",
-			paginate: {
-				first:      "Siguiente",
-				previous:   "Atrás",
-				next:       "Siguiente",
-				last:       "Dernier"
-			},
-			aria: {
-				sortAscending:  ": activer pour trier la colonne par ordre croissant",
-				sortDescending: ": activer pour trier la colonne par ordre décroissant"
-			}
-		}
-	});
-			} );
-		</script>
+	</style>
+</style>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+
+<!-- Datatables -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<script>
+$(document).ready( function () {
+$('#datatable').DataTable({
+language: {
+processing:     "Cargando...",
+search:         "Buscar:",
+lengthMenu:    "Hay un total de _MENU_ tablas en el menú.",
+info:           "Hay _START_ de _END_ resultados ahora mismo (cantidad total de resultados _TOTAL_).",
+infoEmpty:      "Hay 0 de 0 tablas ahora mismo",
+infoFiltered:   "(La cantidad máxima de tablas es _MAX_)",
+infoPostFix:    "",
+loadingRecords: "Carga en curso...",
+zeroRecords:    "No hemos podidos encontrar ningún resultado a su busqueda.",
+emptyTable:     "No hemos encontrado ningún resultado.",
+paginate: {
+first:      "Siguiente",
+previous:   "Atrás",
+next:       "Siguiente",
+last:       "Dernier"
+},
+aria: {
+sortAscending:  ": activer pour trier la colonne par ordre croissant",
+sortDescending: ": activer pour trier la colonne par ordre décroissant"
+}
+}
+});
+} );
+</script>
 
 </body>
-
 </html>

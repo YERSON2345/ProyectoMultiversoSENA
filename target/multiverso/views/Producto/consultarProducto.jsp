@@ -72,7 +72,7 @@
 	  <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Agregar</span>
 	</a>
 			</li>
-			<li class="sidebar-item">
+			<li class="sidebar-item active">
 	<a class="sidebar-link" href="producto?accion=listar">
 		<i class="align-middle" data-feather="package"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -112,7 +112,7 @@
 	  <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Agregar</span>
 	</a>
 			</li>
-			<li class="sidebar-item active">
+			<li class="sidebar-item ">
 	<a class="sidebar-link" href="ventas?condicion=consultarventa">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -276,7 +276,7 @@
 											<div class="tools">
 												<ul>
 													<li>
-														<br><br>
+														<a href="producto?accion=Stock"> <button class="btn btn-primary" type="button">Agregar compra/venta</button></a><br><br>
 													</li>
 												</ul>
 											</div>
@@ -307,7 +307,7 @@
       <td>${producto.getNombreProducto()}</td>
       <td>${producto.getPrecioProducto()}</td>
       <td>${producto.getCantidadProducto()}</td>
-	  <td>${producto.getIdTipoProducto()}</td>
+	  <td>${producto.getNombreTipoProducto()}</td>
       
       <c:if test="${producto.getEstadoProducto() == true}">
         <td><span class="available"></span></td>

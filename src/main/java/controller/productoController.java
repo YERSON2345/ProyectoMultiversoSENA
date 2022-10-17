@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.XADataSource;
 import javax.swing.RowSorter;
 import javax.swing.table.TableModel;
 
@@ -42,6 +43,9 @@ public class productoController extends HttpServlet{
         case"listar":
         listar(req,resp);
         break;
+        case"Stock":
+        listarStock(req,resp);
+        break;
         case"editar":
         editar(req, resp);
         break;
@@ -57,6 +61,9 @@ public class productoController extends HttpServlet{
         case "Add_Producto":
         consultartipoproducto(req,resp);
         req.getRequestDispatcher("views/Producto/agregarProducto.jsp").forward(req, resp);
+        break;
+        case "Suma":
+        req.getRequestDispatcher("views/Producto/sumarStock.jsp").forward(req, resp);
         break;
         // case "actualizarStock":
         // actualizarStock();
@@ -151,6 +158,18 @@ public class productoController extends HttpServlet{
             System.out.println("estas armandoproblemas" + e.getMessage().toString());
         }
      }
+
+     private void listarStock(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List productolistar=pd.listarStock();
+            req.setAttribute("producto", productolistar);
+            req.getRequestDispatcher("views/Producto/actualizarStock.jsp").forward(req, resp);
+            System.out.println("Datos listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas" + e.getMessage().toString());
+        }
+     }
+
      private void editar(HttpServletRequest req, HttpServletResponse resp){
         if(req.getParameter("idProducto")!=null){
             p.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));

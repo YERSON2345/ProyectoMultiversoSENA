@@ -265,13 +265,13 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Consultar Ventas</h1>
+					<h1 class="h3 mb-3">Consultar Cliente</h1>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="datatable-container">
+									<div class="datatable-container" >
 										<div class="header-tools">
 											<div class="tools">
 												<ul>
@@ -293,8 +293,6 @@
 												<th>Correo</th>
 												<th>Telefono</th>
 												<th>Dirección</th>
-												<th>Frecuencia</th>
-												<th>Cambiar Frecuencia</th>
 												<th>Acciones</th>
 												</tr>
 											</thead>
@@ -311,27 +309,12 @@
 													<td>${usuario.getCorreoCliente()}</td>
 													<td>${usuario.getTelefonoCliente()}</td>
 													<td>${usuario.getDireccionDestinoVenta()}</td>
-													<c:if test="${usuario.getFrecuenciaCliente() == true}">
-														<td><span>Activo</span></td> 
-													</c:if>
-													<c:if test="${usuario.getFrecuenciaCliente() == false}">
-														<td><span>Inactivo</span></td> 
-													</c:if>
-										
-													<c:if test="${usuario.getFrecuenciaCliente() == true}">
-														<td>
-															<a href="cliente?condicion=cambioEstado&id=${usuario.getNoDocCliente()}&estado=false"><button class="btn btn-danger" type="button" onclick="return confirmar()">Inactivar</button> </a> 
-														</td> 
-													</c:if>
-													<c:if test="${usuario.getFrecuenciaCliente() == false}">
-														<td>
-															<a href="cliente?condicion=cambioEstado&id=${usuario.getNoDocCliente()}&estado=true"><button class="btn btn-success" type="button">Activar</button> </a>
-														</td> 
-													</c:if>
+	
 												<td class="text-left">
 													<a href="cliente?condicion=editar&id=${usuario.getNoDocCliente()}">
 													<button class="btn btn-primary">Actualizar</button>
 													</a>
+													<br>
 													<br>
 													<a href="cliente?condicion=eliminar&id=${usuario.getNoDocCliente()}" onclick="return eliminar()">
 													<button class="btn btn-danger">Eliminar</button></a>
@@ -428,7 +411,7 @@
 	}
 
 	.datatable-container{
-		width: 870px;
+		width: 1000px;
 	}
 		</style>
 	

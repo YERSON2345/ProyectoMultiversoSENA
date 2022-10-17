@@ -8,13 +8,14 @@ public class productoVo {
     private int cantidadProducto;
     private int precioProducto;
     private int idTipoProducto;
+    private String NombreTipoProducto;
 
     public productoVo() {
 
     }
 
     public productoVo(int idProducto, Boolean estadoProducto, String nombreProducto, String observacionesProducto,
-            int cantidadProducto, int precioProducto, int idTipoProducto) {
+            int cantidadProducto, int precioProducto, int idTipoProducto, String NombreTipoProducto) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.observacionesProducto = observacionesProducto;
@@ -78,6 +79,14 @@ public class productoVo {
 
     public void setIdTipoProducto(int idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
+    }
+
+    public String getNombreTipoProducto(){
+        return NombreTipoProducto;
+    }
+
+    public void setNombreTipoProducto(String NombreTipoProducto){
+        this.NombreTipoProducto = NombreTipoProducto;
     }
     
 }

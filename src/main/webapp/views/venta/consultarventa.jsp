@@ -152,11 +152,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -294,8 +289,8 @@
 												<th>Cantidad vendida</th>
 												<th>Precio Total</th>
 												<th>Producto</th>
-												<td>No doc Cliente</td>
-												<td>Nombre del cliente</td>
+												<th>No doc Cliente</th>
+												<th>Nombre del cliente</th>
                                                 <th>Acciones</th>
 												</tr>
 											</thead>

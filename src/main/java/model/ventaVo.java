@@ -1,6 +1,6 @@
 package model;
 
-public class ventaVo {
+public class ventaVo extends ventaclass{
 
     private int idDetalleVenta;
     private int cantidadVendida;
@@ -9,13 +9,16 @@ public class ventaVo {
     private int noDocCliente;
     private String nombreProducto;
     private String nombreCliente;
+    private int resultadoResta;
+    private int cantidadProducto;
+
 
     public ventaVo(){
 
     }
 
     public ventaVo(int idDetalleVenta, int cantidadVendida, int precioTotal, int idProductoFK, int noDocCliente,
-            String nombreProducto, String nombreCliente) {
+            String nombreProducto, String nombreCliente, int resultadoResta, int cantidadProducto) {
         this.idDetalleVenta = idDetalleVenta;
         this.cantidadVendida = cantidadVendida;
         this.precioTotal = precioTotal;
@@ -23,6 +26,8 @@ public class ventaVo {
         this.noDocCliente = noDocCliente;
         this.nombreProducto = nombreProducto;
         this.nombreCliente = nombreCliente;
+        this.resultadoResta = resultadoResta;
+        this.cantidadProducto = cantidadProducto;
     }
 
     public int getIdDetalleVenta() {
@@ -79,6 +84,60 @@ public class ventaVo {
 
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
+    }
+
+    public int getresultadoResta(){
+        return resultadoResta;
+    }
+
+    public void setresultadoResta(int resultadoResta){
+        this.resultadoResta = resultadoResta;
+    }
+
+    public int getcantidadProducto(){
+        return cantidadProducto;
+    }
+
+    public void setcantidadProducto(int cantidadProducto){
+        this.cantidadProducto = cantidadProducto;
+    }
+
+
+// Funciones para actualizar stock
+        @Override
+    public int restarExistencias(int B,int A) {
+
+        System.out.println(B);
+        System.out.println(A);
+        resultadoResta = B - A;
+        System.out.println("El resultado es de " + resultadoResta);
+
+    return resultadoResta;
+
+    }
+    @Override
+    public int sumarExistencias(int B,int A) {
+
+        System.out.println(B);
+        System.out.println(A);
+        resultadoResta = B + A;
+        System.out.println("El resultado es de " + resultadoResta);
+
+    return resultadoResta;
+
+    }
+    @Override
+    public int actualizarExistencias(int A,int B, int C) {
+
+        System.out.println(C);
+        System.out.println(A);
+        System.out.println(B);
+        resultadoResta = C +(A - B);
+
+        System.out.println("El resultado es de " + resultadoResta);
+
+    return resultadoResta;
+
     }
 
 }
