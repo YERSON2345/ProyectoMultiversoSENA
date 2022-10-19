@@ -267,13 +267,13 @@
 				<div class="form-group">
 						<label for="nombreProveedor validationCustom01" class="col-sm-2 control-label">Nombre del proveedor</label>
 						<div class="col-sm-10">
-							<input type="text" id="nombreProveedor validationCustom01" name="nombreProveedor" class="form-control" required>
+							<input type="text" id="nombreProveedor validationCustom01" name="nombreProveedor" class="form-control" minlength="3" maxlength="15" required>
 		
 							<div class="valid-feedback">
 							  ¡Nombre colocado con éxito!
 							</div>
 							<div class="invalid-feedback">
-							  Por favor, coloque el nombre del proveedor.
+							  ¡El nombre del proveedor no puede estar vacío o tener menos de 3 letras!
 							</div>
 						</div>
 				</div>

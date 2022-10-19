@@ -272,13 +272,13 @@
 							<div class="form-group">
 								<label for="nombreProveedor validationCustom01" class="col-sm-2 control-label">Nombre del proveedor</label>
 								<div class="col-sm-10">
-									<input type="text" id="nombreProveedor validationCustom01" name="nombreProveedor" class="form-control" value="${proveedor.getNombreProveedor()}" required>
+									<input type="text" id="nombreProveedor validationCustom01" name="nombreProveedor" class="form-control" value="${proveedor.getNombreProveedor()}" minlength="3" maxlength="15" required>
 				
 									<div class="valid-feedback">
 									  ¡Nombre colocado con éxito!
 									</div>
 									<div class="invalid-feedback">
-									  Por favor, coloque el nombre del proveedor.
+									  ¡El nombre del proveedor no puede estar vacío o tener menos de 3 letras!
 									</div>
 								</div>
 						</div>
@@ -295,23 +295,9 @@
 									  </div>
 									</div>
 							</div>
-
-						<div class="col-12">
-								<div class="form-check">
-								  <input class="form-check-input" type="checkbox" value="Acepto las condiciones" id="invalidCheck" name="condiciones" required>
-								<label class="form-check-label" for="invalidCheck">
-									Acepta los términos y condiciones
-								</label>
-								<div class="valid-feedback">
-								  Correcto!
-								</div>
-								<div class="invalid-feedback">
-								  Por favor, acepte los términos y condiciones.
-								</div>
-						  </div>
-
+							<br><br>
                             <p class="block">
-                                <button class="btn btn-primary" type="submit" id="form-submit" name="condicion" value="editarProveedor">Editar proveedor</button>
+                                <button class="btn btn-primary" type="submit" id="form-submit" name="condicion" value="editarProveedor">Editar</button>
                             </p>
                         </form>
                     </c:forEach>

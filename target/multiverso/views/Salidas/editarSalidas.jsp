@@ -313,8 +313,8 @@
 									<br>
 									<div class ="form-group">
 										
-										<label class="col-sm-2 control-label">Cantidad que desea descontar</label>
-										<div class="col-sm-10">
+										<label class="col-sm-5 control-label">Cantidad que desea descontar</label>
+										<div class="col-sm-5">
 										<input name="cantidad"type="number" class ="form-control" placeholder="20 unidades" min="1" max="${salidas.getCantidadTotal()}" value="${salidas.getCantidadSalida()}" required>
 										<div class="invalid-feedback">
 											Por favor, tenga en cuenta la cantidad del producto total que se puede descontar.
@@ -328,9 +328,9 @@
 									<br>
 									<div class ="form-group">
 								
-										<label class="col-sm-2 control-label">Motivo por el cual se va a descontar</label>
-										<div class="col-sm-10">
-										<input name="motivo"type="text" class ="form-control"  placeholder="Escriba el motivo por el cual se va a descontar dicha cantidad del producto en el inventario" value="${salidas.getMotivoSalidas()}" required>
+										<label class="col-sm-5 control-label">Motivo por el cual se va a descontar</label>
+										<div class="col-sm-7">
+										<textarea rows="4" cols="50" name="motivo" id="validationCustom01" placeholder="Escriba el motivo por el cual se va a descontar dicha cantidad del producto del inventario" required>${salidas.getMotivoSalidas()}</textarea>
 										<div class="invalid-feedback">
 											Por favor, escriba el motivo por el cual desea descontar dicha cantidad de producto.
 										  </div>

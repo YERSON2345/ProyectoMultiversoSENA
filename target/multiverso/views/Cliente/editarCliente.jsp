@@ -22,9 +22,12 @@
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
-
+	<!-- BOOSTRAP -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 	<!-- Contenido dashboard -->
 	<link rel="stylesheet" href="assets/css/style.css">
+	
 
 	<title>Editar Cliente</title>
 
@@ -260,12 +263,18 @@
 							<div class="contact-form">
 								<h3>Editar Cliente</h3>
 								<c:forEach var="usuario" items="${datos}">
-								<form action="cliente" method="post">
+								<form action="cliente" method="post"class="needs-validation" novalidate>
 									<div class ="form-group">
 										
-										<label class="col-sm-2 control-label">Nombre</label>
+										<label class="col-sm-2 control-label" for="validationCustom01">Nombre</label>
 										<div class="col-sm-10">
-										<input name="nombreCliente"type="text" class ="form-control" placeholder="Andres Avila" value="${usuario.getNombreCliente()}">
+										<input name="nombreCliente"type="text" class ="form-control"id="validationCustom01" placeholder="Andres Avila" value="${usuario.getNombreCliente()}" required minlength="2" maxlength="20">
+										<div class="invalid-feedback">
+											Por favor, introduce el nombre del cliente(Min 1 caracter| Max 20 caracteres).
+										   </div>
+										   <div class="valid-feedback">
+											Nombre valido!
+										   </div>
 										</div>
 
 									</div>
@@ -274,7 +283,13 @@
 								
 										<label class="col-sm-2 control-label">Apellido</label>
 										<div class="col-sm-10">
-										<input name="apellidoCliente"type="text" class ="form-control"  placeholder="Guerrero Mosquera" value="${usuario.getApellidoCliente()}">
+										<input name="apellidoCliente"type="text" class ="form-control" id="validationCustom02" placeholder="Guerrero Mosquera" value="${usuario.getApellidoCliente()}" required minlength="2" maxlength="20">
+										<div class="invalid-feedback">
+											Por favor, introduce el Apellido del cliente (Min 1 caracter| Max 20 caracteres).
+										   </div>
+										   <div class="valid-feedback">
+											Apellido valido!
+										   </div>
 										</div>
 									</div>
 									<br>
@@ -282,7 +297,15 @@
 										
 										<label class="col-sm-2 control-label">Correo</label>
 										<div class="col-sm-10">
-										<input name="correoCliente"type="email" class ="form-control" placeholder="andres.avillaGM@gmail.com" value="${usuario.getCorreoCliente()}">
+											<div class="input-group has-validation">
+												<span class="input-group-text" id="inputGroupPrepend">@</span>
+										<input name="correoCliente"type="email" class ="form-control" placeholder="andres.avillaGM@gmail.com" value="${usuario.getCorreoCliente()}" aria-describedby="inputGroupPrepend" id="validationCustomUsername" required>
+										<div class="invalid-feedback">
+											Introduce un correo electronico valido (example@gmail.com).
+										   </div>
+										  <div class="valid-feedback">
+											El correo es valido!
+										  </div>
 										</div>
 									</div>
 									<br>
@@ -290,14 +313,26 @@
 										
 										<label class="col-sm-2 control-label">Telefono</label>
 										<div class="col-sm-10">
-										<input name="telefonoCliente"type="number" class ="form-control" placeholder="313309473843" value="${usuario.getTelefonoCliente()}">
+										<input name="telefonoCliente"type="number"id="validationCustom01" class ="form-control" placeholder="313309473843" value="${usuario.getTelefonoCliente()}" min="100000000"max="999999999" required>
+										<div class="valid-feedback">
+											Telefono Valido!
+										  </div>
+										  <div class="invalid-feedback">
+											Los telefonos celulares deben tener 10 caracteres (3136578947)
+										   </div>
 										</div>
 									</div>
 									<br>
 									<div class ="form-group">
 										<label class="col-sm-2 control-label">Dirección</label>
 										<div class="col-sm-10">
-										<input name="direccionDestinoVenta"type="text" class ="form-control" placeholder="Cr 84b #129a -24" value="${usuario.getDireccionDestinoVenta()}">
+										<input name="direccionDestinoVenta"type="text"id="validationCustom01" class ="form-control" placeholder="Cr 84b #129a -24" value="${usuario.getDireccionDestinoVenta()}" required minlength="7" maxlength="30">
+										<div class="valid-feedback">
+											Dirección Valida!
+										  </div>
+										  <div class="invalid-feedback">
+											Por favor introduce la dirección del cliente.
+										   </div>
 										</div>
 									</div>
 									<br>
@@ -359,6 +394,10 @@
     <script src="assets/js/dashboard/active.js"></script>
 				<!-- Plantilla anterior -->
 				<script src="assets/js/app.js"></script>
+				
+					<!-- Validaciones -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
 
 </body>
 

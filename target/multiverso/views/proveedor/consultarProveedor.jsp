@@ -36,17 +36,6 @@
          }
         }
      </script>
-       <script type="text/javascript">
-        function eliminar(){
-         var respuesta = confirm("¿Desea eliminar el registro?");
-         if(respuesta==true){
-            return true;
-         }
-         else{
-             return false;
-         }
-        }
-     </script>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
@@ -330,8 +319,8 @@
                                                         <a href="proveedor?condicion=editar&id=${proveedor.getIdProveedor()}">
                                                             <button class="btn btn-primary">Actualizar</button>
                                                         </a>
-                                                        <a href="proveedor?condicion=eliminar&id=${proveedor.getIdProveedor()}" onclick="return eliminar()">
-                                                            <button class="btn btn-danger">Eliminar</button>
+                                                        <a href="proveedor?condicion=eliminar&id=${proveedor.getIdProveedor()}">
+                                                            <button class="btn btn-danger" onclick="eliminar()">Eliminar</button>
                                                         </a>
 													</td>
 												</tr>
@@ -460,6 +449,29 @@ select{
 });
         } );
     </script>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<script>
+		function eliminar(id) {
+		swal({
+  			title: "Are you sure?",
+  			text: "Once deleted, you will not be able to recover this imaginary file!",
+  			icon: "warning",
+  			buttons: true,
+  			dangerMode: true,
+		})
+			.then((willDelete) => {
+  				if (willDelete) {
+    				swal("Poof! Your imaginary file has been deleted!", {
+      				icon: "success",
+    			});
+  				} else {
+    			swal("Your imaginary file is safe!");
+  				}
+			});
+		}
+	</script>
 </body>
 
 </html>

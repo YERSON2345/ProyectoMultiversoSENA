@@ -97,7 +97,7 @@
                               <div class="carousel-caption relative">
                                  <div class="bluid">
                                     <br><br><br><br><br>
-                                    <h1>Mul<br> </h1>
+                                    <h1>Multiverso<br> </h1>
                                     <a class="read_more" href="ventas?condicion=dashboard">Dashboard</a>
                                  </div>
                               </div>
@@ -108,7 +108,7 @@
                               <div class="carousel-caption relative">
                                  <div class="bluid">
                                     <br><br><br><br><br>
-                                    <h1>ti<br> </h1>
+                                    <h1>Multiverso<br> </h1>
                                     <a class="read_more" href="producto?accion=listar">Inventario</a>
                                  </div>
                               </div>
@@ -119,7 +119,7 @@
                               <div class="carousel-caption relative">
                                  <div class="bluid">
                                     <br><br><br><br><br>
-                                    <h1>ver<br> </h1>
+                                    <h1>Multiverso<br> </h1>
                                     <a class="read_more" href="ventas?condicion=dashboard">Dashboard</a>
                                  </div>
                               </div>
@@ -130,7 +130,7 @@
                               <div class="carousel-caption relative">
                                  <div class="bluid">
                                     <br><br><br><br><br>
-                                    <h1>so <br> </h1>
+                                    <h1>Multiverso <br> </h1>
                                     <a class="read_more" href="producto?accion=listar">Inventario</a>
                                  </div>
                               </div>

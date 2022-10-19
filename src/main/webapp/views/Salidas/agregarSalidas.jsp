@@ -273,7 +273,7 @@
 									<div class="form-group">
 										<h3>Informacion del producto:</h3>
 								
-										<label class="col-sm-2 control-label">
+										<label class="col-sm-5 control-label">
 											Numero de orden: ${salir.getNoOrdenCompra()}  <br>
 											Producto: ${salir.getNombreProducto()} <br>
 											Cantidad: ${salir.getCantidadProducto()} <br>
@@ -319,9 +319,10 @@
 									<br>
 									<div class ="form-group">
 								
-										<label class="col-sm-2 control-label">Motivo por el cual se va a descontar</label>
-										<div class="col-sm-10">
-										<input name="motivo"type="textarea" class ="form-control" id="validationCustom01"  placeholder="Escriba el motivo por el cual se va a descontar dicha cantidad del producto del inventario" required>
+										<label class="col-sm-4 control-label">Motivo por el cual se va a descontar</label>
+										<div class="col-sm-7">
+										<textarea rows="4" cols="50" name="motivo" id="validationCustom01" placeholder="Escriba el motivo por el cual se va a descontar dicha cantidad del producto del inventario" required></textarea>
+											
 										<div class="valid-feedback">
 											Se ve bien!
 										  </div>
@@ -349,8 +350,7 @@
 							</div>
 						</footer>
 					</div>
-				
-						
+
 						</div>
 					</div>
 				

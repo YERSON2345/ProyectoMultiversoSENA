@@ -22,7 +22,9 @@
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
-
+	<!-- BOOSTRAP -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
 	<!-- Contenido dashboard -->
 	<link rel="stylesheet" href="assets/css/style.css">
 
@@ -266,40 +268,63 @@
 						<div class="contact-wrapper animated bounceInUp">
 							<div class="contact-form">
 								<h3>Agregar Clientes</h3>
-								<form action="cliente" method="post">
+								<form action="cliente" method="post" class="needs-validation" novalidate>
 				
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Número de documento</label>
+										<label for="validationCustom01" class="col-sm-2 control-label">Número de documento</label>
 										<div class="col-sm-10">
-											<input type="text" id="validationCustom01" name="noDocCliente" class="form-control" placeholder="1199887766" required >
+											<input type="number" id="validationCustom01" min="100000000" max="2200000000" name="noDocCliente" class="form-control" placeholder="1199887766" required >
+											<div class="invalid-feedback">
+												El número de documento no es valido (Minimo 9 caracteres - Maximo 10 caracteres).
+											  </div>
+											  <div class="valid-feedback">
+												El número de documento es valido!
+											   </div>
 										</div>
 									</div>
 									<br>
 									<div class ="form-group">
-										<label class="col-sm-2 control-label">Tipo de documento</label>
+										<label for="validationCustom04" class="col-sm-2 control-label">Tipo de documento</label>
 										<div class="col-sm-10">
-										<select name="tipoDocCliente">
-											<option class="custom-select" selected disabled>Seleccione...</option>
+										<select class="form-select" name="tipoDocCliente" id="validationCustom04" required>
+												<option selected disabled value="">Seleccione</option>
 												<option value="TI">TI</option>
 												<option value="CC">CC</option>
 										</select>
+										<div class="invalid-feedback">
+											Por favor, selecciona el tipo de documento.
+										   </div>
+										   <div class="valid-feedback">
+											Se ve bien!
+										   </div>
 										</div>
 									</div>
 									<br>
 									<div class ="form-group">
 										
-										<label class="col-sm-2 control-label">Nombre</label>
+										<label class="col-sm-2 control-label" for="validationCustom02">Nombre</label>
 										<div class="col-sm-10">
-										<input name="nombreCliente"type="text" class ="form-control" placeholder="Andres Avila">
+										<input name="nombreCliente"type="text"  id="validationCustom02"class ="form-control" placeholder="Andres Avila" required minlength="2" maxlength="20">
+										<div class="invalid-feedback">
+											Por favor, introduce el nombre del cliente(Min 1 caracter| Max 20 caracteres).
+										   </div>
+										   <div class="valid-feedback">
+											Nombre valido!
+										   </div>
 										</div>
-
 									</div>
 									<br>
 									<div class ="form-group">
 								
-										<label class="col-sm-2 control-label">Apellido</label>
+										<label for="validationCustom02" class="col-sm-2 control-label">Apellido</label>
 										<div class="col-sm-10">
-										<input name="apellidoCliente"type="text" class ="form-control"  placeholder="Guerrero Mosquera">
+										<input name="apellidoCliente" id="validationCustom02" type="text" class ="form-control"  placeholder="Guerrero Mosquera" required minlength="2" maxlength="20">
+										<div class="invalid-feedback">
+											Por favor, introduce el Apellido del cliente (Min 1 caracter| Max 20 caracteres).
+										   </div>
+										   <div class="valid-feedback">
+											Apellido valido!
+										   </div>
 										</div>
 									</div>
 									<br>
@@ -307,7 +332,15 @@
 										
 										<label class="col-sm-2 control-label">Correo</label>
 										<div class="col-sm-10">
-										<input name="correoCliente"type="email" class ="form-control" placeholder="andres.avillaGM@gmail.com">
+											<div class="input-group has-validation">
+												<span class="input-group-text" id="inputGroupPrepend">@</span>
+										<input name="correoCliente"type="email" aria-describedby="inputGroupPrepend" class ="form-control" placeholder="andres.avillaGM@gmail.com" id="validationCustomUsername" required>
+										<div class="invalid-feedback">
+											Introduce un correo electronico valido (example@gmail.com).
+										   </div>
+										  <div class="valid-feedback">
+											El correo es valido!
+										  </div>
 										</div>
 									</div>
 									<br>
@@ -315,14 +348,26 @@
 										
 										<label class="col-sm-2 control-label">Telefono</label>
 										<div class="col-sm-10">
-										<input name="telefonoCliente"type="number" class ="form-control" placeholder="313309473843">
+										<input name="telefonoCliente"type="number"id="validationCustom01" class ="form-control" placeholder="313309473843" min="100000000"max="999999999" required>
+										<div class="valid-feedback">
+											Telefono Valido!
+										  </div>
+										  <div class="invalid-feedback">
+											Los telefonos celulares deben tener 10 caracteres (3136578947)
+										   </div>
 										</div>
 									</div>
 									<br>
 									<div class ="form-group">
 										<label class="col-sm-2 control-label">Dirección</label>
 										<div class="col-sm-10">
-										<input name="direccionDestinoVenta"type="text" class ="form-control" placeholder="Cr 84b #129a -24">
+										<input name="direccionDestinoVenta"type="text" class ="form-control"id="validationCustom01"  placeholder="Cr 84b #129a -24" required minlength="7" maxlength="30">
+										<div class="valid-feedback">
+											Dirección Valida!
+										  </div>
+										  <div class="invalid-feedback">
+											Por favor introduce la dirección del cliente.
+										   </div>
 										</div>
 									</div>
 									<br>
@@ -390,6 +435,10 @@
     <script src="assets/js/dashboard/active.js"></script>
 				<!-- Plantilla anterior -->
 				<script src="assets/js/app.js"></script>
+
+					<!-- Validaciones -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
 
 </body>
 
