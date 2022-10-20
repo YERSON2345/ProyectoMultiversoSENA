@@ -22,20 +22,12 @@
 	<link rel="stylesheet" href="assets/css/tabla.css">
 	<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+		<!-- Sweet alert -->
+		<link rel="stylesheet" href="assets/css/sweetalert.css">
 </head>
 
 <body>
-    <script type="text/javascript">
-        function eliminar(){
-         		var respuesta = confirm("¿Desea eliminar el registro?");
-        	if(respuesta==true){
-        		return true;
-        	}
-        	else{
-            	return false;
-         	}
-        }
-    </script>
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
@@ -441,6 +433,10 @@
 	});
 			} );
 		</script>
+
+			
+	<!-- SweetAlert -->
+	<script src="assets/js/sweetalert.js"></script>
 
 	</body>
 </html>

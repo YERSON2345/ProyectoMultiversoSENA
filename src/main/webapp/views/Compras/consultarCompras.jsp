@@ -307,7 +307,7 @@
 		<a href="salidas?condicion=formulario&id=${compras.getIdCompras()}"> <button class="btn btn-danger" type="button"> -</button></a><br> 
 	  </td>
         <td>
-          <a href="compras?accion=eliminar&idCompras=${compras.getIdCompras()}"> <button class="btn btn-danger" type="button"> Eliminar</button></a><br> 
+          <a href="compras?accion=eliminar&idCompras=${compras.getIdCompras()}&noOrdenCompra=${compras.getNoOrdenCompra()}"> <button class="btn btn-danger" type="button"> Eliminar</button></a><br> 
           <a href="compras?accion=editar&idCompras=${compras.getIdCompras()}"> <button class="btn btn-primary" type="button"> Editar</button></a>
         </td>
     </tr>

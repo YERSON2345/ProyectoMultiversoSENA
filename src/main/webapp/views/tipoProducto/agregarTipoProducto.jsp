@@ -269,7 +269,7 @@
 					<div class="form-group">
 						<label for="nombreTipoProducto validationCustom01" class="col-sm-2 control-label">Nombre del tipo de producto</label>
 						<div class="col-sm-10">
-							<input type="text" name="nombreTipoProducto" value="${tipoProducto.getNombreTipoProducto()}" class="form-control" required>
+							<input type="text" name="nombre" value="${tipoProducto.getNombreTipoProducto()}" class="form-control" required>
 		
 							<div class="valid-feedback">
 							  ¡Nombre colocado con éxito!

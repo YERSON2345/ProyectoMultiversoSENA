@@ -266,9 +266,20 @@
 
         <div class="contact-wrapper animated bounceInUp">
             <div class="contact-form">
-                <h3>Agregar Compras</h3>
+                <h3>Editar Compras</h3>
                 <c:forEach var="compras" items="${compras}">
                 <form action="compras" method="post">
+
+					<div class="form-group">
+						<h3>Informacion de la compra:</h3>
+						<label class="col-sm-5 control-label">
+							<br> Numero de orden: ${compras.getNoOrdenCompra()}  <br>
+							 Producto: ${compras.getNombreProducto()} <br>
+							 Proveedor: ${compras.getNombreProveedor()} <br>
+						</label>
+					</div>
+					<br>
+
                     <p>
                         <label class="font-weight-bold">Fecha Compras<span class="text-danger">*</span></label> 
                         <input type="date" name="fecha" value="${compras.getFechaCompra()}" placeholder="Fecha Compras" class="form-control">
@@ -276,21 +287,15 @@
                      <p>
                         <label class="font-weight-bold">N° Entradas<span class="text-danger">*</span></label> 
                         <input type="number" name="entradas" value="${compras.getEntradaCompras()}" placeholder="N° Entradas" class="form-control">
-                     </p>
-                     <p>
-                        <label class="font-weight-bold">N° Orden De Compras<span class="text-danger">*</span></label> 
-                        <input type="number" name="NoOrden" value="${compras.getNoOrdenCompra()}" placeholder="N° Orden De Compras" class="form-control">
-                     </p>
-                
-                     <p>
-                        <div class="form-group mb-5">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label text-muted">Aceptar terminos y condiciones</label>
-                            </div>
-                        </div>
-                     </p>  
-                    <p class="block">
+                     </p> 
+					 <p>
+                        <label class="font-weight-bold">Precio Del Proveedor<span class="text-danger">*</span></label> 
+                        <input type="number" name="PrecioProveedor" value="${compras.getPrecioCompra()}" placeholder="Precio proveedor" class="form-control">
+                     </p> 
+					 <p> 
+                        <input type="hidden" name="noOrdenCompra" value="${compras.getNoOrdenCompra()}" placeholder="N° Entradas" class="form-control">
+                     </p> 
+					 <p class="block">
                         <button name="accion" class="btn btn-primary" value="Editar">Enviar</button>
                     </p>
                 </form>

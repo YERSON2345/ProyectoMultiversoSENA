@@ -166,15 +166,18 @@ public class comprasController extends HttpServlet{
         if(req.getParameter("entradas")!=null){
             c.setEntradaCompras(Integer.parseInt(req.getParameter("entradas")));
         }
-        if(req.getParameter("NoOrden")!=null){
-            c.setNoOrdenCompra(Integer.parseInt(req.getParameter("NoOrden")));
+        if(req.getParameter("noOrdenCompra")!=null){
+            c.setNoOrdenCompra(Integer.parseInt(req.getParameter("noOrdenCompra")));
+        }
+        if(req.getParameter("PrecioProveedor")!=null){
+            c.setPrecioCompra(Integer.parseInt(req.getParameter("PrecioProveedor")));
         }
          try{
              cd.actualizar(c);
              System.out.println("editar tipo producto");
              listar(req, resp);
          }catch (Exception e){
-             System.out.println("Error al editar"+e.getMessage().toString());
+             System.out.println("Buenas noches gente, que descansen, Error al editar"+e.getMessage().toString());
          }
      }
      private void visualizar(HttpServletRequest req, HttpServletResponse resp){
@@ -192,8 +195,14 @@ public class comprasController extends HttpServlet{
          if(req.getParameter("idCompras")!=null){
              c.setIdCompras(Integer.parseInt(req.getParameter("idCompras")));
          }
+         if(req.getParameter("noOrdenCompra")!=null){
+            c.setNoOrdenCompra(Integer.parseInt(req.getParameter("noOrdenCompra")));
+        }
          try{
-             cd.eliminar(c.getIdCompras());
+            cd.eliminar(c.getNoOrdenCompra());
+            cd.eliminarCompras(c.getNoOrdenCompra());
+
+     
              System.out.println("se elimino correctamente");
              listar(req, resp);
          }catch(Exception e){

@@ -286,8 +286,8 @@
 											<thead>
 												<tr>
 												<th></th>
-												<th>Estado</th>
 												<th>Nombre del producto</th>
+												<th>Estado</th>
 												<th>Activar / Inactivar</th>
                                                 <th>Acciones</th>
 												</tr>

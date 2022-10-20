@@ -14,6 +14,9 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
+	<!-- Sweet alert -->
+	<link rel="stylesheet" href="assets/css/sweetalert.css">
+
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
 	<title>Consultar Proveedor</title>
@@ -319,8 +322,8 @@
                                                         <a href="proveedor?condicion=editar&id=${proveedor.getIdProveedor()}">
                                                             <button class="btn btn-primary">Actualizar</button>
                                                         </a>
-                                                        <a href="proveedor?condicion=eliminar&id=${proveedor.getIdProveedor()}">
-                                                            <button class="btn btn-danger" onclick="eliminar()">Eliminar</button>
+                                                        <a id="delProveedor" href="">
+                                                        <button type="hidden" id="codigo" class="btn btn-danger">Eliminar</button>
                                                         </a>
 													</td>
 												</tr>
@@ -449,29 +452,10 @@ select{
 });
         } );
     </script>
-
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-	<script>
-		function eliminar(id) {
-		swal({
-  			title: "Are you sure?",
-  			text: "Once deleted, you will not be able to recover this imaginary file!",
-  			icon: "warning",
-  			buttons: true,
-  			dangerMode: true,
-		})
-			.then((willDelete) => {
-  				if (willDelete) {
-    				swal("Poof! Your imaginary file has been deleted!", {
-      				icon: "success",
-    			});
-  				} else {
-    			swal("Your imaginary file is safe!");
-  				}
-			});
-		}
-	</script>
+	
+	<!-- SweetAlert -->
+	<script src="assets/js/sweetalert.js"></script>
+	<script src="assets/js/funcionesproveedor.js"></script>
 </body>
 
 </html>

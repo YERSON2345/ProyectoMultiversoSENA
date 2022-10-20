@@ -90,18 +90,21 @@ public class comprasDao {
 
   public List<comprasVo> editarCompras(int idCompras) throws SQLException{
       List<comprasVo> Compras=new ArrayList<>();
-      sql="SELECT * FROM Compras WHERE idCompras ="+idCompras;
+      sql="SELECT U.idDetalleCompras,U.fechaVencimientoProducto,U.cantidadCompra,U.precioProveedor,C.noOrdenCompra, O.nombreProveedor,P.nombreProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE U.idDetalleCompras ="+idCompras;
       try{
-          con=Conexion.conectar();
+          con=Conexion.conectar();  
           ps=con.prepareStatement(sql);
           rs=ps.executeQuery(sql);
           while(rs.next()){
-            comprasVo c=new comprasVo();
-              c.setIdCompras(rs.getInt("idCompras"));
-              c.setEntradaCompras(rs.getInt("entradasCompras"));
-              c.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
-              c.setFechaCompra(rs.getString("fechaCompra"));
-              Compras.add(c);
+            comprasVo filas=new comprasVo();
+            filas.setIdCompras(rs.getInt("idDetalleCompras"));
+            filas.setFechaCompra(rs.getString("fechaVencimientoProducto"));
+            filas.setEntradaCompras(rs.getInt("cantidadCompra"));
+            filas.setPrecioCompra(rs.getInt("precioProveedor"));
+            filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
+            filas.setNombreProducto(rs.getString("nombreProducto"));
+            filas.setNombreProveedor(rs.getString("nombreProveedor"));
+              Compras.add(filas);
           }
           ps.close();
           System.out.println("consulta bien echa");
@@ -114,15 +117,15 @@ public class comprasDao {
       return Compras;
   }
   public int actualizar(comprasVo compras) throws SQLException{
-      sql="UPDATE Compras SET entradasCompras=?,noOrdenCompra=?,fechaCompra=? WHERE idCompras=?";
+      sql="UPDATE detalleCompras SET cantidadCompra=?,precioProveedor=?,fechaVencimientoProducto=? WHERE noOrdenCompra=?";
      try{
          con=Conexion.conectar();
          ps=con.prepareStatement(sql);
          System.out.println(ps);
          ps.setInt(1, compras.getEntradaCompras());
-         ps.setInt(2, compras.getNoOrdenCompra());
+         ps.setInt(2, compras.getPrecioCompra());
          ps.setString(3, compras.getFechaCompra());
-         ps.setInt(4, compras.getIdCompras());
+         ps.setInt(4, compras.getNoOrdenCompra());
          System.out.println(ps);
          ps.executeUpdate();
          ps.close();
@@ -136,8 +139,29 @@ public class comprasDao {
      return c;
   }
 
-  public void eliminar (int idCompras) throws SQLException{
-      sql="DELETE FROM Compras WHERE idCompras="+idCompras;
+  public void eliminarCompras (int idCompras) throws SQLException{
+    sql="DELETE FROM Compras WHERE noOrdenCompra="+idCompras;
+
+
+  try{
+      con=Conexion.conectar();
+      ps=con.prepareStatement(sql);
+      System.out.println(ps);
+      ps.executeUpdate();
+      ps.close();
+      System.out.println("se elimino bien echo");
+  }catch(Exception e){
+      System.out.println("Error en la eliminacion"+e.getMessage().toString());
+  }
+  finally{
+      con.close();
+  }
+}
+
+  public void eliminar(int noOrdenCompra) throws SQLException{
+        sql="DELETE FROM detalleCompras WHERE noOrdenCompra="+noOrdenCompra;
+  
+
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
