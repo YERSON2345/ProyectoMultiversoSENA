@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.productoDao;
 import model.salidasDao;
 import model.salidasVo;
 
 public class salidasController extends HttpServlet {
   salidasDao rd= new salidasDao();
   salidasVo r= new salidasVo();
+
+  productoDao pd = new productoDao();
+
 
 
   @Override
@@ -27,12 +31,11 @@ public class salidasController extends HttpServlet {
       listar(req,resp);
       break;
       case "formulario":
-      listarDetalleCompras(req,resp);
+      listarDetalleProducto(req,resp);
       break;
       case "eliminar":
       devolverExistencias(req, resp);
       eliminar(req, resp);
-      listar(req,resp);
       break;
       case "editar":
       editar(req, resp);
@@ -91,39 +94,33 @@ public class salidasController extends HttpServlet {
   }
   
   private void Insertar(HttpServletRequest req, HttpServletResponse resp) {
-    if(req.getParameter("compra")!=null){
-        r.setIdDetalleCompras(Integer.parseInt(req.getParameter("compra")));
-    }
     if(req.getParameter("cantidad")!=null){
         r.setCantidadSalida(Integer.parseInt(req.getParameter("cantidad")));
     }
     if(req.getParameter("motivo")!=null){
         r.setMotivoSalidas(req.getParameter("motivo"));
     }
-    if(req.getParameter("nombreProducto")!=null){
-      r.setNombreProducto(req.getParameter("nombreProducto"));
+    if(req.getParameter("idProducto")!=null){
+      r.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
     }
     try {
 
       int cantidadProducto=Integer.parseInt(req.getParameter("cantidadProducto"));
       int cantidadSalidas=Integer.parseInt(req.getParameter("cantidad"));
-      String nombreProducto = req.getParameter("nombreProducto");
+      int idProducto = Integer.parseInt(req.getParameter("idProducto"));
       salidasVo resultado = new salidasVo();
       req.setAttribute("area", resultado.restarExistencias(cantidadProducto,cantidadSalidas)); 
       int resultados = resultado.restarExistencias(cantidadProducto,cantidadSalidas);
       int resultadoss = resultados;
         rd.registrar(r);
-        rd.actualizarExistencias(resultadoss ,nombreProducto);
-        listar(req, resp);
+        rd.actualizarExistencias(resultadoss ,idProducto);
+        listarSalidas(req,resp);
     } catch (Exception e) {
         System.out.println("Error en la inserción del registro "+e.getMessage().toString());
     }
 }
 
 private void Editar(HttpServletRequest req, HttpServletResponse resp) {
-  if(req.getParameter("compra")!=null){
-    r.setIdDetalleCompras(Integer.parseInt(req.getParameter("compra")));
-}
 if(req.getParameter("cantidad")!=null){
     r.setCantidadSalida(Integer.parseInt(req.getParameter("cantidad")));
     }
@@ -138,12 +135,12 @@ if(req.getParameter("nombreProducto")!=null){
       int cantidadAntigua=Integer.parseInt(req.getParameter("cantidadProducto"));
       int cantidadProducto=Integer.parseInt(req.getParameter("cantidadSalidas"));
       int cantidadSalidas=Integer.parseInt(req.getParameter("cantidad"));
-      String nombreProducto = req.getParameter("nombreProducto");
+      int idProducto = Integer.parseInt(req.getParameter("idProducto"));
       salidasVo resultado = new salidasVo();
       req.setAttribute("area", resultado.restarExistencias(cantidadProducto,cantidadSalidas)); 
       int resultados = resultado.actualizarExistencias(cantidadProducto,cantidadSalidas,cantidadAntigua);
       int resultadoss = resultados;
-        rd.actualizarExistencias(resultadoss ,nombreProducto);
+        rd.actualizarExistencias(resultadoss ,idProducto);
       System.out.println("Editar el registro de cliente");
       listar(req, resp);
 
@@ -189,14 +186,24 @@ private void devolverExistencias(HttpServletRequest req, HttpServletResponse res
       System.out.println("Hay problemas al listar los datos "+e.getMessage().toString());
     }
   }
-  private void listarDetalleCompras(HttpServletRequest req, HttpServletResponse resp) {
+  private void listarSalidas(HttpServletRequest req, HttpServletResponse resp){
+    try{
+        List productolistar=pd.listar();
+        req.setAttribute("producto", productolistar);
+        req.getRequestDispatcher("views/Producto/salidasStock.jsp").forward(req, resp);
+        System.out.println("Datos listados melo");
+    } catch (Exception e){
+        System.out.println("estas armandoproblemas" + e.getMessage().toString());
+    }
+ }
+  private void listarDetalleProducto(HttpServletRequest req, HttpServletResponse resp) {
     if(req.getParameter("id")!=null){
-        r.setIdCompra(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
+        r.setIdProducto(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
     }
     try {
-        List genero=rd.listarDetalleCompras(r.getIdCompra());
+        List genero=rd.listarDetalleCompras(r.getIdProducto());
         req.setAttribute("salir", genero);
-        req.getRequestDispatcher("views/Salidas/agregarSalidas.jsp").forward(req, resp);//direccion de vista
+        req.getRequestDispatcher("views/Producto/agregarSalidas.jsp").forward(req, resp);//direccion de vista
         System.out.println("Datos listados correctamente para la edicion");
     } catch (Exception e) {
         System.out.println("Hay problemas al listar los datos "+e.getMessage().toString());
@@ -228,7 +235,8 @@ private void devolverExistencias(HttpServletRequest req, HttpServletResponse res
       r.setIdSalida(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
   }
     try {
-        rd.eliminar(r.getIdSalida());;
+        rd.eliminar(r.getIdSalida());
+        listar(req, resp);
         System.out.println("El registro se ha eliminado correctamente");
     } catch (Exception e) {
         System.out.println("Error al eliminar el resgistro"+e.getMessage().toString());

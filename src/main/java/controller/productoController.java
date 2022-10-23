@@ -46,6 +46,9 @@ public class productoController extends HttpServlet{
         case"Stock":
         listarStock(req,resp);
         break;
+        case"listarSalidas":
+        listarSalidas(req, resp);
+        break;
         case"editar":
         editar(req, resp);
         break;
@@ -164,6 +167,16 @@ public class productoController extends HttpServlet{
             List productolistar=pd.listarStock();
             req.setAttribute("producto", productolistar);
             req.getRequestDispatcher("views/Producto/actualizarStock.jsp").forward(req, resp);
+            System.out.println("Datos listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas" + e.getMessage().toString());
+        }
+     }
+    private void listarSalidas(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List productolistar=pd.listar();
+            req.setAttribute("producto", productolistar);
+            req.getRequestDispatcher("views/Producto/salidasStock.jsp").forward(req, resp);
             System.out.println("Datos listados melo");
         } catch (Exception e){
             System.out.println("estas armandoproblemas" + e.getMessage().toString());

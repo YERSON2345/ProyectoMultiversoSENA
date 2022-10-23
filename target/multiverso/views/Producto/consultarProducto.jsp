@@ -278,8 +278,12 @@
 													<li>
 														<a href="producto?accion=Stock"> <button class="btn btn-primary" type="button">Agregar compra/venta</button></a><br><br>
 													</li>
+													<li>
+														<a href="producto?accion=listarSalidas"> <button class="btn btn-primary" type="button">Descontar producto</button></a><br><br>
+													</li>
 												</ul>
 											</div>
+
 										</div>
 								
 										<table class="datatable" id="datatable">

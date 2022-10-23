@@ -39,11 +39,11 @@ public class ventaController extends HttpServlet {
         case "cosultarvp":
         listarfunciones(req,resp);
         case "formulario":
-        consultarproducto(req, resp);
         consultarnodoccliente(req,resp);
-        abrirformulario(req,resp);
+        listarProductos(req, resp);
         break;
         case "eliminar":
+        devolverExistencias(req, resp);
         eliminar(req, resp);
         break;
         case "editar":
@@ -91,13 +91,29 @@ public class ventaController extends HttpServlet {
     }
     try {
         List genero=rd.listarVenta(r.getIdDetalleVenta());
-        req.setAttribute("venta", genero);
+        req.setAttribute("ventas", genero);
         req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req, resp);//direccion de vista
         System.out.println("Datos listados correctamente para la edicion");
     } catch (Exception e) {
         System.out.println("Hay problemas al listar los datos "+e.getMessage().toString());
     }
 }
+
+private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
+  if(req.getParameter("id")!=null){
+      r.setidProductoFK(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
+  }
+
+  try {
+      List genero=rd.listarProductoVentas(r.getidProductoFK());
+      req.setAttribute("ventas", genero);
+      req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req, resp);//direccion de vista
+      System.out.println("Datos listados correctamente para la edicion");
+  } catch (Exception e) {
+      System.out.println("Hay problemas al listar los datos "+e.getMessage().toString());
+  }
+}
+
 
     private void listarfunciones(HttpServletRequest req, HttpServletResponse resp)
     {
@@ -156,23 +172,24 @@ public class ventaController extends HttpServlet {
       if(req.getParameter("precioTotal")!=null){
       r.setPrecioTotal(Integer.parseInt(req.getParameter("precioTotal")));
       }
-      if(req.getParameter("idProducto")!=null){
-        r.setIdProductoFK(Integer.parseInt(req.getParameter("idProducto")));
+      if(req.getParameter("idProductoFK")!=null){
+        r.setidProductoFK(Integer.parseInt(req.getParameter("idProductoFK")));
       }
       if(req.getParameter("noDocCliente")!=null){
         r.setNoDocCliente(Integer.parseInt(req.getParameter("noDocCliente")));
       }
       try {
         // Actualizar stock de ventas a producto
-        int cantidadProducto = Integer.parseInt(req.getParameter("catidadProducto"));
-        int cantidadVendida = Integer.parseInt(req.getParameter("cantidadVendida"));
-        String nombreProducto = req.getParameter("nombreProducto");
+        int cantidadProducto=Integer.parseInt(req.getParameter("cantidadProducto"));
+        int cantidadSalidas=Integer.parseInt(req.getParameter("cantidadVendida"));
+        int idProducto = Integer.parseInt(req.getParameter("idProducto"));
         ventaVo resultado = new ventaVo();
-        int resultados = resultado.restarExistencias(cantidadProducto, cantidadVendida);
-        int resultados2 = resultados;
+        req.setAttribute("area", resultado.restarExistencias(cantidadProducto,cantidadSalidas)); 
+        int resultados = resultado.restarExistencias(cantidadProducto,cantidadSalidas);
+        int resultadoss = resultados;
 
           rd.insertar(r);
-          rd.ActualizarStock(resultados2, nombreProducto);
+          rd.ActualizarStock(resultadoss, idProducto);
           System.out.println("Registro insertado correctamente");
           listar(req, resp);
       } catch (Exception e) {
@@ -188,7 +205,16 @@ public class ventaController extends HttpServlet {
     r.setPrecioTotal(Integer.parseInt(req.getParameter("precioTotal")));
     }
     try {
-        rd.actualizar(r);
+      rd.actualizar(r);
+      int cantidadAntigua=Integer.parseInt(req.getParameter("cantidadProducto"));
+      int cantidadProducto=Integer.parseInt(req.getParameter("cantidadSalidas"));
+      int cantidadSalidas=Integer.parseInt(req.getParameter("cantidad"));
+      int idProducto = Integer.parseInt(req.getParameter("idProducto"));
+      ventaVo resultado = new ventaVo();
+      req.setAttribute("area", resultado.restarExistencias(cantidadProducto,cantidadSalidas)); 
+      int resultados = resultado.actualizarExistencias(cantidadProducto,cantidadSalidas,cantidadAntigua);
+      int resultadoss = resultados;
+        rd.ActualizarStock(resultadoss ,idProducto);
         System.out.println("Editar el registro de venta");
         listar(req, resp);
   
@@ -234,5 +260,30 @@ public class ventaController extends HttpServlet {
           System.out.println("Error al eliminar el resgistro"+e.getMessage().toString());
       }
    }
+   private void devolverExistencias(HttpServletRequest req, HttpServletResponse resp) {
+    if(req.getParameter("nombreP")!=null){
+        r.setNombreProducto(req.getParameter("nombreP"));
+    }
+    if(req.getParameter("cantidadS")!=null){
+        r.setCantidadSalida(Integer.parseInt(req.getParameter("cantidadS")));
+    }
+    if(req.getParameter("cantidadP")!=null){
+      r.setCantidadSalida(Integer.parseInt(req.getParameter("cantidadP")));
+    }
+    try {
+  
+      int cantidadProducto=Integer.parseInt(req.getParameter("cantidadP"));
+      int cantidadSalidas=Integer.parseInt(req.getParameter("cantidadS"));
+      String nombreProducto = req.getParameter("nombreP");
+      ventaVo resultado = new ventaVo();
+      req.setAttribute("area", resultado.sumarExistencias(cantidadProducto,cantidadSalidas)); 
+      int resultados = resultado.sumarExistencias(cantidadProducto,cantidadSalidas);
+      int resultadoss = resultados;
+        rd.actualizarExistenciasP(resultadoss ,nombreProducto);
+        listar(req, resp);
+    } catch (Exception e) {
+        System.out.println("Error en la inserción del registro "+e.getMessage().toString());
+    }
+  }
 }
   

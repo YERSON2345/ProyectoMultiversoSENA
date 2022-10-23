@@ -17,9 +17,11 @@ import model.productoVo;
 
 import model.proveedorDao;
 import model.proveedorVo;
-
+import model.salidasVo;
 import model.detalleComprasDao;
 import model.detalleComprasVo;
+import model.productoDao;
+
 
 public class comprasController extends HttpServlet{
     
@@ -35,6 +37,8 @@ public class comprasController extends HttpServlet{
     detalleComprasVo d=new detalleComprasVo();
     detalleComprasDao dd=new detalleComprasDao();
 
+    productoDao ks = new productoDao(); 
+
 
     @Override
     protected void doGet(HttpServletRequest req,HttpServletResponse resp) throws ServletException, IOException{
@@ -47,6 +51,10 @@ public class comprasController extends HttpServlet{
         break;
         case"editar":
         editar(req, resp);
+        break;
+        case"agregarCompra":
+        consultarProveedor(req,resp);
+        listarComprasProducto(req,resp);
         break;
         case"eliminar":
         eliminar(req,resp);
@@ -113,6 +121,9 @@ public class comprasController extends HttpServlet{
             d.setFechaVencimientoProducto(req.getParameter("fecha"));
         }
         if(req.getParameter("cantidad")!=null){
+            c.setCantidadCompra(Integer.parseInt(req.getParameter("cantidad")));
+        }
+        if(req.getParameter("cantidad")!=null){
             d.setCantidadCompra(Integer.parseInt(req.getParameter("cantidad")));
         }
         if(req.getParameter("precio")!=null){
@@ -126,12 +137,23 @@ public class comprasController extends HttpServlet{
         }
         
         try{
+
+            int cantidadProducto=Integer.parseInt(req.getParameter("cantidadProducto"));
+            int cantidadEntradas=Integer.parseInt(req.getParameter("cantidad"));
+            int idProducto = Integer.parseInt(req.getParameter("idProducto"));
+            comprasVo resultado = new comprasVo();
+            int resultados = resultado.sumarExistencias(cantidadProducto,cantidadEntradas);
+            int resultadoSuma = resultados;
+            cd.actualizarExistencias(resultadoSuma,idProducto);
+
             cd.registrar(c);
             cd.registrarDetalle(d);
+
             System.out.println("registro bien insertado");
-            listar(req, resp);
+            listarProductos(req, resp);
         }catch(Exception e) {
             System.out.println("error en la insercion del registro" + e.getMessage().toString());
+
         }
     }
      private void listar(HttpServletRequest req, HttpServletResponse resp){
@@ -145,13 +167,43 @@ public class comprasController extends HttpServlet{
         }
 
      }
+     private void listarProductos(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List productolistar=ks.listar();
+            req.setAttribute("producto", productolistar);
+            req.getRequestDispatcher("views/Producto/actualizarStock.jsp").forward(req, resp);
+            System.out.println("Datos listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas" + e.getMessage().toString());
+        }
+     }
+     private void listarComprasProducto(HttpServletRequest req, HttpServletResponse resp){
+        if(req.getParameter("id")!=null){
+            c.setIdProducto(Integer.parseInt(req.getParameter("id")));
+        }
+        try{
+            List compraslistar=cd.listarProductoCompras(c.getIdProducto());
+            req.setAttribute("compras", compraslistar);
+            req.getRequestDispatcher("views/Compras/agregarCompras.jsp").forward(req, resp);
+            System.out.println("Datos listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas" + e.getMessage().toString());
+        }
+
+     }
 
      private void editar(HttpServletRequest req, HttpServletResponse resp){
         if(req.getParameter("idCompras")!=null){
             c.setIdCompras(Integer.parseInt(req.getParameter("idCompras")));
         } 
         try{
-            List compraslistar=cd.editarCompras(c.getIdCompras());
+            int cantidadActualProducto=Integer.parseInt(req.getParameter("cantidadP"));
+            int cantidadDescontada=Integer.parseInt(req.getParameter("cantidadEntradas"));
+            salidasVo resultado = new salidasVo();
+            int resultados = resultado.restarExistencias(cantidadActualProducto,cantidadDescontada);
+            int resultadoss = resultados;
+            c.setcantidadTotal(resultadoss);
+            List compraslistar=cd.editarCompras(c.getIdCompras(), c.getcantidadTotal());
             req.setAttribute("compras", compraslistar);
             req.getRequestDispatcher("views/Compras/editarCompras.jsp").forward(req, resp);
             System.out.println("datos listados correctamente para editar");
@@ -173,7 +225,17 @@ public class comprasController extends HttpServlet{
             c.setPrecioCompra(Integer.parseInt(req.getParameter("PrecioProveedor")));
         }
          try{
-             cd.actualizar(c);
+            cd.actualizar(c);
+            int cantidadAntigua=Integer.parseInt(req.getParameter("cantidadAntigua"));
+            int cantidadProducto=Integer.parseInt(req.getParameter("cantidadActual"));
+            int cantidadEntradas=Integer.parseInt(req.getParameter("entradas"));
+            int idProducto = Integer.parseInt(req.getParameter("idProducto"));
+            comprasVo resultado = new comprasVo();
+            
+            int resultados = resultado.actualizarExistencias(cantidadProducto,cantidadEntradas,cantidadAntigua);
+            int resultadoTotal = resultados;
+
+            cd.actualizarExistencias(resultadoTotal,idProducto);
              System.out.println("editar tipo producto");
              listar(req, resp);
          }catch (Exception e){

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("tr #delProveedor").click(function (e) {
         e.preventDefault();
-        var cod = $(this).parent().find('#codigo').val();
+        var id = $(this).parent().find('#codigo').val();
         swal({
             title: "Está seguro de eliminar?",
             text: "Una vez eliminado deberá agregar de nuevo!",
@@ -15,7 +15,7 @@ $(document).ready(function () {
         },
             function (isConfirm) {
                 if (isConfirm) {
-                    eliminarProveedor(cod);
+                    eliminarProveedor(id);
                     swal("Eliminado!", "Una vez eliminado deberá agregar de nuevo.", "success");
                     setTimeout(function(){
                         parent.location.href = "proveedor?condicion=consultarProveedor"
@@ -26,8 +26,8 @@ $(document).ready(function () {
             });
     });
 
-    function eliminarProveedor(cod) {
-        var url = "proveedor?condicion=eliminar&cod=" + cod;
+    function eliminarProveedor(id) {
+        var url = "proveedor?condicion=eliminar&id=${proveedor.getIdProveedor()}";
         console.log("Eliminado");
         $.ajax({
             type: 'POST',

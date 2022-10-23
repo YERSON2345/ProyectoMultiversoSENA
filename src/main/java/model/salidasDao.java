@@ -17,9 +17,9 @@ public class salidasDao {
     int c;
 
 
-  public List<salidasVo> listar() throws SQLException{
+  public List<salidasVo>listar() throws SQLException{
       List<salidasVo> compras=new ArrayList<>();
-      sql="SELECT U.idSalida,I.noOrdenCompra, U.cantidadSalidas, U.motivoSalidas, U.idDetalleCompras, O.nombreProducto,O.cantidadProducto FROM salidasCompras U INNER JOIN detalleCompras C ON U.idDetalleCompras = C.idDetalleCompras INNER JOIN Producto O ON O.idProducto = C.idProducto INNER JOIN Compras I ON C.noOrdenCompra = I.noOrdenCompra;";
+      sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,C.nombreTipoProducto,P.idSalida,P.cantidadSalidas, P.motivoSalidas FROM Producto U INNER JOIN salidasProducto P ON U.idProducto = P.idProductoSalidas INNER JOIN tipoProducto C ON U.idTipoProducto = C.idTipoProducto;";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
@@ -27,10 +27,8 @@ public class salidasDao {
           while(rs.next()){
             salidasVo filas=new salidasVo();
               filas.setIdSalida(rs.getInt("idSalida"));
-              filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
               filas.setCantidadSalida(rs.getInt("cantidadSalidas"));
               filas.setMotivoSalidas(rs.getString("motivoSalidas"));
-              filas.setIdDetalleCompras(rs.getInt("idDetalleCompras"));
               filas.setNombreProducto(rs.getString("nombreProducto"));
               filas.setCantidadProducto(rs.getInt("cantidadProducto"));
               compras.add(filas);
@@ -47,7 +45,7 @@ public class salidasDao {
   }
   public List<salidasVo> listarGenero(int id, int cantidad) throws SQLException{
     List<salidasVo> genero=new ArrayList<>();
-    sql="SELECT U.idSalida,I.noOrdenCompra, U.cantidadSalidas, U.motivoSalidas, U.idDetalleCompras, O.nombreProducto,O.cantidadProducto FROM salidasCompras U INNER JOIN detalleCompras C ON U.idDetalleCompras = C.idDetalleCompras INNER JOIN Producto O ON O.idProducto = C.idProducto INNER JOIN Compras I ON C.noOrdenCompra = I.noOrdenCompra WHERE U.idSalida = "+id;//variable para la BD
+    sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,C.nombreTipoProducto,P.cantidadSalidas, P.motivoSalidas,P.idSalida FROM Producto U INNER JOIN salidasProducto P ON U.idProducto = P.idProductoSalidas INNER JOIN tipoProducto C ON U.idTipoProducto = C.idTipoProducto WHERE P.idSalida ="+id;//variable para la BD
     try {
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -56,13 +54,11 @@ public class salidasDao {
               salidasVo filas=new salidasVo();
             //Escribir  en el setter cada valor encontrado
             filas.setIdSalida(rs.getInt("idSalida"));
-            filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
             filas.setCantidadSalida(rs.getInt("cantidadSalidas"));
             filas.setMotivoSalidas(rs.getString("motivoSalidas"));
-            filas.setIdDetalleCompras(rs.getInt("idDetalleCompras"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
             filas.setCantidadProducto(rs.getInt("cantidadProducto"));
-            filas.setMotivoSalidas(rs.getString("motivoSalidas"));
+            filas.setIdProducto(rs.getInt("idProducto"));
             filas.setCantidadTotal(cantidad);
 
             genero.add(filas);
@@ -87,8 +83,6 @@ public class salidasDao {
         rs=ps.executeQuery(sql);
         while(rs.next()){
           salidasVo filas=new salidasVo();
-            filas.setIdDetalleCompras(rs.getInt("idDetalleCompras"));
-            filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
             filas.setCantidadProducto(rs.getInt("cantidadProducto"));
             salidas.add(filas);
@@ -106,7 +100,7 @@ public class salidasDao {
 
 public List<salidasVo> listarDetalleCompras(int id) throws SQLException{
     List<salidasVo> genero=new ArrayList<>();
-    sql="SELECT U.idDetalleCompras,C.noOrdenCompra,P.nombreProducto,P.cantidadProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE U.idDetalleCompras ="+id;//variable para la BD
+    sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto WHERE U.idProducto ="+id;//variable para la BD
     try {
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -114,10 +108,13 @@ public List<salidasVo> listarDetalleCompras(int id) throws SQLException{
         while(rs.next()){
               salidasVo filas=new salidasVo();
             //Escribir  en el setter cada valor encontrado
-            filas.setIdDetalleCompras(rs.getInt("idDetalleCompras"));
-            filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
+            filas.setIdProducto(rs.getInt("idProducto"));
+            filas.setObservacionesProducto(rs.getString("observacionesProducto"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
             filas.setCantidadProducto(rs.getInt("cantidadProducto"));
+            filas.setPrecioProducto(rs.getInt("precioProducto"));
+            filas.setIdTipoProducto(rs.getInt("idTipoProducto"));
+            filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
             genero.add(filas);
         }
         ps.close();
@@ -132,13 +129,13 @@ public List<salidasVo> listarDetalleCompras(int id) throws SQLException{
   }
 
   public int registrar (salidasVo salidas) throws SQLException{
-       sql="INSERT INTO salidasCompras(cantidadSalidas,motivoSalidas,idDetalleCompras) values(?,?,?)";
+       sql="INSERT INTO salidasProducto(cantidadSalidas,motivoSalidas,idProductoSalidas) values(?,?,?)";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
           ps.setInt (1, salidas.getCantidadSalida());
           ps.setString(2, salidas.getMotivoSalidas());
-          ps.setInt (3, salidas.getIdDetalleCompras());
+          ps.setInt(3, salidas.getIdProducto());
           System.out.println(ps);
           ps.executeUpdate();
           ps.close();
@@ -152,8 +149,8 @@ public List<salidasVo> listarDetalleCompras(int id) throws SQLException{
       return c;
   }
 
-  public void actualizarExistencias(int cantidadProducto, String nombreProducto) throws SQLException{
-    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE nombreProducto='"+nombreProducto+"';";
+  public void actualizarExistencias(int cantidadProducto, int idProducto) throws SQLException{
+    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE idProducto='"+idProducto+"';";
    try{
        con=Conexion.conectar();
        ps=con.prepareStatement(sql);
@@ -188,10 +185,8 @@ public void actualizarExistenciasP(int cantidadProducto, String nombreProducto) 
    }
 }
 
-
-
   public int actualizar(salidasVo compras) throws SQLException{
-      sql="UPDATE salidasCompras SET cantidadSalidas=?,motivoSalidas=? WHERE idSalida=?";
+      sql="UPDATE salidasProducto SET cantidadSalidas=?,motivoSalidas=? WHERE idSalida=?";
      try{
          con=Conexion.conectar();
          ps=con.prepareStatement(sql);
@@ -213,7 +208,7 @@ public void actualizarExistenciasP(int cantidadProducto, String nombreProducto) 
   }
 
   public void eliminar (int idSalida) throws SQLException{
-      sql="DELETE FROM salidasCompras WHERE idSalida="+idSalida;
+      sql="DELETE FROM salidasProducto WHERE idSalida="+idSalida;
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);

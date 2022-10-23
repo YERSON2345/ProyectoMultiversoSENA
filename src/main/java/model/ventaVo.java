@@ -11,6 +11,7 @@ public class ventaVo extends ventaclass{
     private String nombreCliente;
     private int resultadoResta;
     private int cantidadProducto;
+    private int CantidadSalida;
 
 
     public ventaVo(){
@@ -18,7 +19,7 @@ public class ventaVo extends ventaclass{
     }
 
     public ventaVo(int idDetalleVenta, int cantidadVendida, int precioTotal, int idProductoFK, int noDocCliente,
-            String nombreProducto, String nombreCliente, int resultadoResta, int cantidadProducto) {
+            String nombreProducto, String nombreCliente, int resultadoResta, int cantidadProducto,int CantidadSalida) {
         this.idDetalleVenta = idDetalleVenta;
         this.cantidadVendida = cantidadVendida;
         this.precioTotal = precioTotal;
@@ -28,8 +29,14 @@ public class ventaVo extends ventaclass{
         this.nombreCliente = nombreCliente;
         this.resultadoResta = resultadoResta;
         this.cantidadProducto = cantidadProducto;
+        this.CantidadSalida = CantidadSalida;
     }
-
+    public void setCantidadSalida(int CantidadSalida){
+        this.CantidadSalida = CantidadSalida;
+    }
+    public int getCantidadSalida(){
+        return CantidadSalida;
+    }
     public int getIdDetalleVenta() {
         return idDetalleVenta;
     }
@@ -54,11 +61,11 @@ public class ventaVo extends ventaclass{
         this.precioTotal = precioTotal;
     }
 
-    public int getIdProductoFK() {
+    public int getidProductoFK() {
         return idProductoFK;
     }
 
-    public void setIdProductoFK(int idProductoFK) {
+    public void setidProductoFK(int idProductoFK) {
         this.idProductoFK = idProductoFK;
     }
 

@@ -2,6 +2,7 @@ model\conexions.class
 model\salidasDao.class
 controller\usuarioController.class
 model\clienteDao.class
+model\comprasClass.class
 model\detalleComprasVo.class
 model\usuarioVo.class
 model\DAOUSUARIO.class

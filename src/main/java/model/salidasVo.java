@@ -2,18 +2,19 @@ package model;
 
 public class salidasVo extends salidasClass {
     
-    salidasDao rd= new salidasDao();
-
     private int idSalida;
     private int cantidadSalida;
     private String motivoSalidas;
 
 
-    private int idDetalleCompras;
-    private int idCompra;
-    private int noOrdenCompra;
+    private int idProducto;
+    private String ObservacionesProducto;
     private String nombreProducto;
     private int cantidadProducto;
+    private int precioProducto;
+
+    private int idTipoProducto;
+    private String nombreTipoProducto;
 
     private int resultadoResta;
     private int cantidadTotal;
@@ -22,86 +23,72 @@ public class salidasVo extends salidasClass {
 
     }
 
-
-
-    public salidasVo(salidasDao rd, int idSalida, int cantidadSalida, String motivoSalidas, int idDetalleCompras,
-            int idCompra, int noOrdenCompra, String nombreProducto, int cantidadProducto, int resultadoResta,
-            int cantidadTotal) {
-        this.rd = rd;
+    public salidasVo(int idSalida, int cantidadSalida, String motivoSalidas, int idProducto, String observacionesProducto,
+            String nombreProducto, int cantidadProducto, int precioProducto, int idTipoProducto, String nombreTipoProducto,
+            int resultadoResta, int cantidadTotal) {
         this.idSalida = idSalida;
         this.cantidadSalida = cantidadSalida;
         this.motivoSalidas = motivoSalidas;
-        this.idDetalleCompras = idDetalleCompras;
-        this.idCompra = idCompra;
-        this.noOrdenCompra = noOrdenCompra;
+        this.idProducto = idProducto;
+        ObservacionesProducto = observacionesProducto;
         this.nombreProducto = nombreProducto;
         this.cantidadProducto = cantidadProducto;
+        this.precioProducto = precioProducto;
+        this.idTipoProducto = idTipoProducto;
+        this.nombreTipoProducto = nombreTipoProducto;
         this.resultadoResta = resultadoResta;
         this.cantidadTotal = cantidadTotal;
     }
 
 
-
-    public salidasDao getRd() {
-        return rd;
-    }
-
-    public void setRd(salidasDao rd) {
-        this.rd = rd;
-    }
-
     public int getIdSalida() {
         return idSalida;
     }
+
 
     public void setIdSalida(int idSalida) {
         this.idSalida = idSalida;
     }
 
+
     public int getCantidadSalida() {
         return cantidadSalida;
     }
+
 
     public void setCantidadSalida(int cantidadSalida) {
         this.cantidadSalida = cantidadSalida;
     }
 
+
     public String getMotivoSalidas() {
         return motivoSalidas;
     }
+
 
     public void setMotivoSalidas(String motivoSalidas) {
         this.motivoSalidas = motivoSalidas;
     }
 
-    public int getIdDetalleCompras() {
-        return idDetalleCompras;
-    }
 
-    public void setIdDetalleCompras(int idDetalleCompras) {
-        this.idDetalleCompras = idDetalleCompras;
-    }
-
-    public int getIdCompra() {
-        return idCompra;
-    }
-
-    public void setIdCompra(int idCompra) {
-        this.idCompra = idCompra;
+    public int getIdProducto() {
+        return idProducto;
     }
 
 
-
-    public int getNoOrdenCompra() {
-        return noOrdenCompra;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
 
-
-    public void setNoOrdenCompra(int noOrdenCompra) {
-        this.noOrdenCompra = noOrdenCompra;
+    public String getObservacionesProducto() {
+        return ObservacionesProducto;
     }
 
+
+    public void setObservacionesProducto(String observacionesProducto) {
+        ObservacionesProducto = observacionesProducto;
+    }
 
 
     public String getNombreProducto() {
@@ -109,11 +96,9 @@ public class salidasVo extends salidasClass {
     }
 
 
-
     public void setNombreProducto(String nombreProducto) {
         this.nombreProducto = nombreProducto;
     }
-
 
 
     public int getCantidadProducto() {
@@ -121,11 +106,39 @@ public class salidasVo extends salidasClass {
     }
 
 
-
     public void setCantidadProducto(int cantidadProducto) {
         this.cantidadProducto = cantidadProducto;
     }
 
+
+    public int getPrecioProducto() {
+        return precioProducto;
+    }
+
+
+    public void setPrecioProducto(int precioProducto) {
+        this.precioProducto = precioProducto;
+    }
+
+
+    public int getIdTipoProducto() {
+        return idTipoProducto;
+    }
+
+
+    public void setIdTipoProducto(int idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
+    }
+
+
+    public String getNombreTipoProducto() {
+        return nombreTipoProducto;
+    }
+
+
+    public void setNombreTipoProducto(String nombreTipoProducto) {
+        this.nombreTipoProducto = nombreTipoProducto;
+    }
 
 
     public int getResultadoResta() {
@@ -133,11 +146,9 @@ public class salidasVo extends salidasClass {
     }
 
 
-
     public void setResultadoResta(int resultadoResta) {
         this.resultadoResta = resultadoResta;
     }
-
 
 
     public int getCantidadTotal() {
@@ -145,11 +156,9 @@ public class salidasVo extends salidasClass {
     }
 
 
-
     public void setCantidadTotal(int cantidadTotal) {
         this.cantidadTotal = cantidadTotal;
     }
-
 
 
     @Override

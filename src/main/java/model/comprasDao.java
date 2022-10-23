@@ -18,7 +18,7 @@ public class comprasDao {
 
   public List<comprasVo> listar() throws SQLException{
       List<comprasVo> compras=new ArrayList<>();
-      sql="SELECT U.idDetalleCompras,U.fechaVencimientoProducto,U.cantidadCompra,U.precioProveedor,C.noOrdenCompra, O.nombreProveedor,P.nombreProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto;";
+      sql="SELECT U.idDetalleCompras,U.fechaVencimientoProducto,U.cantidadCompra,U.precioProveedor,C.noOrdenCompra, O.nombreProveedor,P.nombreProducto,P.cantidadProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto;";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
@@ -32,6 +32,7 @@ public class comprasDao {
               filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
               filas.setNombreProducto(rs.getString("nombreProducto"));
               filas.setNombreProveedor(rs.getString("nombreProveedor"));
+              filas.setcantidadProducto(rs.getInt("cantidadProducto"));
               compras.add(filas);
           }
           ps.close();
@@ -45,7 +46,35 @@ public class comprasDao {
       return compras;
   }
 
-  public int  registrarDetalle (detalleComprasVo detalleCompras) throws SQLException{
+  public List<comprasVo> listarProductoCompras(int idProducto) throws SQLException{
+    List<comprasVo> Compras=new ArrayList<>();
+    sql="SELECT P.idProducto,P.nombreProducto,P.cantidadProducto,P.observacionesProducto,P.precioProducto,T.nombreTipoProducto FROM Producto P INNER JOIN tipoProducto T ON P.idTipoProducto = T.idTipoProducto WHERE P.idProducto ="+idProducto;
+    try{
+        con=Conexion.conectar();  
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          comprasVo filas=new comprasVo();
+          filas.setIdProducto(rs.getInt("idProducto"));
+          filas.setNombreProducto(rs.getString("nombreProducto"));
+          filas.setObservacionesProducto(rs.getString("observacionesProducto"));
+          filas.setcantidadProducto(rs.getInt("cantidadProducto"));
+          filas.setprecioProducto(rs.getInt("precioProducto"));
+          filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+            Compras.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta bien echa");
+    }catch (Exception e){
+        System.out.println("La consulta no se pudo" +e.getMessage().toString());
+    }
+    finally{
+        con.close();
+    }
+    return Compras;
+}
+
+  public int registrarDetalle (detalleComprasVo detalleCompras) throws SQLException{
     sql="INSERT INTO DetalleCompras(cantidadCompra,precioProveedor,fechaVencimientoProducto,idProducto,idProveedor,noOrdenCompra) values(?,?,?,?,?,?)";
    try{
        con=Conexion.conectar();
@@ -88,9 +117,9 @@ public class comprasDao {
       return c;
   }
 
-  public List<comprasVo> editarCompras(int idCompras) throws SQLException{
+  public List<comprasVo> editarCompras(int idCompras, int cantidadTotal) throws SQLException{
       List<comprasVo> Compras=new ArrayList<>();
-      sql="SELECT U.idDetalleCompras,U.fechaVencimientoProducto,U.cantidadCompra,U.precioProveedor,C.noOrdenCompra, O.nombreProveedor,P.nombreProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE U.idDetalleCompras ="+idCompras;
+      sql="SELECT U.idDetalleCompras,U.fechaVencimientoProducto,U.cantidadCompra,U.precioProveedor,C.noOrdenCompra, O.nombreProveedor,P.nombreProducto,P.cantidadProducto,P.idProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE U.idDetalleCompras ="+idCompras;
       try{
           con=Conexion.conectar();  
           ps=con.prepareStatement(sql);
@@ -102,8 +131,11 @@ public class comprasDao {
             filas.setEntradaCompras(rs.getInt("cantidadCompra"));
             filas.setPrecioCompra(rs.getInt("precioProveedor"));
             filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
+            filas.setIdProducto(rs.getInt("idProducto"));
+            filas.setcantidadProducto(rs.getInt("cantidadProducto"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
             filas.setNombreProveedor(rs.getString("nombreProveedor"));
+            filas.setcantidadTotal(cantidadTotal);
               Compras.add(filas);
           }
           ps.close();
@@ -138,6 +170,24 @@ public class comprasDao {
      }
      return c;
   }
+
+  public void actualizarExistencias(int cantidadProducto, int idProducto) throws SQLException{
+    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE idProducto='"+idProducto+"';";
+   try{
+       con=Conexion.conectar();
+       ps=con.prepareStatement(sql);
+       System.out.println(ps);
+       System.out.println(ps);
+       ps.executeUpdate();
+       ps.close();
+       System.out.println("Se actualizo el producto correctamente");
+   } catch(Exception e){
+       System.out.println("Error al editar"+e.getMessage().toString());
+   }
+   finally{
+       con.close();
+   }
+}
 
   public void eliminarCompras (int idCompras) throws SQLException{
     sql="DELETE FROM Compras WHERE noOrdenCompra="+idCompras;

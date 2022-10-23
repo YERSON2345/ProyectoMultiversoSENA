@@ -27,8 +27,9 @@ public class ventaDao {
             ventaVo filas = new ventaVo();
             filas.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
             filas.setCantidadVendida(rs.getInt("cantidadVendida"));
+            filas.setcantidadProducto(rs.getInt("cantidadProducto"));
             filas.setPrecioTotal(rs.getInt("precioTotal"));
-            filas.setIdProductoFK(rs.getInt("idProductoFK"));
+            filas.setidProductoFK(rs.getInt("idProductoFK"));
             filas.setNoDocCliente(rs.getInt("noDocCliente"));
             filas.setNombreCliente(rs.getString("nombreCliente"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
@@ -45,34 +46,33 @@ public class ventaDao {
       return ventas;
 }
 
-  public List<productoVo> listarproductos() throws SQLException{
-      List<productoVo> producto=new ArrayList<>();
-      sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
-      try{
-          con=Conexion.conectar();
-          ps=con.prepareStatement(sql);
-          rs=ps.executeQuery(sql);
-          while(rs.next()){
-            productoVo filas=new productoVo();
-              filas.setIdProducto(rs.getInt("idProducto"));
-              filas.setObservacionesProducto(rs.getString("observacionesProducto"));
-              filas.setNombreProducto(rs.getString("nombreProducto"));
-              filas.setCantidadProducto(rs.getInt("cantidadProducto"));
-              filas.setPrecioProducto(rs.getInt("precioProducto"));
-              filas.setIdTipoProducto(rs.getInt("idTipoProducto"));
-              filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
-              producto.add(filas);
-          }
-          ps.close();
-          System.out.println("consulta exitosa");
-      }catch(Exception e){
-          System.out.println("La consulta no se pudo");
-      }
-      finally{
-          con.close();
-      }
-      return producto;
-  }
+public List<comprasVo> listarProductoVentas(int idProducto) throws SQLException{
+    List<comprasVo> Compras=new ArrayList<>();
+    sql="SELECT P.idProducto,P.nombreProducto,P.cantidadProducto,P.observacionesProducto,P.precioProducto,T.nombreTipoProducto FROM Producto P INNER JOIN tipoProducto T ON P.idTipoProducto = T.idTipoProducto WHERE P.idProducto ="+idProducto;
+    try{
+        con=Conexion.conectar();  
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          comprasVo filas=new comprasVo();
+          filas.setIdProducto(rs.getInt("idProducto"));
+          filas.setNombreProducto(rs.getString("nombreProducto"));
+          filas.setObservacionesProducto(rs.getString("observacionesProducto"));
+          filas.setcantidadProducto(rs.getInt("cantidadProducto"));
+          filas.setprecioProducto(rs.getInt("precioProducto"));
+          filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+            Compras.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta bien echa");
+    }catch (Exception e){
+        System.out.println("La consulta no se pudo" +e.getMessage().toString());
+    }
+    finally{
+        con.close();
+    }
+    return Compras;
+}
 
 public int insertar(ventaVo ventas) throws SQLException{   
   sql="INSERT INTO ventas(cantidadVendida,precioTotal,idProductoFK,noDocCliente) values(?,?,?,?)";
@@ -81,7 +81,7 @@ public int insertar(ventaVo ventas) throws SQLException{
       ps=con.prepareStatement(sql); //preparar sentencia
       ps.setInt(1, ventas.getCantidadVendida());
       ps.setInt(2, ventas.getPrecioTotal());
-      ps.setInt(3, ventas.getIdProductoFK());
+      ps.setInt(3, ventas.getidProductoFK());
       ps.setInt(4, ventas.getNoDocCliente());
       System.out.println(ps);
       
@@ -170,12 +170,13 @@ public void eliminar(int id) throws SQLException{
   }
  }
 
-public void ActualizarStock(int cantidadProducto, String nombreProducto) throws SQLException{
+public void ActualizarStock(int cantidadProducto, int idProducto) throws SQLException{
 
-    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE nombreProducto='"+nombreProducto+"';";
+    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE idProducto='"+idProducto+"';";
     try{
        con=Conexion.conectar();
        ps=con.prepareStatement(sql);
+       System.out.println(ps);
        ps.executeUpdate();
        ps.close();
        System.out.println("Se actualizo el producto correctamente");
@@ -185,5 +186,22 @@ public void ActualizarStock(int cantidadProducto, String nombreProducto) throws 
         finally{
             con.close();
         }
+    }
+    public void actualizarExistenciasP(int cantidadProducto, String idProducto) throws SQLException{
+        sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE nombreProducto='"+idProducto+"';";
+       try{
+           con=Conexion.conectar();
+           ps=con.prepareStatement(sql);
+           System.out.println(ps);
+           System.out.println(ps);
+           ps.executeUpdate();
+           ps.close();
+           System.out.println("Se actualizo el producto correctamente");
+       } catch(Exception e){
+           System.out.println("Error al editar"+e.getMessage().toString());
+       }
+       finally{
+           con.close();
+       }
     }
 }
