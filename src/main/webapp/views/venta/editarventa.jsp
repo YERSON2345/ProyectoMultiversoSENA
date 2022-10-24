@@ -103,10 +103,6 @@
 							</li>
 
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="compras?accion=Add_Compras">
-									<i class="align-middle" data-feather="shopping-cart"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 								<a class="sidebar-link" href="compras?accion=listar">
 									<i class="align-middle" data-feather="database"></i> <span
 										class="align-middle">Consultar</span>
@@ -300,8 +296,24 @@
 
 								<c:forEach var="ventas" items="${ventas}">
 									<form class="needs-validation" action="ventas" method="post" novalidate>
+										<div class="form-group">
+											<h3>Informacion del producto:</h3>
+											ID Producto: ${ventas.getidProductoFK()}<br>
+											Nombre Producto: ${ventas.getNombreProducto()}<br>
+											Observaciones: ${ventas.getObservacionesProducto()}<br>
+											Precio: ${ventas.getPrecioProducto()}<br>
+											Cantidad: ${ventas.getcantidadProducto()}<br>
+											Cantidad Total:${ventas.getcantidadTotal()}
+										</div>
 
-
+										<input type="hidden" name="cantidadProducto" value="${ventas.getcantidadProducto()}"
+										placeholder="Fecha Compras" class="form-control">
+										
+										<input type="hidden" name="cantidadSalidas" value="${ventas.getCantidadVendida()}"
+										placeholder="Fecha Compras" class="form-control">
+										<br>
+										<input type="hidden" name="idProducto" value="${ventas.getidProductoFK()}"
+										placeholder="Fecha Compras" class="form-control">
 
 										<div class="form-group">
 											<label for="cantidadVendida validationCustom01"

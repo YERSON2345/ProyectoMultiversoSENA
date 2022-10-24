@@ -96,9 +96,6 @@
 			</li>
 
 			<li class="sidebar-item">
-				<a class="sidebar-link" href="compras?accion=Add_Compras">
-	  <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Agregar</span>
-	</a>
 	<a class="sidebar-link" href="compras?accion=listar">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -275,15 +272,17 @@
 										<div class="header-tools">
 											<div class="tools">
 												<ul>
-													<li>
-														<a href="producto?accion=Stock"> <button class="btn btn-primary" type="button">Agregar compra/venta</button></a><br><br>
-													</li>
-													<li>
-														<a href="producto?accion=listarSalidas"> <button class="btn btn-primary" type="button">Descontar producto</button></a><br><br>
-													</li>
+													<td>
+														<a href="producto?accion=Stock"> <button class="btn btn-success" type="button">Agregar compra/venta</button></a><br><br>
+													</td>
+													<p>
+														|  |	
+													</p>
+													<td>
+														<a href="producto?accion=listarSalidas"> <button class="btn btn-danger" type="button">Descontar producto</button></a><br><br>
+													</td>
 												</ul>
 											</div>
-
 										</div>
 								
 										<table class="datatable" id="datatable">

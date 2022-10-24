@@ -221,6 +221,7 @@ private void devolverExistencias(HttpServletRequest req, HttpServletResponse res
       req.setAttribute("area", resultado.sumarExistencias(cantidadActualProducto,cantidadDescontada)); 
       int resultados = resultado.sumarExistencias(cantidadActualProducto,cantidadDescontada);
       int resultadoss = resultados;
+      
         List genero=rd.listarGenero(r.getIdSalida(),resultadoss);
         req.setAttribute("datos", genero);
         req.getRequestDispatcher("views/Salidas/editarSalidas.jsp").forward(req, resp);//direccion de vista

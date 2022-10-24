@@ -93,12 +93,6 @@
 								Compras
 							</li>
 
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="compras?accion=Add_Compras">
-									<i class="align-middle" data-feather="shopping-cart"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
-							</li>
 							<li class="sidebar-item active">
 								<a class="sidebar-link" href="compras?accion=listar">
 									<i class="align-middle" data-feather="database"></i> <span
@@ -327,10 +321,7 @@
 																<td>${compras.getPrecioCompra()}</td>
 																<td>${compras.getNombreProveedor()}</td>
 																<td>
-																	<a
-																		href="compras?accion=eliminar&idCompras=${compras.getIdCompras()}&noOrdenCompra=${compras.getNoOrdenCompra()}">
-																		<button class="btn btn-danger" type="button">
-																			Eliminar</button></a><br>
+																	<br>
 																	<a
 																		href="compras?accion=editar&idCompras=${compras.getIdCompras()}&cantidadP=${compras.getcantidadProducto()}&cantidadEntradas=${compras.getEntradaCompras()}">
 																		<button class="btn btn-primary" type="button">

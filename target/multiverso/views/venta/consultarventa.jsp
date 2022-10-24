@@ -97,10 +97,6 @@
 							</li>
 
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="compras?accion=Add_Compras">
-									<i class="align-middle" data-feather="shopping-cart"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 								<a class="sidebar-link" href="compras?accion=listar">
 									<i class="align-middle" data-feather="database"></i> <span
 										class="align-middle">Consultar</span>
@@ -326,7 +322,7 @@
 																<td>${ventas.getcantidadProducto()}</td>
 																<td class="text-left">
 																	<a
-																		href="ventas?condicion=editar&id=${ventas.getIdDetalleVenta()}">
+																		href="ventas?condicion=editar&id=${ventas.getIdDetalleVenta()}&cantidadActualProducto=${ventas.getcantidadProducto()}&cantidadDescontada=${ventas.getCantidadVendida()}">
 																		<button
 																			class="btn btn-primary">Actualizar</button>
 																	</a>

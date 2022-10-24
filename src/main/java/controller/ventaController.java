@@ -85,20 +85,6 @@ public class ventaController extends HttpServlet {
       }
     }
 
-    private void listarventa(HttpServletRequest req, HttpServletResponse resp) {
-    if(req.getParameter("id")!=null){
-        r.setIdDetalleVenta(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
-    }
-    try {
-        List genero=rd.listarVenta(r.getIdDetalleVenta());
-        req.setAttribute("ventas", genero);
-        req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req, resp);//direccion de vista
-        System.out.println("Datos listados correctamente para la edicion");
-    } catch (Exception e) {
-        System.out.println("Hay problemas al listar los datos "+e.getMessage().toString());
-    }
-}
-
 private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
   if(req.getParameter("id")!=null){
       r.setidProductoFK(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
@@ -207,19 +193,19 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
     try {
       rd.actualizar(r);
       int cantidadAntigua=Integer.parseInt(req.getParameter("cantidadProducto"));
-      int cantidadProducto=Integer.parseInt(req.getParameter("cantidadSalidas"));
-      int cantidadSalidas=Integer.parseInt(req.getParameter("cantidad"));
+      int cantidadProducto=Integer.parseInt(req.getParameter("cantidadVendida"));
+      int cantidadSalidas=Integer.parseInt(req.getParameter("cantidadSalidas"));
       int idProducto = Integer.parseInt(req.getParameter("idProducto"));
       ventaVo resultado = new ventaVo();
       req.setAttribute("area", resultado.restarExistencias(cantidadProducto,cantidadSalidas)); 
-      int resultados = resultado.actualizarExistencias(cantidadProducto,cantidadSalidas,cantidadAntigua);
+      int resultados = resultado.actualizarExistencias(cantidadSalidas,cantidadProducto,cantidadAntigua);
       int resultadoss = resultados;
-        rd.ActualizarStock(resultadoss ,idProducto);
+        rd.ActualizarStock(resultadoss, idProducto);
         System.out.println("Editar el registro de venta");
         listar(req, resp);
   
     } catch (Exception e) {
-        System.out.println("Error al editar del registro "+e.getMessage().toString());
+        System.out.println("Error al editar el registro "+e.getMessage().toString());
     }
   }
   
@@ -239,7 +225,13 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
           r.setIdDetalleVenta(Integer.parseInt(req.getParameter("id")));//Cambiar de string a int
       }
       try {
-          List ventas=rd.listarVenta(r.getIdDetalleVenta());
+      int cantidadActualProducto=Integer.parseInt(req.getParameter("cantidadActualProducto"));
+      int cantidadDescontada=Integer.parseInt(req.getParameter("cantidadDescontada"));
+      ventaVo resultado = new ventaVo();
+      int resultados = resultado.sumarExistencias(cantidadActualProducto,cantidadDescontada);
+      int resultadoss = resultados;
+
+        List ventas=rd.listarVenta(r.getIdDetalleVenta(),resultadoss);
           req.setAttribute("ventas", ventas);
           req.getRequestDispatcher("views/venta/editarventa.jsp").forward(req, resp);//direccion de vista
           System.out.println("Datos listados correctamente para la edicion");

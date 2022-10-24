@@ -61,6 +61,7 @@ public List<comprasVo> listarProductoVentas(int idProducto) throws SQLException{
           filas.setcantidadProducto(rs.getInt("cantidadProducto"));
           filas.setprecioProducto(rs.getInt("precioProducto"));
           filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+
             Compras.add(filas);
         }
         ps.close();
@@ -73,6 +74,7 @@ public List<comprasVo> listarProductoVentas(int idProducto) throws SQLException{
     }
     return Compras;
 }
+
 
 public int insertar(ventaVo ventas) throws SQLException{   
   sql="INSERT INTO ventas(cantidadVendida,precioTotal,idProductoFK,noDocCliente) values(?,?,?,?)";
@@ -97,9 +99,9 @@ public int insertar(ventaVo ventas) throws SQLException{
   return r;
 }
 
-public List<ventaVo> listarVenta(int id) throws SQLException{
+public List<ventaVo> listarVenta(int id, int cantidadTotal) throws SQLException{
   List<ventaVo> ventas=new ArrayList<>();
-  sql="SELECT * FROM ventas WHERE idDetalleVenta="+id;//variable para la BD
+  sql="SELECT U.idDetalleVenta,U.cantidadVendida,U.precioTotal,U.idProductoFK, U.noDocCliente,C.nombreProducto,C.observacionesProducto,C.cantidadProducto,C.precioProducto FROM Ventas U INNER JOIN Producto C ON U.idProductoFK = C.idProducto WHERE U.idDetalleVenta ="+id;//variable para la BD
   try {
       con=Conexion.conectar();
       ps=con.prepareStatement(sql);
@@ -110,6 +112,13 @@ public List<ventaVo> listarVenta(int id) throws SQLException{
           filas.setCantidadVendida(rs.getInt("cantidadVendida"));
           filas.setPrecioTotal(rs.getInt("precioTotal"));
           filas.setIdDetalleVenta(rs.getInt("idDetalleVenta"));
+          filas.setidProductoFK(rs.getInt("idProductoFK"));
+          filas.setNombreProducto(rs.getString("nombreProducto"));
+          filas.setObservacionesProducto(rs.getString("observacionesProducto"));
+          filas.setcantidadProducto(rs.getInt("cantidadProducto"));
+          filas.setPrecioProducto(rs.getInt("precioProducto"));
+          filas.setcantidadTotal(cantidadTotal);
+
           ventas.add(filas);
       }
       ps.close();
@@ -170,9 +179,9 @@ public void eliminar(int id) throws SQLException{
   }
  }
 
-public void ActualizarStock(int cantidadProducto, int idProducto) throws SQLException{
+public void ActualizarStock(int cantidadProducto, int nombreProducto) throws SQLException{
 
-    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE idProducto='"+idProducto+"';";
+    sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE idProducto='"+nombreProducto+"';";
     try{
        con=Conexion.conectar();
        ps=con.prepareStatement(sql);
@@ -187,8 +196,8 @@ public void ActualizarStock(int cantidadProducto, int idProducto) throws SQLExce
             con.close();
         }
     }
-    public void actualizarExistenciasP(int cantidadProducto, String idProducto) throws SQLException{
-        sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE nombreProducto='"+idProducto+"';";
+    public void actualizarExistenciasP(int cantidadProducto, String nombreProducto) throws SQLException{
+        sql="UPDATE Producto SET cantidadProducto="+cantidadProducto+" WHERE nombreProducto='"+nombreProducto+"';";
        try{
            con=Conexion.conectar();
            ps=con.prepareStatement(sql);

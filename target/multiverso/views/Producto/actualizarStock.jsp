@@ -105,10 +105,6 @@
 							</li>
 
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="compras?accion=Add_Compras">
-									<i class="align-middle" data-feather="shopping-cart"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 								<a class="sidebar-link" href="compras?accion=listar">
 									<i class="align-middle" data-feather="database"></i> <span
 										class="align-middle">Consultar</span>
@@ -302,11 +298,11 @@
 												<div class="header-tools">
 													<div class="tools">
 														<ul>
-															<li>
+															<td>
 																<a href="producto?accion=listar"> <button
 																		class="btn btn-primary"
 																		type="button">Regresar</button></a><br><br>
-															</li>
+															</td>
 														</ul>
 													</div>
 												</div>

@@ -104,10 +104,6 @@
 							</li>
 
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="compras?accion=Add_Compras">
-									<i class="align-middle" data-feather="shopping-cart"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 								<a class="sidebar-link" href="compras?accion=listar">
 									<i class="align-middle" data-feather="database"></i> <span
 										class="align-middle">Consultar</span>
@@ -295,22 +291,6 @@
 								<form action="producto" method="post" class="needs-validation" novalidate>
 
 									<div class="form-group">
-										<label for="validationCustom01 observaciones"
-											class="col-sm-2 control-label">Observaciones del producto</label>
-										<div class="col-sm-10">
-											<input type="text" id="validationCustom01" name="observaciones"
-												class="form-control" minlength="5" maxlength="150" placeholder="Observaciones Del Producto" required>
-
-											<div class="valid-feedback">
-												¡Observaciones del producto insertado con éxito!
-											</div>
-											<div class="invalid-feedback">
-												¡la Observaiocion no puede estar vacia, o tener menos de 5 letras!
-											</div>
-										</div>
-									</div>
-
-									<div class="form-group">
 										<label for="validationCustom01 nombre" class="col-sm-2 control-label">Nombre del
 											producto</label>
 										<div class="col-sm-10">
@@ -354,6 +334,22 @@
 											</div>
 											<div class="invalid-feedback">
 												Por favor, coloque la cantidad del producto.
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="validationCustom01 observaciones"
+											class="col-sm-2 control-label">Observaciones del producto</label>
+										<div class="col-sm-10">
+											<textarea rows="4" cols="50" type="text" id="validationCustom01" name="observaciones"
+												class="form-control" minlength="5" maxlength="150" placeholder="Observaciones Del Producto" required></textarea>
+
+											<div class="valid-feedback">
+												¡Observaciones del producto insertado con éxito!
+											</div>
+											<div class="invalid-feedback">
+												¡la Observaiocion no puede estar vacia, o tener menos de 5 letras!
 											</div>
 										</div>
 									</div>

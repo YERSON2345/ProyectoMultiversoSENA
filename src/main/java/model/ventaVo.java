@@ -12,6 +12,10 @@ public class ventaVo extends ventaclass{
     private int resultadoResta;
     private int cantidadProducto;
     private int CantidadSalida;
+    private String ObservacionesProducto;
+    private int PrecioProducto;
+
+    private int cantidadTotal;
 
 
     public ventaVo(){
@@ -19,7 +23,8 @@ public class ventaVo extends ventaclass{
     }
 
     public ventaVo(int idDetalleVenta, int cantidadVendida, int precioTotal, int idProductoFK, int noDocCliente,
-            String nombreProducto, String nombreCliente, int resultadoResta, int cantidadProducto,int CantidadSalida) {
+            String nombreProducto, String nombreCliente, int resultadoResta, int cantidadProducto,int CantidadSalida,
+            String ObservacionesProducto, int PrecioProducto,int cantidadTotal) {
         this.idDetalleVenta = idDetalleVenta;
         this.cantidadVendida = cantidadVendida;
         this.precioTotal = precioTotal;
@@ -30,6 +35,15 @@ public class ventaVo extends ventaclass{
         this.resultadoResta = resultadoResta;
         this.cantidadProducto = cantidadProducto;
         this.CantidadSalida = CantidadSalida;
+        this.ObservacionesProducto = ObservacionesProducto;
+        this.PrecioProducto = PrecioProducto;
+        this.cantidadTotal = cantidadTotal;
+    }
+    public void setcantidadTotal(int cantidadTotal){
+        this.cantidadTotal = cantidadTotal;
+    }
+    public int getcantidadTotal(){
+        return cantidadTotal;
     }
     public void setCantidadSalida(int CantidadSalida){
         this.CantidadSalida = CantidadSalida;
@@ -109,6 +123,21 @@ public class ventaVo extends ventaclass{
         this.cantidadProducto = cantidadProducto;
     }
 
+    public String getObservacionesProducto(){
+        return ObservacionesProducto;
+    }
+
+    public void setObservacionesProducto(String ObservacionesProducto){
+        this.ObservacionesProducto = ObservacionesProducto;
+    }
+    
+    public int getPrecioProducto(){
+        return PrecioProducto;
+    }
+
+    public void setPrecioProducto(int PrecioProducto){
+        this.PrecioProducto = PrecioProducto;
+    }
 
 // Funciones para actualizar stock
         @Override
