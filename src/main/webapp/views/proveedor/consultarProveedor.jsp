@@ -37,17 +37,35 @@
 					}
 				}
 			</script>
-			<script type="text/javascript">
-				function eliminar() {
-					var respuesta = confirm("¿Desea eliminar el registro?");
-					if (respuesta == true) {
-						return true;
-					}
-					else {
-						return false;
-					}
+
+			<script>
+				function actualizar() {
+					Swal.fire({
+						title: 'Are you sure?',
+						text: "You won't be able to revert this!",
+						icon: 'warning',
+						showCancelButton: true,
+						confirmButtonColor: '#3085d6',
+						cancelButtonColor: '#d33',
+						confirmButtonText: 'Yes, delete it!'
+					}).then((result) => {
+						if (result.isConfirmed) {
+							var url = "proveedor?condicion=editar&id=${proveedor.getIdProveedor()}";
+							console.log("Hora de sexo");
+							$.ajax({
+								type: 'POST',
+								url: url,
+								async: true,
+								success: function (r) {
+								}
+							})
+						} else {
+							return false;
+						}
+					})
 				}
 			</script>
+
 			<div class="wrapper">
 				<nav id="sidebar" class="sidebar js-sidebar">
 					<div class="sidebar-content js-simplebar">
@@ -363,10 +381,8 @@
 																	</td>
 																</c:if>
 																<td class="text-left">
-																	<a
-																		href="proveedor?condicion=editar&id=${proveedor.getIdProveedor()}">
-																		<button
-																			class="btn btn-primary">Actualizar</button>
+																	<button class="btn btn-primary"
+																		onclick="return actualizar()">Actualizar</button>
 																	</a>
 																	<a href="proveedor?condicion=eliminar&id=${proveedor.getIdProveedor()}"
 																		onclick="return eliminar()">
@@ -468,6 +484,9 @@
 
 			<script src="assets/js/app.js"></script>
 			<script src="assets/js/jquery-3.3.1.min.js"></script>
+
+			<!-- CDN para alertas -->
+			<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 			<!-- Datatables -->
 			<script type="text/javascript" charset="utf8"

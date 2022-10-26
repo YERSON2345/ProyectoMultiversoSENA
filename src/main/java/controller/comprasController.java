@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+
+
 import model.comprasDao;
 import model.comprasVo;
 
@@ -271,5 +276,22 @@ public class comprasController extends HttpServlet{
              System.out.println("Error al eliminar"+e.getMessage().toString());
          }
      }
+     /*
+     public class DiferenciaTimepo{
+        public static void main(String[] args) {
+            LocalDate primeraFecha = LocalDate.of(2000, Month.JANUARY, 1);
+            LocalDate fechaActual = LocalDate.now();
+
+            System.out.println("Primera fecha:" + primeraFecha);
+            System.out.println("Fecha actual:" + fechaActual);
+
+            System.out.println();
+
+            Period periodo = Period.between(primeraFecha, fechaActual);
+            System.out.println("diferencia en años:" + periodo.getYears());
+            System.out.println("diferencia en meses:" + periodo.getMonths());
+            System.out.println("diferencia en dias:" + periodo.getDays());
+        }
+    }*/
     
 } 
