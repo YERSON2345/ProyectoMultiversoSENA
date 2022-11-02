@@ -486,7 +486,7 @@
 			<script src="assets/js/jquery-3.3.1.min.js"></script>
 
 			<!-- CDN para alertas -->
-			<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+			<script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 			<!-- Datatables -->
 			<script type="text/javascript" charset="utf8"
@@ -494,7 +494,7 @@
 
 			<script>
 				$(document).ready(function () {
-
+					
 					$('#datatable').DataTable({
 						language: {
 							processing: "Cargando...",
@@ -519,6 +519,10 @@
 							}
 						}
 					});
+					setInterval(function(){
+    					datatable.ajax.reload( null, false );
+					}, 30000);
+
 				});
 			</script>
 		</body>

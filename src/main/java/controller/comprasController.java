@@ -53,13 +53,14 @@ public class comprasController extends HttpServlet{
     switch(a){
         case"listar":
         listar(req,resp);
+        diferenciaTiempo(req,resp);
         break;
         case"editar":
         editar(req, resp);
         break;
         case"agregarCompra":
         consultarProveedor(req,resp);
-        listarComprasProducto(req,resp);
+        listarComprasProducto(req,resp);        
         break;
         case"eliminar":
         eliminar(req,resp);
@@ -276,9 +277,7 @@ public class comprasController extends HttpServlet{
              System.out.println("Error al eliminar"+e.getMessage().toString());
          }
      }
-     /*
-     public class DiferenciaTimepo{
-        public static void main(String[] args) {
+     private void diferenciaTiempo(HttpServletRequest req, HttpServletResponse resp){
             LocalDate primeraFecha = LocalDate.of(2000, Month.JANUARY, 1);
             LocalDate fechaActual = LocalDate.now();
 
@@ -291,7 +290,6 @@ public class comprasController extends HttpServlet{
             System.out.println("diferencia en años:" + periodo.getYears());
             System.out.println("diferencia en meses:" + periodo.getMonths());
             System.out.println("diferencia en dias:" + periodo.getDays());
-        }
-    }*/
+    }
     
 } 
