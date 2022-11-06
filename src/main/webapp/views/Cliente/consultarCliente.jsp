@@ -23,6 +23,12 @@
 			<link rel="stylesheet" href="assets/css/tabla.css">
 			<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+			<!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 		</head>
 
 		<body>
@@ -112,13 +118,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -288,7 +287,7 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Consultar Cliente</h1>
-
+							<div class="" id="prueba">
 							<div class="row">
 								<div class="col-12">
 									<div class="card">
@@ -298,7 +297,12 @@
 													<div class="tools">
 														<ul>
 															<li>
+																<td></td>
 																<br><br>
+																<button class="modo" id="modo">
+																	<span><i class="fa-solid fa-sun"></i></span>
+																	<span><i class="fa-regular fa-moon"></i></span>
+																</button>		
 															</li>
 														</ul>
 													</div>
@@ -307,15 +311,15 @@
 												<table class="datatable" id="datatable">
 													<thead>
 														<tr>
-															<th></th>
-															<th>Número de documento</th>
-															<th>Tipo de documento</th>
-															<th>Nombre</th>
-															<th>Apellido</th>
-															<th>Correo</th>
-															<th>Telefono</th>
-															<th>Dirección</th>
-															<th>Acciones</th>
+															<th><p class="white"></p></th>
+															<th><p class="white">Número de documento</p></th>
+															<th><p class="white">Tipo de documento</p></th>
+															<th><p class="white">Nombre</p></th>
+															<th><p class="white">Apellido</p></th>
+															<th><p class="white">Correo</p></th>
+															<th><p class="white">Telefono</p></th>
+															<th><p class="white">Dirección</p></th>
+															<th><p class="white">Acciones</p></th>
 														</tr>
 													</thead>
 
@@ -324,16 +328,17 @@
 
 															<tr>
 																<td></td>
-																<td>${usuario.getNoDocCliente()}</td>
-																<td>${usuario.getTipoDocCliente()}</td>
-																<td>${usuario.getNombreCliente()}</td>
-																<td>${usuario.getApellidoCliente()}</td>
-																<td>${usuario.getCorreoCliente()}</td>
-																<td>${usuario.getTelefonoCliente()}</td>
-																<td>${usuario.getDireccionDestinoVenta()}</td>
+																<td><p class="white">${usuario.getNoDocCliente()}</p></td>
+																<td><p class="white">${usuario.getTipoDocCliente()}</p></td>
+																<td><p class="white">${usuario.getNombreCliente()}</p></td>
+																<td><p class="white">${usuario.getApellidoCliente()}</p></td>
+																<td><p class="white">${usuario.getCorreoCliente()}</p></td>
+																<td><p class="white">${usuario.getTelefonoCliente()}</p></td>
+																<td><p class="white">${usuario.getDireccionDestinoVenta()}</p></td>
 
 																<td class="text-left">
-																	<a
+																	<p class="white">
+																		<a
 																		href="cliente?condicion=editar&id=${usuario.getNoDocCliente()}">
 																		<button
 																			class="btn btn-primary">Actualizar</button>
@@ -344,6 +349,7 @@
 																		onclick="return eliminar()">
 																		<button
 																			class="btn btn-danger">Eliminar</button></a>
+																	</p>
 																</td>
 															</tr>
 														</c:forEach>
@@ -356,7 +362,7 @@
 									</div>
 								</div>
 							</div>
-
+						</div>
 						</div>
 					</main>
 
@@ -477,6 +483,9 @@
 					});
 				});
 			</script>
+
+			<!-- Darkmode -->
+			<script src="assets/js/dark-mode.js"></script>
 
 		</body>
 

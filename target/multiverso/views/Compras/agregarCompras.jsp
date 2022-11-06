@@ -26,6 +26,11 @@
 
 			<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
+			<!-- fecha vencimiento(CSS) -->
+			<link rel="stylesheet" href="assets/css/fecha_vencimiento.css">
+
+			<link rel="stylesheet" href="assets/css/filter.css">
+
 			<title>Añadir Compra</title>
 
 			<link href="assets/css/app.css" rel="stylesheet">
@@ -107,13 +112,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -300,7 +298,7 @@
 										<label for="validationCustom01 observaciones" class="font-weight-bold">N°
 											Orden<span class="text-danger">*</span></label>
 										<div class="col-sm-10">
-											<input type="number" id="validationCustom01" name="NoOrden"
+											<input type="number" id="validationCustom01" name="noOrdenCompra"
 												placeholder="N° Orden" class="form-control" required>
 											<div class="valid-feedback">
 												¡Numero de Orden insertado con éxito!
@@ -312,33 +310,42 @@
 									</div>
 									</p>
 									<p>
-									<div class="form-group">
+									<div class="form-group dropdown">
 										<label for="validationCustom01 observaciones" class="font-weight-bold">Fecha De
-											Vencimiento Del Producto<span class="text-danger">*</span></label>
+											la compra<span class="text-danger">*</span>
 										<div class="col-sm-10">
-											<input class="form-check-input" type="checkbox" value=""
-												id="flexCheckDefault">
-											<label class="form-check-label" for="flexCheckDefault">
-												No vence el producto
-											</label><br>
-											<input type="date" id="validationCustom01" name="fecha"
-												placeholder="Fecha De Vencimiento Del Producto" class="form-control"
-												required>
+												<input type="date" name="fecha" id="validationCustom01" placeholder="Fecha De la compra" class="form-control">									  
 											<div class="valid-feedback">
-												¡Fecha de Vencimiento insertado con éxito!
+												¡Fecha de La Compra insertado con éxito!
 											</div>
 											<div class="invalid-feedback">
-												Por favor, coloque la Fecha de Vencimiento.
+												Por favor, coloque la Fecha de La Compra.
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="form-group dropdown">
+										<label for="validationCustom01 observaciones" class="font-weight-bold">Precio
+											del Proveedor<span class="text-danger">*</span>
+										<div class="col-sm-10">
+												<input type="number" name="precioProveedor" id="validationCustom01" placeholder="Precio Del Proveedor" class="form-control" required>
+											  </div>
+											<div class="valid-feedback">
+												¡Precio del Proveedor insertado con éxito!
+											</div>
+											<div class="invalid-feedback">
+												Por favor, coloque Precio del Proveedor.
 											</div>
 										</div>
 									</div>
 									</p>
+									<br>
 									<p>
 									<div class="form-group">
 										<label for="validationCustom01 observaciones" class="font-weight-bold">Cantidad
 											Del Producto<span class="text-danger">*</span></label>
 										<div class="col-sm-10">
-											<input type="number" id="validationCustom01" name="cantidad"
+											<input type="number" id="validationCustom01" name="entradaCompras"
 												placeholder="Cantidad De la Compra" class="form-control" required>
 											<div class="valid-feedback">
 												¡Cantidad del Producto insertado con éxito!
@@ -350,39 +357,22 @@
 									</div>
 									</p>
 									<p>
-									<div class="form-group">
-										<label for="validationCustom01 observaciones" class="font-weight-bold">Precio De
-											Total De La Compra<span class="text-danger">*</span></label>
-										<div class="col-sm-10">
-											<input type="number" id="validationCustom01" name="precio"
-												placeholder="Precio De la compra" class="form-control" required>
-											<div class="valid-feedback">
-												¡Precio de la Compra insertado con éxito!
-											</div>
-											<div class="invalid-feedback">
-												Por favor, coloque el Precio de la Compra.
-											</div>
-										</div>
-									</div>
 									</p>
-
+									
 									<div class="col-md-3">
-										<label for="validationCustom04" class="form-label">Proveedro del
+										<label class="form-label">Proveedro del
 											Producto</label>
-										<select class="form-select" id="noDocCliente validationCustom04"
-											name="idProveedor" required>
+										<select class="form-select select" id="noDocCliente "
+											name="idProveedor">
 											<option selected disabled value="">Seleccione</option>
 											<c:forEach var="idProveedor" items="${idProveedor}">
 												<option value="${idProveedor.getIdProveedor()}">
 													${idProveedor.getNombreProveedor()}</option>
 											</c:forEach>
 										</select>
-										<div class="valid-feedback">
-											¡Todo correcto!
-										</div>
-										<div class="invalid-feedback">
-											Por favor, elija un proveedor.
-										</div>
+										<br>
+										<p>También puedes buscar por acá</p>
+					  					<input type="text" id="input-prueba">
 									</div>
 									<p>
 									</p>
@@ -435,5 +425,9 @@
 
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+			<script src="assets/js/fecha_vencimiento.js"></script>
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			<script src="assets/js/filter.js"></script>
 
 		</body>

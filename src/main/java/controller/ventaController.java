@@ -2,6 +2,9 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +58,9 @@ public class ventaController extends HttpServlet {
         case "dashboard":
         dashboard(req,resp);
         break;
+        case "ExportarPDF":
+        ExportarPDF(req,resp);
+        break;
         default:
         System.out.println("No se encontro respuesta a su petición");
         break;
@@ -82,6 +88,15 @@ public class ventaController extends HttpServlet {
         System.out.println("El dashboard ha sido abierto correctamente");
       } catch (Exception e) {
         System.out.println("El dashboard NO ha sido abierto"+e.getMessage().toString());
+      }
+    }
+
+    private void ExportarPDF(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+
+      } catch (Exception e) {
+         System.out.println("Hay problemas al listar los datos "+e.getMessage().toString());
       }
     }
 

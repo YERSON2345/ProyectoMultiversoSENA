@@ -23,6 +23,12 @@
 			<link rel="stylesheet" href="assets/css/tabla.css">
 			<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+			<!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 		</head>
 
 		<body>
@@ -101,13 +107,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -200,12 +199,18 @@
 													<div class="col-2">
 														<i class="text-danger" data-feather="alert-circle"></i>
 													</div>
+													
+													<!-- aca poner foreach para mensajes de fecha de vencimiento
+													mensaje notificationes facha vencimiento
+													faltan  dias -->
+
 													<div class="col-10">
 														<div class="text-dark">Update completed</div>
 														<div class="text-muted small mt-1">Restart server 12 to complete
 															the update.</div>
 														<div class="text-muted small mt-1">30m ago</div>
 													</div>
+												
 												</div>
 											</a>
 											<a href="#" class="list-group-item">
@@ -277,7 +282,7 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Consultar Compras</h1>
-
+							<div class="" id="prueba">
 							<div class="row">
 								<div class="col-12">
 									<div class="card">
@@ -287,7 +292,12 @@
 													<div class="tools">
 														<ul>
 															<li>
+																<td></td>
 																<br><br>
+																<button class="modo" id="modo">
+																	<span><i class="fa-solid fa-sun"></i></span>
+																	<span><i class="fa-regular fa-moon"></i></span>
+																</button>
 															</li>
 														</ul>
 													</div>
@@ -296,14 +306,14 @@
 												<table class="datatable" id="datatable">
 													<thead>
 														<tr>
-															<th></th>
-															<th>id Compras</th>
-															<th>Numero de orden</th>
-															<th>Nombre Producto</th>
-															<th>cantidad del producto</th>
-															<th>fecha de vencimiento del producto</th>
-															<th>Precio del Proveedor</th>
-															<th>Nombre Proveedor</th>
+															<th><p class="white"></p></th>
+															<th><p class="white">id Compras</p></th>
+															<th><p class="white">Numero de orden</p></th>
+															<th><p class="white">Nombre Producto</p></th>
+															<th><p class="white">cantidad del producto</p></th>
+															<th><p class="white">Precio del Proveedor</p></th>
+															<th><p class="white">fecha de la compra</p></th>
+															<th><p class="white">Nombre Proveedor</p></th>
 
 															<th>Acciones</th>
 														</tr>
@@ -313,19 +323,21 @@
 														<c:forEach var="compras" items="${compras}">
 															<tr>
 																<td></td>
-																<td>${compras.getIdCompras()}</td>
-																<td>${compras.getNoOrdenCompra()}</td>
-																<td>${compras.getNombreProducto()}</td>
-																<td>${compras.getEntradaCompras()}</td>
-																<td>${compras.getFechaCompra()}</td>
-																<td>${compras.getPrecioCompra()}</td>
-																<td>${compras.getNombreProveedor()}</td>
+																<td><p class="white">${compras.getidDetalleCompras()}</p></td>
+																<td><p class="white">${compras.getnoOrdenCompra()}</p></td>
+																<td><p class="white">${compras.getNombreProducto()}</p></td>
+																<td><p class="white">${compras.getentradasCompras()}</p></td>
+																<td><p class="white">${compras.getprecioProveedor()}</p></td>
+																<td><p class="white">${compras.getFechaCompra()}</p></td>
+																<td><p class="white">${compras.getNombreProveedor()}</p></td>
 																<td>
-																	<br>
+																	<p class="white">
+																		<br>
 																	<a
-																		href="compras?accion=editar&idCompras=${compras.getIdCompras()}&cantidadP=${compras.getcantidadProducto()}&cantidadEntradas=${compras.getEntradaCompras()}">
+																		href="compras?accion=editar&idDetalleCompras=${compras.getidDetalleCompras()}&cantidadP=${compras.getcantidadProducto()}&cantidadEntradas=${compras.getentradasCompras()}">
 																		<button class="btn btn-primary" type="button">
 																			Editar</button></a>
+																	</p>
 																</td>
 															</tr>
 														</c:forEach>
@@ -338,7 +350,7 @@
 									</div>
 								</div>
 							</div>
-
+						</div>
 						</div>
 					</main>
 
@@ -460,6 +472,8 @@
 				});
 			</script>
 
+			<!-- Darkmode -->
+			<script src="assets/js/dark-mode.js"></script>
 		</body>
 
 		</html>

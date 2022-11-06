@@ -113,13 +113,6 @@
 							<li class="sidebar-header">
 								Ventas
 							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
-							</li>
 							<li class="sidebar-item ">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
 									<i class="align-middle" data-feather="database"></i> <span

@@ -25,6 +25,9 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
+	<!-- Filter(CSS) -->
+	<link rel="stylesheet" href="assets/css/filter.css">
+
 	<title>Añadir Venta</title>
 
 	<link href="assets/css/app.css" rel="stylesheet">
@@ -99,12 +102,6 @@
 			</li>
 			<li class="sidebar-header">
 				Ventas
-			</li>
-
-			<li class="sidebar-item active">
-				<a class="sidebar-link" href="ventas?condicion=formulario">
-	  <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Agregar</span>
-	</a>
 			</li>
 			<li class="sidebar-item">
 	<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -311,14 +308,17 @@
 					</div>
 				</div>
 
-				  <div class="col-md-3">
+				  <div class="col-md-3 filter">
 					<label for="validationCustom04" class="form-label">Cliente</label>
-					<select class="form-select" id="noDocCliente validationCustom04" name="noDocCliente" required>
-						<option selected disabled value="">Seleccione</option>
+					<select class="form-select select" id="noDocCliente validationCustom04" name="noDocCliente" required>
+						<option selected disabled value="">Seleccione...</option>
 						<c:forEach var="noDocCliente" items="${noDocCliente}">
 							<option value="${noDocCliente.getNoDocCliente()}">${noDocCliente.getNombreCliente()}</option>
 						</c:forEach>
-					</select>
+					  </select>
+					  <br>
+					  <p>También puedes buscar por acá</p>
+					  <input type="text" id="input-prueba">
 					<div class="valid-feedback">
 					¡Todo correcto!
 					</div>
@@ -326,22 +326,7 @@
 					  Por favor, elija un cliente.
 					  </div>
 				  </div>
-
-				  
-				  <div class="col-12">
-					<div class="form-check">
-					  <input class="form-check-input" type="checkbox" value="Acepto las condiciones" id="invalidCheck" name="condiciones" required>
-					<label class="form-check-label" for="invalidCheck">
-						Acepta los términos y condiciones
-					</label>
-					<div class="valid-feedback">
-					  Correcto!
-					</div>
-					<div class="invalid-feedback">
-					  Por favor, acepte los términos y condiciones.
-					</div>
-			  </div>
-			
+				  <br>	
                     <p class="block">
                         <button class="btn btn-primary width-100" name="condicion" value="insertar">Agregar ventas</button>
                     </p>
@@ -387,6 +372,10 @@
 		<!-- Validaciones -->
 	   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" ></script>
+
+		<!-- Select con filter -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="assets/js/filter.js"></script>
 
 </body>
 

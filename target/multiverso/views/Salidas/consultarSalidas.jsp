@@ -23,6 +23,12 @@
             <link rel="stylesheet" href="assets/css/tabla.css">
             <link href="assets/css/app.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+            <!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
         </head>
 
         <body>
@@ -112,13 +118,6 @@
                             </li>
                             <li class="sidebar-header">
                                 Ventas
-                            </li>
-
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="ventas?condicion=formulario">
-                                    <i class="align-middle" data-feather="dollar-sign"></i> <span
-                                        class="align-middle">Agregar</span>
-                                </a>
                             </li>
                             <li class="sidebar-item ">
                                 <a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -289,7 +288,7 @@
                         <div class="container-fluid p-0">
 
                             <h1 class="h3 mb-3">Consultar Salidas</h1>
-
+                            <div class="" id="prueba">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
@@ -303,6 +302,11 @@
                                                                         class="btn btn-primary"
                                                                         type="button">Regresar</button></a><br><br>
                                                             </td>
+                                                            <br><br>
+                                                            <button class="modo" id="modo">
+                                                                <span><i class="fa-solid fa-sun"></i></span>
+                                                                <span><i class="fa-regular fa-moon"></i></span>
+
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -310,11 +314,11 @@
                                                 <table class="datatable" id="datatable">
                                                     <thead>
                                                         <tr>
-                                                            <th></th>
-                                                            <th>Producto</th>
-                                                            <th>Cantidad descontada</th>
-                                                            <th>Motivo</th>
-                                                            <th>Acciones</th>
+                                                            <th><p class="white"></p></th>
+                                                            <th><p class="white">Producto</p></th>
+                                                            <th><p class="white">Cantidad descontada</p></th>
+                                                            <th><p class="white">Motivo</p></th>
+                                                            <th><p class="white">Acciones</p></th>
                                                         </tr>
                                                     </thead>
 
@@ -322,12 +326,12 @@
                                                         <c:forEach var="salidas" items="${salidas}">
                                                             <tr>
                                                                 <td></td>
-                                                                <td>${salidas.getNombreProducto()}</td>
-                                                                <td>${salidas.getCantidadSalida()}</td>
-                                                                <td>${salidas.getMotivoSalidas()}</td>
+                                                                <td><p class="white">${salidas.getNombreProducto()}</p></td>
+                                                                <td><p class="white">${salidas.getCantidadSalida()}</p></td>
+                                                                <td><p class="white">${salidas.getMotivoSalidas()}</p></td>
 
                                                                 <td>
-                                                                    <a
+                                                                    <p class="white"><a
                                                                         href="salidas?condicion=editar&id=${salidas.getIdSalida()}&cantidadActualProducto=${salidas.getCantidadProducto()}&cantidadDescontada=${salidas.getCantidadSalida()}">
                                                                         <button
                                                                             class="btn btn-primary">Actualizar</button>
@@ -337,7 +341,7 @@
                                                                     <a href="salidas?condicion=eliminar&id=${salidas.getIdSalida()}&nombreP=${salidas.getNombreProducto()}&cantidadS=${salidas.getCantidadSalida()}&cantidadP=${salidas.getCantidadProducto()}"
                                                                         onclick="return eliminar()">
                                                                         <button class="btn btn-danger">Eliminar</button>
-                                                                    </a>
+                                                                    </a></p>
                                                                 </td>
                                                             </tr>
                                                         </c:forEach>
@@ -350,7 +354,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                        </div>
                         </div>
                     </main>
 
@@ -465,6 +469,9 @@
 					});
 				});
 			</script>
+
+            <!-- Darkmode -->
+            <script src="assets/js/dark-mode.js"></script>
 
         </body>
         </html>

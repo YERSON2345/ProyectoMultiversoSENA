@@ -1,16 +1,20 @@
 package model;
 
+import javax.xml.stream.events.EntityReference;
+
 public class comprasVo extends comprasClass {
 
-    private int idCompras;
-    private int entradaCompras;
+    private int idDetalleCompras;
+    private int precioProveedor;
     private int noOrdenCompra;
     private String fechaCompra;
     private int idProducto;
     private int idProveedor;
+    private int entradasCompras;
 
-    private int cantidadCompra;
-    private int precioCompra;
+
+
+    //Relaciones
     private String nombreProveedor;
     private String nombreProducto;
 
@@ -31,22 +35,20 @@ public comprasVo(){
 }
 
 
-public comprasVo(int idCompras, int entradaCompras, int noOrdenCompra, String fechaCompra, int idProducto,
-        int idProveedor, int cantidadCompra, int precioCompra, String nombreProveedor, String nombreProducto,String ObservacionesProducto,
+public comprasVo(String fechaCompra, int idProducto,int idDetalleCompras,int precioProveedor,int noOrdenCompra,int entradasCompras,
+        int idProveedor,String nombreProveedor, String nombreProducto,String ObservacionesProducto,
         int cantidadProducto,int precioProducto,int idTipoProducto,String nombreTipoProducto,int resultadoResta,int cantidadTotal) {
-    this.idCompras = idCompras;
-    this.entradaCompras = entradaCompras;
-    this.noOrdenCompra = noOrdenCompra;
     this.fechaCompra = fechaCompra;
     this.idProducto = idProducto;
     this.idProveedor = idProveedor;
-    this.cantidadCompra = cantidadCompra;
-    this.precioCompra = precioCompra;
+    this.entradasCompras = entradasCompras;
     this.nombreProveedor = nombreProveedor;
     this.nombreProducto = nombreProducto;
     this.cantidadTotal = cantidadTotal;
     this.resultadoResta = resultadoResta;
-
+    this.idDetalleCompras = idDetalleCompras;
+    this.precioProveedor = precioProveedor;
+    this.noOrdenCompra = noOrdenCompra;
 
     this.ObservacionesProducto = ObservacionesProducto;
     this.cantidadProducto = cantidadProducto;
@@ -55,6 +57,30 @@ public comprasVo(int idCompras, int entradaCompras, int noOrdenCompra, String fe
     this.nombreTipoProducto = nombreTipoProducto;
 }
 
+public void setentradasCompras(int entradasCompras){
+    this.entradasCompras = entradasCompras;
+}
+public int getentradasCompras(){
+    return entradasCompras;
+}
+public void setnoOrdenCompra(int noOrdenCompra){
+    this.noOrdenCompra = noOrdenCompra;
+}
+public int getnoOrdenCompra(){
+    return noOrdenCompra;
+}
+public void setprecioProveedor(int precioProveedor){
+    this.precioProveedor = precioProveedor;
+}
+public int getprecioProveedor(){
+    return precioProveedor;
+}
+public void setidDetalleCompras(int idDetalleCompras){
+    this.idDetalleCompras = idDetalleCompras;
+}
+public int getidDetalleCompras(){
+    return idDetalleCompras;
+}
 public void setresultadoResta(int resultadoResta){
     this.resultadoResta = resultadoResta;
 }
@@ -113,35 +139,6 @@ public void setObservacionesProducto(String ObservacionesProducto){
     this.ObservacionesProducto = ObservacionesProducto;
 }
 
-public int getIdCompras() {
-    return idCompras;
-}
-
-
-public void setIdCompras(int idCompras) {
-    this.idCompras = idCompras;
-}
-
-
-public int getEntradaCompras() {
-    return entradaCompras;
-}
-
-
-public void setEntradaCompras(int entradaCompras) {
-    this.entradaCompras = entradaCompras;
-}
-
-
-public int getNoOrdenCompra() {
-    return noOrdenCompra;
-}
-
-
-public void setNoOrdenCompra(int noOrdenCompra) {
-    this.noOrdenCompra = noOrdenCompra;
-}
-
 
 public String getFechaCompra() {
     return fechaCompra;
@@ -171,27 +168,6 @@ public int getIdProveedor() {
 public void setIdProveedor(int idProveedor) {
     this.idProveedor = idProveedor;
 }
-
-
-public int getCantidadCompra() {
-    return cantidadCompra;
-}
-
-
-public void setCantidadCompra(int cantidadCompra) {
-    this.cantidadCompra = cantidadCompra;
-}
-
-
-public int getPrecioCompra() {
-    return precioCompra;
-}
-
-
-public void setPrecioCompra(int precioCompra) {
-    this.precioCompra = precioCompra;
-}
-
 
 public String getNombreProveedor() {
     return nombreProveedor;

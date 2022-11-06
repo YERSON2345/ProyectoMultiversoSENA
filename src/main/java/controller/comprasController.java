@@ -39,9 +39,6 @@ public class comprasController extends HttpServlet{
     proveedorDao pp=new proveedorDao();
     proveedorVo pd=new proveedorVo();
 
-    detalleComprasVo d=new detalleComprasVo();
-    detalleComprasDao dd=new detalleComprasDao();
-
     productoDao ks = new productoDao(); 
 
 
@@ -53,7 +50,6 @@ public class comprasController extends HttpServlet{
     switch(a){
         case"listar":
         listar(req,resp);
-        diferenciaTiempo(req,resp);
         break;
         case"editar":
         editar(req, resp);
@@ -114,38 +110,29 @@ public class comprasController extends HttpServlet{
 
     private void add(HttpServletRequest req, HttpServletResponse resp){
 
-        if(req.getParameter("cantidad")!=null){
-            c.setEntradaCompras(Integer.parseInt(req.getParameter("cantidad")));
-        }
-        if(req.getParameter("NoOrden")!=null){
-            c.setNoOrdenCompra(Integer.parseInt(req.getParameter("NoOrden")));
-        }
-        if(req.getParameter("NoOrden")!=null){
-            d.setnoOrdenCompra(Integer.parseInt(req.getParameter("NoOrden")));
-        }
         if(req.getParameter("fecha")!=null){
-            d.setFechaVencimientoProducto(req.getParameter("fecha"));
+            c.setFechaCompra(req.getParameter("fecha"));
         }
-        if(req.getParameter("cantidad")!=null){
-            c.setCantidadCompra(Integer.parseInt(req.getParameter("cantidad")));
+        if(req.getParameter("entradaCompras")!=null){
+            c.setentradasCompras(Integer.parseInt(req.getParameter("entradaCompras")));
         }
-        if(req.getParameter("cantidad")!=null){
-            d.setCantidadCompra(Integer.parseInt(req.getParameter("cantidad")));
+        if(req.getParameter("precioProveedor")!=null){
+            c.setprecioProveedor(Integer.parseInt(req.getParameter("precioProveedor")));
         }
-        if(req.getParameter("precio")!=null){
-            d.setPrecioProveedor(Integer.parseInt(req.getParameter("precio")));
+        if(req.getParameter("noOrdenCompra")!=null){
+            c.setnoOrdenCompra(Integer.parseInt(req.getParameter("noOrdenCompra")));
         }
         if(req.getParameter("idProducto")!=null){
-            d.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
+           c.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
         }
         if(req.getParameter("idProveedor")!=null){
-            d.setIdProveedor(Integer.parseInt(req.getParameter("idProveedor")));
+            c.setIdProveedor(Integer.parseInt(req.getParameter("idProveedor")));
         }
         
         try{
 
             int cantidadProducto=Integer.parseInt(req.getParameter("cantidadProducto"));
-            int cantidadEntradas=Integer.parseInt(req.getParameter("cantidad"));
+            int cantidadEntradas=Integer.parseInt(req.getParameter("entradaCompras"));
             int idProducto = Integer.parseInt(req.getParameter("idProducto"));
             comprasVo resultado = new comprasVo();
             int resultados = resultado.sumarExistencias(cantidadProducto,cantidadEntradas);
@@ -153,7 +140,6 @@ public class comprasController extends HttpServlet{
             cd.actualizarExistencias(resultadoSuma,idProducto);
 
             cd.registrar(c);
-            cd.registrarDetalle(d);
 
             System.out.println("registro bien insertado");
             listarProductos(req, resp);
@@ -199,8 +185,8 @@ public class comprasController extends HttpServlet{
      }
 
      private void editar(HttpServletRequest req, HttpServletResponse resp){
-        if(req.getParameter("idCompras")!=null){
-            c.setIdCompras(Integer.parseInt(req.getParameter("idCompras")));
+        if(req.getParameter("idDetalleCompras")!=null){
+            c.setidDetalleCompras(Integer.parseInt(req.getParameter("idDetalleCompras")));
         } 
         try{
             int cantidadActualProducto=Integer.parseInt(req.getParameter("cantidadP"));
@@ -209,7 +195,7 @@ public class comprasController extends HttpServlet{
             int resultados = resultado.restarExistencias(cantidadActualProducto,cantidadDescontada);
             int resultadoss = resultados;
             c.setcantidadTotal(resultadoss);
-            List compraslistar=cd.editarCompras(c.getIdCompras(), c.getcantidadTotal());
+            List compraslistar=cd.editarCompras(c.getidDetalleCompras(), c.getcantidadTotal());
             req.setAttribute("compras", compraslistar);
             req.getRequestDispatcher("views/Compras/editarCompras.jsp").forward(req, resp);
             System.out.println("datos listados correctamente para editar");
@@ -221,20 +207,20 @@ public class comprasController extends HttpServlet{
         if(req.getParameter("fecha")!=null){
             c.setFechaCompra(req.getParameter("fecha"));
         }
-        if(req.getParameter("entradas")!=null){
-            c.setEntradaCompras(Integer.parseInt(req.getParameter("entradas")));
+        if(req.getParameter("entradaCompras")!=null){
+            c.setentradasCompras(Integer.parseInt(req.getParameter("entradaCompras")));
+        }
+        if(req.getParameter("precioProveedor")!=null){
+            c.setprecioProveedor(Integer.parseInt(req.getParameter("precioProveedor")));
         }
         if(req.getParameter("noOrdenCompra")!=null){
-            c.setNoOrdenCompra(Integer.parseInt(req.getParameter("noOrdenCompra")));
-        }
-        if(req.getParameter("PrecioProveedor")!=null){
-            c.setPrecioCompra(Integer.parseInt(req.getParameter("PrecioProveedor")));
+            c.setnoOrdenCompra(Integer.parseInt(req.getParameter("noOrdenCompra")));
         }
          try{
             cd.actualizar(c);
             int cantidadAntigua=Integer.parseInt(req.getParameter("cantidadAntigua"));
             int cantidadProducto=Integer.parseInt(req.getParameter("cantidadActual"));
-            int cantidadEntradas=Integer.parseInt(req.getParameter("entradas"));
+            int cantidadEntradas=Integer.parseInt(req.getParameter("entradaCompras"));
             int idProducto = Integer.parseInt(req.getParameter("idProducto"));
             comprasVo resultado = new comprasVo();
             
@@ -260,15 +246,11 @@ public class comprasController extends HttpServlet{
      }
 
      private void eliminar(HttpServletRequest req, HttpServletResponse resp){
-         if(req.getParameter("idCompras")!=null){
-             c.setIdCompras(Integer.parseInt(req.getParameter("idCompras")));
+         if(req.getParameter("idDetalleCompras")!=null){
+             c.setidDetalleCompras(Integer.parseInt(req.getParameter("idDetalleCompras")));
          }
-         if(req.getParameter("noOrdenCompra")!=null){
-            c.setNoOrdenCompra(Integer.parseInt(req.getParameter("noOrdenCompra")));
-        }
          try{
-            cd.eliminar(c.getNoOrdenCompra());
-            cd.eliminarCompras(c.getNoOrdenCompra());
+            cd.eliminarCompras(c.getidDetalleCompras());
 
      
              System.out.println("se elimino correctamente");
@@ -277,19 +259,4 @@ public class comprasController extends HttpServlet{
              System.out.println("Error al eliminar"+e.getMessage().toString());
          }
      }
-     private void diferenciaTiempo(HttpServletRequest req, HttpServletResponse resp){
-            LocalDate primeraFecha = LocalDate.of(2000, Month.JANUARY, 1);
-            LocalDate fechaActual = LocalDate.now();
-
-            System.out.println("Primera fecha:" + primeraFecha);
-            System.out.println("Fecha actual:" + fechaActual);
-
-            System.out.println();
-
-            Period periodo = Period.between(primeraFecha, fechaActual);
-            System.out.println("diferencia en años:" + periodo.getYears());
-            System.out.println("diferencia en meses:" + periodo.getMonths());
-            System.out.println("diferencia en dias:" + periodo.getDays());
     }
-    
-} 

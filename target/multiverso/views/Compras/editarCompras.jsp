@@ -108,13 +108,6 @@
 							<li class="sidebar-header">
 								Ventas
 							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
-							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
 									<i class="align-middle" data-feather="database"></i> <span
@@ -295,7 +288,7 @@
 										<div class="form-group">
 											<h3>Informacion de la compra:</h3>
 											<label class="col-sm-5 control-label">
-												<br> Numero de orden: ${compras.getNoOrdenCompra()} <br>
+												<br> Numero de orden: ${compras.getnoOrdenCompra()} <br>
 												Producto: ${compras.getNombreProducto()} <br>
 												Proveedor: ${compras.getNombreProveedor()} <br>
 												Cantidad Antigua: ${compras.getcantidadTotal()} <br>
@@ -322,19 +315,19 @@
 										<p>
 											<label class="font-weight-bold">N° Entradas<span
 													class="text-danger">*</span></label>
-											<input type="number" name="entradas" value="${compras.getEntradaCompras()}"
+											<input type="number" name="getentradasCompras" value="${compras.getentradasCompras()}"
 												placeholder="N° Entradas" class="form-control">
 										</p>
 										<p>
 											<label class="font-weight-bold">Precio Del Proveedor<span
 													class="text-danger">*</span></label>
-											<input type="number" name="PrecioProveedor"
-												value="${compras.getPrecioCompra()}" placeholder="Precio proveedor"
+											<input type="number" name="precioProveedor"
+												value="${compras.getprecioProveedor()}" placeholder="Precio proveedor"
 												class="form-control">
 										</p>
 										<p>
 											<input type="hidden" name="noOrdenCompra"
-												value="${compras.getNoOrdenCompra()}" placeholder="N° Entradas"
+												value="${compras.getnoOrdenCompra()}" placeholder="N° Entradas"
 												class="form-control">
 										</p>
 										<p class="block">

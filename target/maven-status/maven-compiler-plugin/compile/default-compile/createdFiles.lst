@@ -22,6 +22,7 @@ model\usuarioDao.class
 controller\ventaController.class
 controller\clienteController.class
 model\salidasClass.class
+controller\ExportarPDF.class
 model\comprasDao.class
 model\rolVo.class
 controller\tipoProductoController.class
@@ -34,3 +35,4 @@ model\productoDao.class
 model\Conexion.class
 model\tipoProductoVo.class
 model\proveedorVo.class
+ExportarPDFF.class

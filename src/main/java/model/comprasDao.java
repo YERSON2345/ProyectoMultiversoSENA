@@ -18,18 +18,18 @@ public class comprasDao {
 
   public List<comprasVo> listar() throws SQLException{
       List<comprasVo> compras=new ArrayList<>();
-      sql="SELECT U.idDetalleCompras,U.fechaVencimientoProducto,U.cantidadCompra,U.precioProveedor,C.noOrdenCompra, O.nombreProveedor,P.nombreProducto,P.cantidadProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto;";
+      sql="SELECT U.idDetalleCompras,U.fechaCompra,U.entradasCompras,U.precioProveedor,U.noOrdenCompra,O.nombreProveedor,P.nombreProducto,P.cantidadProducto FROM Compras U INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
           rs=ps.executeQuery(sql);
           while(rs.next()){
             comprasVo filas=new comprasVo();
-              filas.setIdCompras(rs.getInt("idDetalleCompras"));
-              filas.setFechaCompra(rs.getString("fechaVencimientoProducto"));
-              filas.setEntradaCompras(rs.getInt("cantidadCompra"));
-              filas.setPrecioCompra(rs.getInt("precioProveedor"));
-              filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
+              filas.setidDetalleCompras(rs.getInt("idDetalleCompras"));
+              filas.setFechaCompra(rs.getString("fechaCompra"));
+              filas.setentradasCompras(rs.getInt("entradasCompras"));
+              filas.setprecioProveedor(rs.getInt("precioProveedor"));
+              filas.setnoOrdenCompra(rs.getInt("noOrdenCompra"));
               filas.setNombreProducto(rs.getString("nombreProducto"));
               filas.setNombreProveedor(rs.getString("nombreProveedor"));
               filas.setcantidadProducto(rs.getInt("cantidadProducto"));
@@ -38,6 +38,7 @@ public class comprasDao {
           ps.close();
           System.out.println("consulta exitosa");
       }catch(Exception e){
+            System.out.println(e);
           System.out.println("La consulta no se pudo");
       }
       finally{
@@ -74,17 +75,17 @@ public class comprasDao {
     return Compras;
 }
 
-  public int registrarDetalle (detalleComprasVo detalleCompras) throws SQLException{
-    sql="INSERT INTO DetalleCompras(cantidadCompra,precioProveedor,fechaVencimientoProducto,idProducto,idProveedor,noOrdenCompra) values(?,?,?,?,?,?)";
+  public int registrar(comprasVo Compras) throws SQLException{
+    sql="INSERT INTO Compras(entradasCompras,precioProveedor,FechaCompra,idProducto,idProveedor,noOrdenCompra) values(?,?,?,?,?,?)";
    try{
        con=Conexion.conectar();
        ps=con.prepareStatement(sql);
-       ps.setInt(1, detalleCompras.getCantidadCompra());
-       ps.setInt(2, detalleCompras.getPrecioProveedor());
-       ps.setString(3, detalleCompras.getFechaVencimientoProducto());
-       ps.setInt(4, detalleCompras.getIdProducto());
-       ps.setInt(5, detalleCompras.getIdProveedor());
-       ps.setInt(6, detalleCompras.getnoOrdenCompra());
+       ps.setInt(1, Compras.getentradasCompras());
+       ps.setInt(2, Compras.getprecioProveedor());
+       ps.setString(3, Compras.getFechaCompra());
+       ps.setInt(4, Compras.getIdProducto());
+       ps.setInt(5, Compras.getIdProveedor());
+       ps.setInt(6, Compras.getnoOrdenCompra());
        System.out.println(ps);
        ps.executeUpdate();
        ps.close();
@@ -97,44 +98,24 @@ public class comprasDao {
    }
    return c;
 }
-  public int registrar (comprasVo compras) throws SQLException{
-       sql="INSERT INTO Compras(entradasCompras,noOrdenCompra) values(?,?)";
-      try{
-          con=Conexion.conectar();
-          ps=con.prepareStatement(sql);
-          ps.setInt (1, compras.getEntradaCompras());
-          ps.setInt(2, compras.getNoOrdenCompra());
-          System.out.println(ps);
-          ps.executeUpdate();
-          ps.close();
-          System.out.println("se registro el tipo de producto");
-      } catch(Exception e){
-          System.out.println("Error"+ e.getMessage().toString());
-      }
-      finally{
-          con.close();
-      }
-      return c;
-  }
 
-  public List<comprasVo> editarCompras(int idCompras, int cantidadTotal) throws SQLException{
+  public List<comprasVo> editarCompras(int idDetalleCompras, int cantidadTotal) throws SQLException{
       List<comprasVo> Compras=new ArrayList<>();
-      sql="SELECT U.idDetalleCompras,U.fechaVencimientoProducto,U.cantidadCompra,U.precioProveedor,C.noOrdenCompra, O.nombreProveedor,P.nombreProducto,P.cantidadProducto,P.idProducto FROM detalleCompras U INNER JOIN Compras C ON U.noOrdenCompra = C.noOrdenCompra INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE U.idDetalleCompras ="+idCompras;
+      sql="SELECT U.idDetalleCompras,U.fechaCompra,U.entradasCompras,U.precioProveedor,U.noOrdenCompra,O.nombreProveedor,P.nombreProducto,P.cantidadProducto FROM Compras U INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE idDetalleCompras="+idDetalleCompras;
       try{
           con=Conexion.conectar();  
           ps=con.prepareStatement(sql);
           rs=ps.executeQuery(sql);
           while(rs.next()){
             comprasVo filas=new comprasVo();
-            filas.setIdCompras(rs.getInt("idDetalleCompras"));
-            filas.setFechaCompra(rs.getString("fechaVencimientoProducto"));
-            filas.setEntradaCompras(rs.getInt("cantidadCompra"));
-            filas.setPrecioCompra(rs.getInt("precioProveedor"));
-            filas.setNoOrdenCompra(rs.getInt("noOrdenCompra"));
-            filas.setIdProducto(rs.getInt("idProducto"));
-            filas.setcantidadProducto(rs.getInt("cantidadProducto"));
+            filas.setidDetalleCompras(rs.getInt("idDetalleCompras"));
+            filas.setFechaCompra(rs.getString("fechaCompra"));
+            filas.setentradasCompras(rs.getInt("entradasCompras"));
+            filas.setprecioProveedor(rs.getInt("precioProveedor"));
+            filas.setnoOrdenCompra(rs.getInt("noOrdenCompra"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
             filas.setNombreProveedor(rs.getString("nombreProveedor"));
+            filas.setcantidadProducto(rs.getInt("cantidadProducto"));
             filas.setcantidadTotal(cantidadTotal);
               Compras.add(filas);
           }
@@ -148,16 +129,16 @@ public class comprasDao {
       }
       return Compras;
   }
-  public int actualizar(comprasVo compras) throws SQLException{
-      sql="UPDATE detalleCompras SET cantidadCompra=?,precioProveedor=?,fechaVencimientoProducto=? WHERE noOrdenCompra=?";
+  public int actualizar(comprasVo Compras) throws SQLException{
+      sql="UPDATE Compras SET entradasCompras=?,precioProveedor=?,fechaCompra=? WHERE idDetalleCompras=?";
      try{
          con=Conexion.conectar();
          ps=con.prepareStatement(sql);
          System.out.println(ps);
-         ps.setInt(1, compras.getEntradaCompras());
-         ps.setInt(2, compras.getPrecioCompra());
-         ps.setString(3, compras.getFechaCompra());
-         ps.setInt(4, compras.getNoOrdenCompra());
+         ps.setInt(1, Compras.getentradasCompras());
+         ps.setInt(2, Compras.getprecioProveedor());
+         ps.setString(3, Compras.getFechaCompra());
+         ps.setInt(4, Compras.getidDetalleCompras());
          System.out.println(ps);
          ps.executeUpdate();
          ps.close();
@@ -189,8 +170,8 @@ public class comprasDao {
    }
 }
 
-  public void eliminarCompras (int idCompras) throws SQLException{
-    sql="DELETE FROM Compras WHERE noOrdenCompra="+idCompras;
+  public void eliminarCompras (int idDetalleCompras) throws SQLException{
+    sql="DELETE FROM Compras WHERE idDetalleCompras="+idDetalleCompras;
 
 
   try{
@@ -207,24 +188,4 @@ public class comprasDao {
       con.close();
   }
 }
-
-  public void eliminar(int noOrdenCompra) throws SQLException{
-        sql="DELETE FROM detalleCompras WHERE noOrdenCompra="+noOrdenCompra;
-  
-
-      try{
-          con=Conexion.conectar();
-          ps=con.prepareStatement(sql);
-          System.out.println(ps);
-          ps.executeUpdate();
-          ps.close();
-          System.out.println("se elimino bien echo");
-      }catch(Exception e){
-          System.out.println("Error en la eliminacion"+e.getMessage().toString());
-      }
-      finally{
-          con.close();
-      }
-  }
-
 }

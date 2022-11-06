@@ -2,6 +2,7 @@ c:\Users\usuario\Desktop\disquera\src\main\java\model\salidasDao.java
 c:\Users\usuario\Desktop\disquera\src\main\java\controller\srvUsuario.java
 c:\Users\usuario\Desktop\disquera\src\main\java\model\tipoProductoVo.java
 c:\Users\usuario\Desktop\disquera\src\main\java\controller\clienteController.java
+c:\Users\usuario\Desktop\disquera\src\main\java\controller\ExportarPDF.java
 c:\Users\usuario\Desktop\disquera\src\main\java\model\proveedorDao.java
 c:\Users\usuario\Desktop\disquera\src\main\java\model\salidasVo.java
 c:\Users\usuario\Desktop\disquera\src\main\java\controller\proveedorController.java
@@ -33,4 +34,5 @@ c:\Users\usuario\Desktop\disquera\src\main\java\model\usuarioDao.java
 c:\Users\usuario\Desktop\disquera\src\main\java\model\comprasDao.java
 c:\Users\usuario\Desktop\disquera\src\main\java\model\rolDao.java
 c:\Users\usuario\Desktop\disquera\src\main\java\model\ventaVo.java
+c:\Users\usuario\Desktop\disquera\src\main\java\controller\ExportarPDFF.java
 c:\Users\usuario\Desktop\disquera\src\main\java\model\tipoProductoDao.java

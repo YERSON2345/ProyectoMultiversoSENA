@@ -1,0 +1,14 @@
+.timg{
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.color{
+    background:white;
+    color: black;
+    font-style: inherit;
+    text-align: center;
+    font-size: 14px;
+}

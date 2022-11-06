@@ -56,7 +56,7 @@ public class productoDao {
 
   public List<productoVo> listar() throws SQLException{
       List<productoVo> producto=new ArrayList<>();
-      sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.estadoProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
+      sql="SELECT U.idProducto,U.fechaVencimiento,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.estadoProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
@@ -64,6 +64,7 @@ public class productoDao {
           while(rs.next()){
             productoVo filas=new productoVo();
               filas.setIdProducto(rs.getInt("idProducto"));
+              filas.setfechaVencimiento(rs.getString("fechaVencimiento"));
               filas.setObservacionesProducto(rs.getString("observacionesProducto"));
               filas.setNombreProducto(rs.getString("nombreProducto"));
               filas.setEstadoProducto(rs.getBoolean("estadoProducto"));
@@ -71,6 +72,7 @@ public class productoDao {
               filas.setPrecioProducto(rs.getInt("precioProducto"));
               filas.setIdTipoProducto(rs.getInt("idTipoProducto"));
               filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+
               producto.add(filas);
           }
           ps.close();
@@ -84,9 +86,33 @@ public class productoDao {
       return producto;
   }
 
+  public List<productoVo> listarDias() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT nombreProducto, NOW() AS fechaActual, DATEDIFF(fechaVencimiento, NOW()) AS DIFERENCIA_DIAS FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setDIFERENCIA_DIAS(rs.getInt("DIFERENCIA_DIAS"));
+            filas.setNombreProducto(rs.getString("nombreProducto"));
+            producto.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("no se pudo listar dias de diferencia");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+
   public List<productoVo> listarStock() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT U.idProducto,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
+    sql="SELECT U.idProducto,U.fechaVencimiento,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -94,6 +120,7 @@ public class productoDao {
         while(rs.next()){
           productoVo filas=new productoVo();
             filas.setIdProducto(rs.getInt("idProducto"));
+            filas.setfechaVencimiento(rs.getString("fechaVencimiento"));
             filas.setObservacionesProducto(rs.getString("observacionesProducto"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
             filas.setCantidadProducto(rs.getInt("cantidadProducto"));
@@ -114,16 +141,17 @@ public class productoDao {
 }
 
   public int registrar (productoVo producto) throws SQLException{
-       sql="INSERT INTO Producto(observacionesProducto,nombreProducto,estadoProducto,cantidadProducto,precioProducto,idTipoProducto) values(?,?,?,?,?,?)";
+       sql="INSERT INTO Producto(fechaVencimiento,observacionesProducto,nombreProducto,estadoProducto,cantidadProducto,precioProducto,idTipoProducto) values(?,?,?,?,?,?,?)";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
-          ps.setString(1, producto.getObservacionesProducto());
-          ps.setString(2, producto.getNombreProducto());
-          ps.setBoolean(3, producto.getEstadoProducto());
-          ps.setInt(4, producto.getCantidadProducto());
-          ps.setInt(5, producto.getPrecioProducto());
-          ps.setInt(6, producto.getIdTipoProducto());
+          ps.setString(1, producto.getfechaVencimiento());
+          ps.setString(2, producto.getObservacionesProducto());
+          ps.setString(3, producto.getNombreProducto());
+          ps.setBoolean(4, producto.getEstadoProducto());
+          ps.setInt(5, producto.getCantidadProducto());
+          ps.setInt(6, producto.getPrecioProducto());
+          ps.setInt(7, producto.getIdTipoProducto());
           System.out.println(ps);
           ps.executeUpdate();
           ps.close();
@@ -147,6 +175,7 @@ public class productoDao {
           while(rs.next()){
             productoVo p=new productoVo();
             p.setIdProducto(rs.getInt("idProducto"));
+            p.setfechaVencimiento(rs.getString("fechaVencimiento"));
             p.setObservacionesProducto(rs.getString("observacionesProducto"));
             p.setNombreProducto(rs.getString("nombreProducto"));
             p.setEstadoProducto(rs.getBoolean("estadoProducto"));
@@ -164,16 +193,17 @@ public class productoDao {
       return producto;
   }
   public int actualizar(productoVo producto) throws SQLException{
-      sql="UPDATE Producto SET observacionesProducto=?,nombreProducto=?,estadoProducto=?,precioProducto=? WHERE idProducto=?";
+      sql="UPDATE Producto SET fechaVencimiento=?,observacionesProducto=?,nombreProducto=?,estadoProducto=?,precioProducto=? WHERE idProducto=?";
      try{
          con=Conexion.conectar();
          ps=con.prepareStatement(sql);
          System.out.println(ps);
-         ps.setString(1, producto.getObservacionesProducto());
-          ps.setString(2, producto.getNombreProducto());
-          ps.setBoolean(3, producto.getEstadoProducto());
-          ps.setInt(4, producto.getPrecioProducto());
-          ps.setInt(5, producto.getIdProducto());
+         ps.setString(1, producto.getfechaVencimiento());
+         ps.setString(2, producto.getObservacionesProducto());
+          ps.setString(3, producto.getNombreProducto());
+          ps.setBoolean(4, producto.getEstadoProducto());
+          ps.setInt(5, producto.getPrecioProducto());
+          ps.setInt(6, producto.getIdProducto());
          System.out.println(ps);
          ps.executeUpdate();
          ps.close();

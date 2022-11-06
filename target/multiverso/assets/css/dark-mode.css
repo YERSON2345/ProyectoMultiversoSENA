@@ -1,0 +1,122 @@
+.dark th{
+  background: white;
+}
+
+.dark td{
+  background: white;
+}
+
+.dark .white{
+  color: black;
+}
+
+.dark .row{
+  background-color: white;
+  color: black;
+}
+
+.dark .dataTables_paginate{
+  background-color: white;
+  color: black;
+}
+
+.dark .dataTables_info{
+  color: black;
+  background-color: white;
+}
+
+.dark .datatable_wrapper{
+  background-color: white;
+  color: black;
+}
+
+.dark .dataTables_wrapper .no-footer{
+  background-color: white;
+  color: black;
+}
+
+.dark .dataTables_length{
+  background-color: white;
+  color: black;
+}
+
+.dark #datatable{
+  color: black;
+}
+
+.dark .paging_simple_numbers{
+  background-color:white;
+  color: white;
+}
+
+.dark ul li{
+  background-color: white;
+  color: black;
+}
+
+.dark div{
+  background-color: white;
+  color: black;
+}
+
+.dark a{
+  color: black;
+}
+
+.dark span{
+  color: black;
+}
+
+.dark .dataTables_filter{
+  color: black;
+}
+
+.dark .datatable{
+  color: black;
+}
+
+.dark select{
+  background-color: white;
+  color: black;
+}
+
+.dark input{
+  background-color: white;
+  color: black;
+}
+
+.dark .datatable-container{
+   background-color: var(--dt-background-color-container);
+}
+
+.dark .header-tools{
+  border: 2px solid black;
+}
+
+.dark #datatable_wrapper{
+  border: 2px solid black;
+}
+
+.dark .datatable{
+   border: 2px solid black;
+}
+
+
+.modo{
+  background: #343D5B;
+  border-radius: 1000px;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  outline: none;
+}
+
+.modo span{
+width: 30px;
+height: 30px;
+line-height: 30px;
+display: block;
+background: none;
+color: #fff;
+}

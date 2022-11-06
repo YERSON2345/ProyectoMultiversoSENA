@@ -23,6 +23,12 @@
 			<link rel="stylesheet" href="assets/css/tabla.css">
 			<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+			<!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 		</head>
 
 		<body>
@@ -112,13 +118,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item ">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -286,9 +285,8 @@
 
 					<main class="content">
 						<div class="container-fluid p-0">
-
 							<h1 class="h3 mb-3">Consultar Tipo Producto</h1>
-
+							<div class="" id="prueba">
 							<div class="row">
 								<div class="col-12">
 									<div class="card">
@@ -298,7 +296,12 @@
 													<div class="tools">
 														<ul>
 															<li>
+																<td></td>
 																<br><br>
+																	<button class="modo" id="modo">
+																		<span><i class="fa-solid fa-sun"></i></span>
+																		<span><i class="fa-regular fa-moon"></i></span>
+																	</button>
 															</li>
 														</ul>
 													</div>
@@ -307,50 +310,55 @@
 												<table class="datatable" id="datatable">
 													<thead>
 														<tr>
-															<th></th>
-															<th>Nombre del producto</th>
-															<th>Estado</th>
-															<th>Activar / Inactivar</th>
-															<th>Acciones</th>
+															<th><p class="white"></p></th>
+															<th><p class="white">Nombre del producto</p></th>
+															<th><p class="white">Estado</p></th>
+															<th><p class="white">Activar / Inactivar</p></th>
+															<th><p class="white">Acciones</p></th>
 														</tr>
 													</thead>
 
 													<tbody>
 														<c:forEach var="tipoProducto" items="${tipoProducto}">
 															<tr>
-																<td>${tipoProducto.getIdTipoProducto()}</td>
-																<td>${tipoProducto.getNombreTipoProducto()}</td>
+																<td><p class="white">${tipoProducto.getIdTipoProducto()}</p></td>
+																<td><p class="white">${tipoProducto.getNombreTipoProducto()}</p></td>
 
 																<c:if
 																	test="${tipoProducto.getEstadoTipoProducto() == true}">
-																	<td><span class="available"></span></td>
+																	<td><p class="white"><span class="available"></span></p></td>
 																</c:if>
 
 																<c:if
 																	test="${tipoProducto.getEstadoTipoProducto() == false}">
-																	<td><span class="offline"></span></td>
+																	<td><p class="white"><span class="offline"></span></p></td>
 																</c:if>
 																<c:if
 																	test="${tipoProducto.getEstadoTipoProducto() == true}">
 																	<td>
-																		<a
+																		<p class="white">
+																			<a
 																			href="tipoProducto?accion=estadoTipoProducto&idTipoProducto=${tipoProducto.getIdTipoProducto()}&estadoTipoProducto=false"><button
 																				class="btn btn-success" type="button">
 																				Inactivar</button></a>
+																		</p>
 																	</td>
 																</c:if>
 
 																<c:if
 																	test="${tipoProducto.getEstadoTipoProducto() == false}">
 																	<td>
-																		<a
+																		<p class="white">
+																			<a
 																			href="tipoProducto?accion=estadoTipoProducto&idTipoProducto=${tipoProducto.getIdTipoProducto()}&estadoTipoProducto=true"><button
 																				class="btn btn-success" type="button">
 																				Activar</button></a>
+																		</p>
 																	</td>
 																</c:if>
 																<td>
-																	<a
+																	<p class="white">
+																		<a
 																		href="tipoProducto?accion=eliminar&idTipoProducto=${tipoProducto.getIdTipoProducto()}">
 																		<button type="button" class="btn btn-danger">
 																			Eliminar</button></a><br>
@@ -358,6 +366,7 @@
 																		href="tipoProducto?accion=editar&idTipoProducto=${tipoProducto.getIdTipoProducto()}">
 																		<button type="button" class="btn btn-primary">
 																			Editar</button></a>
+																	</p>
 																</td>
 															</tr>
 														</c:forEach>
@@ -370,7 +379,7 @@
 									</div>
 								</div>
 							</div>
-
+						</div>
 						</div>
 					</main>
 
@@ -491,6 +500,9 @@
 					});
 				});
 			</script>
+
+			<!-- Darkmode -->
+			<script src="assets/js/dark-mode.js"></script>
 
 		</body>
 

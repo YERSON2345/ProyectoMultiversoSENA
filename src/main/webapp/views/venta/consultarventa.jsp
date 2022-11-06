@@ -17,6 +17,9 @@
 
 			<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
+			<!-- Estilos extras (Imagenes) -->
+			<link rel="stylesheet" href="assets/css/styles-icons.css">
+
 			<title>Consultar Venta</title>
 
 			<link href="assets/css/app.css" rel="stylesheet">
@@ -26,6 +29,11 @@
 
 			<!-- Sweet alert -->
 			<link rel="stylesheet" href="assets/css/sweetalert.css">
+
+			<!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 		</head>
 
 		<body>
@@ -104,13 +112,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item active">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -280,7 +281,7 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Consultar Ventas</h1>
-
+							<div class="" id="prueba">
 							<div class="row">
 								<div class="col-12">
 									<div class="card">
@@ -290,7 +291,20 @@
 													<div class="tools">
 														<ul>
 															<li>
+																<td></td>
 																<br><br>
+																	<button class="modo" id="modo">
+																		<span><i class="fa-solid fa-sun"></i></span>
+																		<span><i class="fa-regular fa-moon"></i></span>
+																	</button>
+																	<p>
+																		| |
+																	</p>
+																<div class="form-group">
+																	<form action="ventas">
+																		<button type="submit" name="condicion" value="ExportarPDF" class="btn btn-primary"><i class="material-icons left"><img class="timg" src="assets/img/PDF.png"></i> Exportar PDF</button>
+																	</form>
+																</div>
 															</li>
 														</ul>
 													</div>
@@ -299,29 +313,30 @@
 												<table class="datatable" id="datatable">
 													<thead>
 														<tr>
-															<th></th>
-															<th>Cantidad vendida</th>
-															<th>Precio Total</th>
-															<th>Producto</th>
-															<th>No doc Cliente</th>
-															<th>Nombre del cliente</th>
-															<th>Cantidad del Producto</th>
-															<th>Acciones</th>
+															<th><p class="white"></p></th>
+															<th><p class="white">Cantidad vendida</p></th>
+															<th><p class="white">Precio Total</p></th>
+															<th><p class="white">Producto</p></th>
+															<th><p class="white">No doc Cliente</p></th>
+															<th><p class="white">Nombre del cliente</p></th>
+															<th><p class="white">Cantidad del Producto</p></th>
+															<th><p class="white">Acciones</p></th>
 														</tr>
 													</thead>
 
 													<tbody>
 														<c:forEach var="ventas" items="${ventas}">
 															<tr>
-																<td></td>
-																<td>${ventas.getCantidadVendida()}</td>
-																<td>${ventas.getPrecioTotal()}</td>
-																<td>${ventas.getNombreProducto()}</td>
-																<td>${ventas.getNoDocCliente()}</td>
-																<td>${ventas.getNombreCliente()}</td>
-																<td>${ventas.getcantidadProducto()}</td>
+																<td><p class="white"></p></td>
+																<td><p class="white">${ventas.getCantidadVendida()}</p></td>
+																<td><p class="white">${ventas.getPrecioTotal()}</p></td>
+																<td><p class="white">${ventas.getNombreProducto()}</p></td>
+																<td><p class="white">${ventas.getNoDocCliente()}</p></td>
+																<td><p class="white">${ventas.getNombreCliente()}</p></td>
+																<td><p class="white">${ventas.getcantidadProducto()}</p></td>
 																<td class="text-left">
-																	<a
+																	<p class="white">
+																		<a
 																		href="ventas?condicion=editar&id=${ventas.getIdDetalleVenta()}&cantidadActualProducto=${ventas.getcantidadProducto()}&cantidadDescontada=${ventas.getCantidadVendida()}">
 																		<button
 																			class="btn btn-primary">Actualizar</button>
@@ -330,6 +345,7 @@
 																		onclick="return eliminar()">
 																		<button class="btn btn-danger">Eliminar</button>
 																	</a>
+																	</p>
 																</td>
 															</tr>
 														</c:forEach>
@@ -342,7 +358,7 @@
 									</div>
 								</div>
 							</div>
-
+						</div>
 						</div>
 					</main>
 
@@ -462,10 +478,10 @@
 					});
 				});
 			</script>
-
-
-			<!-- SweetAlert -->
-			<script src="assets/js/sweetalert.js"></script>
+			<!-- Compiled and minified JavaScript -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+			<!-- Darkmode -->
+			<script src="assets/js/dark-mode.js"></script>
 
 		</body>
 

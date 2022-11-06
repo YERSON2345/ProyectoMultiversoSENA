@@ -112,13 +112,6 @@
 							<li class="sidebar-header">
 								Ventas
 							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
-							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
 									<i class="align-middle" data-feather="database"></i> <span
@@ -308,6 +301,12 @@
 												</div>
 											</div>
 										</div>
+										</p>
+										<p>
+											<label class="font-weight-bold">Fecha Compras<span
+													class="text-danger">*</span></label>
+											<input type="date" name="fechaVencimiento" value="${producto.getfechaVencimiento()}"
+												placeholder="Fecha Vencimiento" class="form-control">
 										</p>
 										<p>
 										<div class="form-group">

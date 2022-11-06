@@ -9,13 +9,19 @@ public class productoVo {
     private int precioProducto;
     private int idTipoProducto;
     private String NombreTipoProducto;
+    private String fechaVencimiento;
+
+        //fecha vencimiento dias que faltan
+        private int DIFERENCIA_DIAS;
 
     public productoVo() {
 
     }
 
-    public productoVo(int idProducto, Boolean estadoProducto, String nombreProducto, String observacionesProducto,
-            int cantidadProducto, int precioProducto, int idTipoProducto, String NombreTipoProducto) {
+    public productoVo(int idProducto, Boolean estadoProducto, String nombreProducto, String observacionesProducto,int DIFERENCIA_DIAS,
+    int cantidadProducto, int precioProducto, int idTipoProducto, String NombreTipoProducto,String fechaVencimiento) {
+
+        this.DIFERENCIA_DIAS = DIFERENCIA_DIAS;
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.observacionesProducto = observacionesProducto;
@@ -23,8 +29,23 @@ public class productoVo {
         this.precioProducto = precioProducto;
         this.estadoProducto = estadoProducto;
         this.idTipoProducto=idTipoProducto;
+        this.fechaVencimiento=fechaVencimiento;
     }
 
+    public int getDIFERENCIA_DIAS() {
+        return DIFERENCIA_DIAS;
+    }
+
+    public void setDIFERENCIA_DIAS(int DIFERENCIA_DIAS) {
+        this.DIFERENCIA_DIAS = DIFERENCIA_DIAS;
+    }
+    public String getfechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setfechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
     public int getIdProducto() {
         return idProducto;
     }

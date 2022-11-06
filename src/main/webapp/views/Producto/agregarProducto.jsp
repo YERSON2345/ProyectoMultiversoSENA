@@ -29,6 +29,10 @@
 
 			<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
+			<link rel="stylesheet" href="assets/css/fecha_vencimiento.css">
+
+			<link rel="stylesheet" href="assets/css/filter.css">
+
 			<title>Añadir Producto</title>
 
 			<link href="assets/css/app.css" rel="stylesheet">
@@ -111,13 +115,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -290,6 +287,23 @@
 								<h3>Agregar Productos</h3>
 								<form action="producto" method="post" class="needs-validation" novalidate>
 
+									<div class="form-group dropdown">
+										<label for="validationCustom01 observaciones" class="font-weight-bold">Fecha De
+											Vencimiento<span class="text-danger">*</span>
+										<div class="col-sm-10">
+											</label> <p>Si el producto vence, click acá:<input type="checkbox" id="muInput"  onclick="myFunction()"></p>
+											<div id="myDropdown" class="dropdown-content">
+												<input type="date" name="fechaVencimiento" id="validationCustom01" placeholder="Fecha Vencimiento" class="form-control">
+											  </div>
+											<div class="valid-feedback">
+												¡Fecha Vencimienot insertado con éxito!
+											</div>
+											<div class="invalid-feedback">
+												Por favor, coloque la Fecha de Vencimiento
+											</div>
+										</div>
+									</div>
+
 									<div class="form-group">
 										<label for="validationCustom01 nombre" class="col-sm-2 control-label">Nombre del
 											producto</label>
@@ -363,14 +377,20 @@
 
 									<div class="col-md-3">
 										<label for="validationCustom04" class="form-label">Tipo Producto</label>
-										<select class="form-select" id="noDocCliente validationCustom04"
+										<select class="form-select select" id="noDocCliente validationCustom04"
 											name="IdTipoProducto" required>
 											<option selected disabled value="">Seleccione</option>
+
+											
 											<c:forEach var="idTipoProducto" items="${idTipoProducto}">
 												<option value="${idTipoProducto.getIdTipoProducto()}">
-													${idTipoProducto.getNombreTipoProducto()}</option>
+													${idTipoProducto.getNombreTipoProducto()}
+												</option>
 											</c:forEach>
 										</select>
+										<br>
+										<p>También puedes buscar por acá</p>
+					  					<input type="text" id="input-prueba">
 										<div class="valid-feedback">
 											¡Todo correcto!
 										</div>
@@ -430,6 +450,8 @@
 
 			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+			<script src="assets/js/filter.js"></script>
+			<script src="assets/js/fecha_vencimiento.js"></script>
 
 		</body>

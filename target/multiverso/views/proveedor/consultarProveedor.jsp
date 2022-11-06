@@ -23,6 +23,10 @@
 			<link rel="stylesheet" href="assets/css/tabla.css">
 			<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+			<!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 		</head>
 
 		<body>
@@ -66,9 +70,9 @@
 				}
 			</script>
 
-			<div class="wrapper">
+			<section class="wrapper">
 				<nav id="sidebar" class="sidebar js-sidebar">
-					<div class="sidebar-content js-simplebar">
+					<section class="sidebar-content js-simplebar">
 						<a class="sidebar-brand" href="index.jsp">
 							<span class="align-middle">MULTIVERSO</span>
 						</a>
@@ -207,16 +211,16 @@
 
 						</ul>
 
-						<div class="sidebar-cta">
-							<div class="sidebar-cta-content">
-								<div class="mb-3 text-sm">
-								</div>
-								<div class="d-grid">
+						<section class="sidebar-cta">
+							<section class="sidebar-cta-content">
+								<section class="mb-3 text-sm">
+								</section>
+								<section class="d-grid">
 									<a href="usuario?condicion=formulario" class="btn btn-primary">Cerrar sesión</a>
-								</div>
-							</div>
-						</div>
-					</div>
+								</section>
+							</section>
+						</section>
+					</section>
 				</nav>
 				<div class="main">
 					<nav class="navbar navbar-expand navbar-light navbar-bg">
@@ -322,7 +326,7 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Blank Page</h1>
-
+							<div class="" >
 							<div class="row">
 								<div class="col-12">
 									<div class="card">
@@ -333,6 +337,10 @@
 														<ul>
 															<li>
 																<br><br>
+																<button class="modo" id="modo">
+																	<span><i class="fa-solid fa-sun"></i></span>
+																	<span><i class="fa-regular fa-moon"></i></span>
+																</button>
 															</li>
 														</ul>
 													</div>
@@ -341,53 +349,59 @@
 												<table class="datatable" id="datatable">
 													<thead>
 														<tr>
-															<th></th>
-															<th>Estado</th>
-															<th>Nombre</th>
-															<th>Empresa Proveedor</th>
-															<th>Activar / Inactivar</th>
-															<th>Acciones</th>
+															<th><p class="white"></p></th>
+															<th><p class="white">Estado</p></th>
+															<th><p class="white">Nombre</p></th>
+															<th><p class="white">Empresa Proveedor</p></th>
+															<th><p class="white">Activar / Inactivar</p></th>
+															<th><p class="white">Acciones</p></th>
 														</tr>
 													</thead>
 
 													<tbody>
 														<c:forEach var="proveedor" items="${datos}">
 															<tr>
-																<td></td>
+																<td><p class="white"></p></td>
 																<c:if test="${proveedor.getEstadoProveedor() == true}">
-																	<td><span class="available"></span></td>
+																	<td><p class="white"><span class="available"></span></p></td>
 																</c:if>
 																<c:if test="${proveedor.getEstadoProveedor() == false}">
-																	<td><span class="offline"></span></td>
+																	<td><p class="white"><span class="offline"></span></p></td>
 																</c:if>
-																<td>${proveedor.getNombreProveedor()}</td>
-																<td>${proveedor.getEmpresaProveedor()}</td>
+																<td><p class="white">${proveedor.getNombreProveedor()}</p></td>
+																<td><p class="white">${proveedor.getEmpresaProveedor()}</p></td>
 																<c:if test="${proveedor.getEstadoProveedor() == true}">
 																	<td>
-																		<a
+																		<p class="white">
+																			<a
 																			href="proveedor?condicion=cambioEstado&id=${proveedor.getIdProveedor()}&estado=false"><button
 																				class="btn btn-danger" type="button"
 																				onclick="return confirmar()">Inactivar</button>
 																		</a>
+																		</p>
 																	</td>
 																</c:if>
 																<c:if test="${proveedor.getEstadoProveedor() == false}">
 																	<td>
-																		<a
+																		<p class="white">
+																			<a
 																			href="proveedor?condicion=cambioEstado&id=${proveedor.getIdProveedor()}&estado=true"><button
 																				class="btn btn-success" type="button"
 																				onclick="return confirmar()">Activar</button>
 																		</a>
+																		</p>
 																	</td>
 																</c:if>
 																<td class="text-left">
-																	<button class="btn btn-primary"
+																	<p class="white">
+																		<button class="btn btn-primary"
 																		onclick="return actualizar()">Actualizar</button>
 																	</a>
 																	<a href="proveedor?condicion=eliminar&id=${proveedor.getIdProveedor()}"
 																		onclick="return eliminar()">
 																		<button class="btn btn-danger">Eliminar</button>
 																	</a>
+																	</p>
 																</td>
 															</tr>
 														</c:forEach>
@@ -494,7 +508,7 @@
 
 			<script>
 				$(document).ready(function () {
-					
+
 					$('#datatable').DataTable({
 						language: {
 							processing: "Cargando...",
@@ -519,12 +533,18 @@
 							}
 						}
 					});
-					setInterval(function(){
-    					datatable.ajax.reload( null, false );
+					setInterval(function () {
+						datatable.ajax.reload(null, false);
 					}, 30000);
 
 				});
 			</script>
+			<!-- CDN SweetAlers(JavaScript) -->
+			<script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+			<!-- Darkmode -->
+			<script src="assets/js/dark-mode.js"></script>
+
 		</body>
 
 		</html>

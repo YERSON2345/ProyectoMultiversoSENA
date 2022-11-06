@@ -31,6 +31,12 @@
 			<link rel="stylesheet" href="assets/css/tabla.css">
 			<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+			<!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 		</head>
 
 		<body>
@@ -133,13 +139,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -309,48 +308,64 @@
 					<main class="content">
 						<div class="container-fluid p-0">
 							<h5 class="card-title">Consultar Usuarios Activos</h5>
-							<div class="row">
-								<div class="col-12">
-									<div class="card">
-										<div class="card-header">
-											<div class="datatable-container">
-												<table class="datatable" id="datatable">
-													<thead>
-														<tr>
-
-															<th>Nombre</th>
-															<th>Apellido</th>
-															<th>N° Documento</th>
-															<th>Tipo de Doucmento</th>
-															<th>Correo</th>
-															<th>Rol</th>
-															<th>Estado</th>
-														</tr>
-													</thead>
-
-													<tbody>
-														<c:forEach var="usuario" items="${datos}">
+							<div class="" id="prueba">
+								<div class="row">
+									<div class="col-12">
+										<div class="card">
+											<div class="card-header">
+												<div class="datatable-container">
+													<div class="header-tools">
+														<div class="tools">
+															<ul>
+																<li>
+																	<td></td>
+																	<br><br>
+																	<button class="modo" id="modo">
+																		<span><i class="fa-solid fa-sun"></i></span>
+																		<span><i class="fa-regular fa-moon"></i></span>
+																	</button>
+																</li>
+															</ul>
+														</div>
+													</div>
+													<table class="datatable" id="datatable">
+														<thead>
 															<tr>
 
-																<td>${usuario.getNombreUsuario()}</td>
-																<td>${usuario.getApellidoUsuario()}</td>
-																<td>${usuario.getNoDocUsuario()}</td>
-																<td>${usuario.getTipoDocUsuario()}</td>
-																<td>${usuario.getCorreoUsuario()}</td>
-																<c:if test="${usuario.getIdRol() == 1}">
-																	<td>Gerente</td>
-																</c:if>
-																<c:if test="${usuario.getIdRol() == 2}">
-																	<td>Operador</td>
-																</c:if>
-																<td><span class="available"></span></td>
+																<th><p class="white">Nombre</p></th>
+																<th><p class="white">Apellido</p></th>
+																<th><p class="white">N° Documento</p></th>
+																<th><p class="white">Tipo de Doucmento</p></th>
+																<th><p class="white">Correo</p></th>
+																<th><p class="white">Rol</p></th>
+																<th><p class="white">Estado</p></th>
 															</tr>
-													</tbody>
-													</c:forEach>
-												</table>
+														</thead>
+
+														<tbody>
+															<c:forEach var="usuario" items="${datos}">
+																<tr>
+
+																	<td><p class="white">${usuario.getNombreUsuario()}</p></td>
+																	<td><p class="white">${usuario.getApellidoUsuario()}</p></td>
+																	<td><p class="white">${usuario.getNoDocUsuario()}</p></td>
+																	<td><p class="white">${usuario.getTipoDocUsuario()}</p></td>
+																	<td><p class="white">${usuario.getCorreoUsuario()}</p></td>
+																	<c:if test="${usuario.getIdRol() == 1}">
+																		<td><p class="white">Gerente</p></td>
+																	</c:if>
+																	<c:if test="${usuario.getIdRol() == 2}">
+																		<td><p class="white">Operador</p></td>
+																	</c:if>
+																	<td><p class="white"><span class="available"></span></p></td>
+																</tr>
+														</tbody>
+														</c:forEach>
+													</table>
+												</div>
 											</div>
-										</div>
-										<div class="card-body">
+											<div class="card-body">
+											</div>
 										</div>
 									</div>
 								</div>
@@ -374,103 +389,107 @@
 			</div>
 
 			<script src="assets/js/app.js"></script>
-				<!-- Estilos de tabla -->
-	<style>
-		.dataTables_length{
-    padding-left: 30px;
-    padding-top: 15px;
-    width: 45%;
-}
+			<!-- Estilos de tabla -->
+			<style>
+				.dataTables_length {
+					padding-left: 30px;
+					padding-top: 15px;
+					width: 45%;
+				}
 
-.dataTables_filter{
-    margin-right: 15px;
-    float: right;
-    width: 30%;
-}
+				.dataTables_filter {
+					margin-right: 15px;
+					float: right;
+					width: 30%;
+				}
 
-.datatable-container .dataTables_wrapper .dataTables_filter label input{
-    margin-top: 10px;
-    width: 75%;
-    background-color: var(--dt-input-background-color);
-    box-sizing: border-box;
-    border-radius: var(--dt-border-radius);
-    border: solid 1px var(--dt-border-color);
-    color: var(--dt-input-color); 
-}
+				.datatable-container .dataTables_wrapper .dataTables_filter label input {
+					margin-top: 10px;
+					width: 75%;
+					background-color: var(--dt-input-background-color);
+					box-sizing: border-box;
+					border-radius: var(--dt-border-radius);
+					border: solid 1px var(--dt-border-color);
+					color: var(--dt-input-color);
+				}
 
-.dataTables_info{
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+				.dataTables_info {
+					padding-left: 15px;
+					padding-top: 10px;
+					padding-bottom: 10px;
+				}
 
-.dataTables_paginate{
-    float: left;
-    padding-bottom: 15px;
-    padding-right: 30px;
-    padding-top: 30px;
+				.dataTables_paginate {
+					float: left;
+					padding-bottom: 15px;
+					padding-right: 30px;
+					padding-top: 30px;
 
-}
+				}
 
-select{
-        font-size: 16px;
-        width: 60px;
-        font-family: 'Verdana', sans-serif;
-        font-weight: 400;
-        color: #444;
-        line-height: 1.3;
-        padding: .4em 1.4em .3em .8em;
-        max-width: 100%; 
-        box-sizing: border-box;
-        border: 1px solid #aaa;
-        box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
-        border-radius: .3em;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
-        background-color: #fff;
-        background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-          linear-gradient(to bottom, #ffffff 0%,#f7f7f7 100%);
-        background-repeat: no-repeat, repeat;
-        background-position: right .7em top 50%, 0 0;
-        background-size: .65em auto, 100%;
-}
-	</style>
+				select {
+					font-size: 16px;
+					width: 60px;
+					font-family: 'Verdana', sans-serif;
+					font-weight: 400;
+					color: #444;
+					line-height: 1.3;
+					padding: .4em 1.4em .3em .8em;
+					max-width: 100%;
+					box-sizing: border-box;
+					border: 1px solid #aaa;
+					box-shadow: 0 1px 0 1px rgba(0, 0, 0, .03);
+					border-radius: .3em;
+					-moz-appearance: none;
+					-webkit-appearance: none;
+					appearance: none;
+					background-color: #fff;
+					background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+						linear-gradient(to bottom, #ffffff 0%, #f7f7f7 100%);
+					background-repeat: no-repeat, repeat;
+					background-position: right .7em top 50%, 0 0;
+					background-size: .65em auto, 100%;
+				}
+			</style>
 
-	<script src="assets/js/app.js"></script>
-	<script src="assets/js/jquery-3.3.1.min.js"></script>
+			<script src="assets/js/app.js"></script>
+			<script src="assets/js/jquery-3.3.1.min.js"></script>
 
-	<!-- Datatables -->
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+			<!-- Datatables -->
+			<script type="text/javascript" charset="utf8"
+				src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
-    <script>
-        $(document).ready( function () {
-        $('#datatable').DataTable({
-    language: {
-        processing:     "Cargando...",
-        search:         "Buscar:",
-        lengthMenu:    "Hay un total de _MENU_ tablas en el menú.",
-        info:           "Hay _START_ de _END_ resultados ahora mismo (cantidad total de resultados _TOTAL_).",
-        infoEmpty:      "Hay 0 de 0 tablas ahora mismo",
-        infoFiltered:   "(La cantidad máxima de tablas es _MAX_)",
-        infoPostFix:    "",
-        loadingRecords: "Carga en curso...",
-		zeroRecords:    "No hemos podidos encontrar ningún resultado a su busqueda.",
-		emptyTable:     "No hemos encontrado ningún resultado.",
-        paginate: {
-            first:      "Siguiente",
-            previous:   "Atrás",
-            next:       "Siguiente",
-            last:       "Dernier"
-        },
-        aria: {
-            sortAscending:  ": activer pour trier la colonne par ordre croissant",
-            sortDescending: ": activer pour trier la colonne par ordre décroissant"
-        }
-    }
-});
-        } );
-    </script>
+			<script>
+				$(document).ready(function () {
+					$('#datatable').DataTable({
+						language: {
+							processing: "Cargando...",
+							search: "Buscar:",
+							lengthMenu: "Hay un total de _MENU_ tablas en el menú.",
+							info: "Hay _START_ de _END_ resultados ahora mismo (cantidad total de resultados _TOTAL_).",
+							infoEmpty: "Hay 0 de 0 tablas ahora mismo",
+							infoFiltered: "(La cantidad máxima de tablas es _MAX_)",
+							infoPostFix: "",
+							loadingRecords: "Carga en curso...",
+							zeroRecords: "No hemos podidos encontrar ningún resultado a su busqueda.",
+							emptyTable: "No hemos encontrado ningún resultado.",
+							paginate: {
+								first: "Siguiente",
+								previous: "Atrás",
+								next: "Siguiente",
+								last: "Dernier"
+							},
+							aria: {
+								sortAscending: ": activer pour trier la colonne par ordre croissant",
+								sortDescending: ": activer pour trier la colonne par ordre décroissant"
+							}
+						}
+					});
+				});
+			</script>
+
+			<!-- Darkmode -->
+			<script src="assets/js/dark-mode.js"></script>
 
 		</body>
 

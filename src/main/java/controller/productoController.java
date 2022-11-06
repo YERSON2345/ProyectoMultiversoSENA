@@ -41,6 +41,7 @@ public class productoController extends HttpServlet{
 
     switch(a){
         case"listar":
+        listarDias(req,resp);
         listar(req,resp);
         break;
         case"Stock":
@@ -83,6 +84,7 @@ public class productoController extends HttpServlet{
             System.out.println("no se pudo listar los datos de tipo producto"+e.getMessage().toString());
         }
     }
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         System.out.println("entro al doPost");
@@ -99,29 +101,22 @@ public class productoController extends HttpServlet{
 
         }
     }
-
-    // private void btnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {
-    //     if (TableVenta.getRowCount() > 0) {
-    //         if (!"".equals(txtNombreClienteventa.getText())) {
-
-    //             actualizarStock();
-
-    //         }
-    //     }   
-    // }
-
-    // private void actualizarStock() {
-    //     for (int i = 0; i < TableVenta.getRowCount(); i++) {
-    //         int id = Integer.parseInt(TableVenta.getValueAt(i, 0).toString());
-    //         int cant = Integer.parseInt(TableVenta.getValueAt(i, 2).toString());
-    //         p = pd.buscar(id);
-    //         int ca = p.getCantidadProducto() - cant;
-    //         vd.ActualizarStock(cant, id);
-    //     }
-    // }
+         private void listarDias(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List listardias=pd.listarDias();
+            System.out.println("diferencia dias:" +p.getDIFERENCIA_DIAS());
+            req.setAttribute("productos", listardias);
+            System.out.println("Dias listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+        }
+     }
 
     private void add(HttpServletRequest req, HttpServletResponse resp){
 
+        if(req.getParameter("fechaVencimiento")!=null){
+            p.setfechaVencimiento(req.getParameter("fechaVencimiento"));
+        }
         if(req.getParameter("observaciones")!=null){
             p.setObservacionesProducto(req.getParameter("observaciones"));
         }
@@ -130,13 +125,13 @@ public class productoController extends HttpServlet{
         }
         if(req.getParameter("precio")!=null){
           p.setPrecioProducto(Integer.parseInt(req.getParameter("precio")));
-      }
-      if(req.getParameter("cantidad")!=null){
-        p.setCantidadProducto(Integer.parseInt(req.getParameter("cantidad")));
-    }
-    if(req.getParameter("IdTipoProducto")!=null){
-        p.setIdTipoProducto(Integer.parseInt(req.getParameter("IdTipoProducto")));
-    }
+        }
+        if(req.getParameter("cantidad")!=null){
+            p.setCantidadProducto(Integer.parseInt(req.getParameter("cantidad")));
+        }
+        if(req.getParameter("IdTipoProducto")!=null){
+            p.setIdTipoProducto(Integer.parseInt(req.getParameter("IdTipoProducto")));
+        }
         if(req.getParameter("estadoProducto")!=null){
             p.setEstadoProducto(true);
         }
@@ -146,6 +141,7 @@ public class productoController extends HttpServlet{
         try{
             pd.registrar(p);
             System.out.println("registro bien insertado");
+            listarDias(req,resp);
             listar(req, resp);
         }catch(Exception e) {
             System.out.println("error en la insercion del registro" + e.getMessage().toString());
@@ -176,7 +172,6 @@ public class productoController extends HttpServlet{
         try{
             List productolistar=pd.listar();
             req.setAttribute("producto", productolistar);
-            req.getRequestDispatcher("views/Producto/salidasStock.jsp").forward(req, resp);
             System.out.println("Datos listados melo");
         } catch (Exception e){
             System.out.println("estas armandoproblemas" + e.getMessage().toString());
@@ -200,6 +195,9 @@ public class productoController extends HttpServlet{
          if(req.getParameter("idProducto")!=null){
             p.setIdProducto(Integer.parseInt(req.getParameter("idProducto")));
         }
+        if(req.getParameter("fechaVencimiento")!=null){
+            p.setfechaVencimiento(req.getParameter("fechaVencimiento"));
+         }
          if(req.getParameter("observacionesProducto")!=null){
             p.setObservacionesProducto(req.getParameter("observacionesProducto"));
          }
@@ -218,6 +216,7 @@ public class productoController extends HttpServlet{
          try{
              pd.actualizar(p);
              System.out.println("editar tipo producto");
+             listarDias(req,resp);
              listar(req, resp);
          }catch (Exception e){
              System.out.println("Error al editar"+e.getMessage().toString());
@@ -244,6 +243,7 @@ public class productoController extends HttpServlet{
        try{
            pd.estado(p.getEstadoProducto(),p.getIdProducto());
            System.out.println("El estado se cambio");
+           listarDias(req,resp);
            listar(req, resp);
        }catch (Exception e){
            System.out.println("error al cambiar el estado"+e.getMessage().toString());
@@ -258,6 +258,7 @@ public class productoController extends HttpServlet{
              pd.eliminar(p.getIdProducto());
              System.out.println("se elimino correctamente");
              listar(req, resp);
+             listarDias(req,resp);
          }catch(Exception e){
              System.out.println("Error al eliminar"+e.getMessage().toString());
          }

@@ -22,6 +22,12 @@
 			<link href="assets/css/app.css" rel="stylesheet">
 			<link rel="stylesheet" href="assets/css/tabla.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+			<!-- Dark-mode (CSS) -->
+			<link rel="stylesheet" href="assets/css/dark-mode.css">
+			<!-- Fontawesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 		</head>
 
 		<body>
@@ -100,13 +106,6 @@
 							</li>
 							<li class="sidebar-header">
 								Ventas
-							</li>
-
-							<li class="sidebar-item active">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 							</li>
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -275,7 +274,7 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Blank Page</h1>
-
+							<div class="" id="prueba">
 							<div class="row">
 								<div class="col-12">
 									<div class="card">
@@ -378,7 +377,7 @@
 									</div>
 								</div>
 							</div>
-
+						</div>
 						</div>
 					</main>
 

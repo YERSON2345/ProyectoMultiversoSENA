@@ -33,6 +33,12 @@
 
 			<link href="assets/css/app.css" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+			<!-- CDN Sweet alert(CSS) -->
+			<link rel="stylesheet" href="assets/css/sweetalert.css">
+			<!-- Función de leer más y leer menos (CSS) -->
+			<link rel="stylesheet" href="assets/css/leer-mas-y-menos.css">
+
 		</head>
 
 		<body>
@@ -114,10 +120,6 @@
 							</li>
 
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
 									<i class="align-middle" data-feather="database"></i> <span
 										class="align-middle">Consultar</span>
@@ -298,8 +300,7 @@
 						<div class="row">
 							<div class="col-12 col-lg-9">
 								<!-- Single Blog Area  -->
-								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.2s"
-									data-wow-duration="1000ms">
+								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="1000ms">
 									<div class="row align-items-center">
 										<div class="col-12 col-md-6">
 											<div class="single-blog-thumbnail">
@@ -311,25 +312,20 @@
 											<div class="single-blog-content">
 												<div class="line"></div>
 												<a href="#" class="post-tag">¿Cómo agregar?</a>
-												<h4><a href="#" class="post-headline">Está es una guía de como agregar
-														datos</a></h4>
-												<p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet
-													tempor cursus. Nullam vestibulum convallis risus vel condimentum.
-													Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.
-												</p>
-												<div class="post-meta">
-													<p>By <a href="https://www.facebook.com/Incognito.8794329814298724">Michael
-															Correa</a></p>
-													<p>3 comments</p>
-												</div>
+												<div>
+												<input type="checkbox" class="read-more-state" id="post-1" />
+												<h4><a href="#" class="post-headline">Está es una guía de como agregar datos</a></h4>
+												<p class="read-more-wrap">Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. <span class="read-more-target">Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</span></p>
+												<label for="post-1" class="read-more-trigger"></label>
+												<br>
+											</div>
 											</div>
 										</div>
 									</div>
 								</div>
-
+			<br>
 								<!-- Single Blog Area  -->
-								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.3s"
-									data-wow-duration="1000ms">
+								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.3s" data-wow-duration="1000ms">
 									<div class="row align-items-center">
 										<div class="col-12 col-md-6">
 											<div class="single-blog-thumbnail">
@@ -341,22 +337,18 @@
 											<div class="single-blog-content">
 												<div class="line"></div>
 												<a href="#" class="post-tag">¿Cómo ver datos en una tabla?</a>
-												<h4><a href="#" class="post-headline">Está es una guía de como ver datos
-														en una tabla</a></h4>
-												<p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet
-													tempor cursus. Nullam vestibulum convallis risus vel condimentum.
-													Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.
-												</p>
-												<div class="post-meta">
-													<p>By <a href="#">Michael Correa</a></p>
-													<p>3 comments</p>
-												</div>
+												<div>
+												<input type="checkbox" class="read-more-state" id="post-2" />
+												<h4><a href="#" class="post-headline">Está es una guía de como ver datos en una tabla</a></h4>
+												<p class="read-more-wrap">Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum.<span class="read-more-target"> Aquí todo el texto de ver más comercial</span></p>
+												<label for="post-2" class="read-more-trigger"></label>
+											</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.5s"
-									data-wow-duration="1000ms">
+								<br>
+								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.5s" data-wow-duration="1000ms">
 									<div class="row align-items-center">
 										<div class="col-12 col-md-6">
 											<div class="single-blog-thumbnail">
@@ -368,26 +360,19 @@
 											<div class="single-blog-content">
 												<div class="line"></div>
 												<a href="#" class="post-tag">¿Cómo usar la página?</a>
-												<h4><a href="#" class="post-headline">Está es una guía para usar bien la
-														página</a></h4>
-												<p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet
-													tempor cursus. Nullam vestibulum convallis risus vel condimentum.
-													Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.
-												</p>
-												<div id="prueba">Si sirve :D</div>
-												<button id="boton">Click aquí</button>
-												<div class="post-meta">
-													<p>By <a href="#">Michael Correa</a></p>
-													<p>3 comments</p>
-												</div>
+												<div>
+												<input type="checkbox" class="read-more-state" id="post-3" />
+												<h4><a href="#" class="post-headline">Está es una guía para usar bien la página</a></h4>
+												<p class="read-more-wrap">Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum.<span class="read-more-target"> Aquí todo el texto de ver más comercial Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</span></p>
+												<label for="post-3" class="read-more-trigger"></label>
 											</div>
+										</div>
 										</div>
 									</div>
 								</div>
-
+			<br>
 								<!-- Single Blog Area  -->
-								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.6s"
-									data-wow-duration="1000ms">
+								<div class="single-blog-area blog-style-2 mb-50 wow fadeInUp" data-wow-delay="0.6s" data-wow-duration="1000ms">
 									<div class="row align-items-center">
 										<div class="col-12 col-md-6">
 											<div class="single-blog-thumbnail">
@@ -399,19 +384,19 @@
 											<div class="single-blog-content">
 												<div class="line"></div>
 												<a href="#" class="post-tag">¿Quién es Multiverso?</a>
+												<div>
+												<input type="checkbox" class="read-more-state" id="post-4" />
 												<h4><a href="#" class="post-headline">Sobre Multiverso</a></h4>
-												<p>Curabitur venenatis efficitur lorem sed tempor. Integer aliquet
-													tempor cursus. Nullam vestibulum convallis risus vel condimentum.
-													Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.
-												</p>
-												<div class="post-meta">
-													<p>By <a href="#">Michael Correa</a></p>
-													<p>3 comments</p>
-												</div>
+												<p class="read-more-wrap">Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt. <span class="read-more-target"> Aquí todo el texto de ver más comercial Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.</span></p>
+												<label for="post-4" class="read-more-trigger"></label>
+											</div>
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
+							
+							<p></p><p></p><p></p>
 
 								<!-- Load More -->
 								<div class="load-more-btn mt-100 wow fadeInUp" data-wow-delay="0.7s"
@@ -432,6 +417,14 @@
 							<script src="assets/js/dashboard/active.js"></script>
 							<!-- Plantilla anterior -->
 							<script src="assets/js/app.js"></script>
+							<!-- CDN SweetAlers(JavaScript) -->
+							<script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+							<!-- Scrip de bienvenida con SweetAlert(Dashboard) -->
+							<script>
+								Swal.fire('¡Bienvenido a Multiverso!.')
+							</script>
+
 
 		</body>
 
