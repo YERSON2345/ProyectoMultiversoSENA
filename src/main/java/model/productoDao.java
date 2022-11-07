@@ -86,6 +86,76 @@ public class productoDao {
       return producto;
   }
 
+  public List<productoVo> cantidadDias() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT COUNT(*) AS cantidadRegistros FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setcantidadRegistros(rs.getInt("cantidadRegistros"));
+            producto.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("no se pudo listar dias de diferencia");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+
+public List<productoVo> cantidad() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT COUNT(*) AS cantidad FROM producto WHERE cantidadProducto <= 10;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setcantidad(rs.getInt("cantidad"));
+            producto.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("no se pudo listar dias de diferencia");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+
+public List<productoVo> cantidadProducto() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT nombreProducto,cantidadProducto FROM producto WHERE cantidadProducto <= 10;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setCantidadProducto(rs.getInt("cantidadProducto"));
+            filas.setNombreProducto(rs.getString("nombreProducto"));
+            producto.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("no se pudo listar dias de diferencia");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+
   public List<productoVo> listarDias() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
     sql="SELECT nombreProducto, NOW() AS fechaActual, DATEDIFF(fechaVencimiento, NOW()) AS DIFERENCIA_DIAS FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30;";
@@ -133,6 +203,88 @@ public class productoDao {
         System.out.println("consulta exitosa");
     }catch(Exception e){
         System.out.println("La consulta no se pudo");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+//Listar productos con 30 o menos a vencerse
+public List<productoVo> listar_Producto_Fechas() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT nombreProducto,cantidadProducto,fechaVencimiento,observacionesProducto, NOW() AS fechaActual, DATEDIFF(fechaVencimiento, NOW()) AS DIFERENCIA_DIAS FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setDIFERENCIA_DIAS(rs.getInt("DIFERENCIA_DIAS"));
+            filas.setfechaVencimiento(rs.getString("fechaVencimiento"));
+            filas.setfecha_actual(rs.getString("fechaActual"));
+            filas.setNombreProducto(rs.getString("nombreProducto"));
+            filas.setCantidadProducto(rs.getInt("cantidadProducto"));
+            filas.setObservacionesProducto(rs.getString("observacionesProducto"));
+            producto.add(filas);
+        }
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("no se pudo listar dias de diferencia");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+//Listar productos con menos de 10 cantidades
+public List<productoVo> listar_Producto_Cantidad() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT P.idProducto,NOW() AS fechaActual,P.nombreProducto,P.cantidadProducto,P.observacionesProducto,P.precioProducto,T.nombreTipoProducto FROM Producto P INNER JOIN tipoProducto T ON P.idTipoProducto = T.idTipoProducto WHERE P.cantidadProducto <=10;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setIdProducto(rs.getInt("idProducto"));
+            filas.setNombreProducto(rs.getString("nombreProducto"));
+            filas.setCantidadProducto(rs.getInt("cantidadProducto"));
+            filas.setObservacionesProducto(rs.getString("observacionesProducto"));
+            filas.setPrecioProducto(rs.getInt("precioProducto"));
+            filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+            filas.setfecha_actual(rs.getString("fechaActual"));
+            producto.add(filas);
+        }
+
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("no se pudo listar dias de diferencia");
+    }
+    finally{
+        con.close();
+    }
+    return producto;
+}
+//Listar la fecha actual
+public List<productoVo> listar_Fecha() throws SQLException{
+    List<productoVo> producto=new ArrayList<>();
+    sql="SELECT NOW() AS fechaActual;";
+    try{
+        con=Conexion.conectar();
+        ps=con.prepareStatement(sql);
+        rs=ps.executeQuery(sql);
+        while(rs.next()){
+          productoVo filas=new productoVo();
+            filas.setfecha_actual(rs.getString("fechaActual"));
+            producto.add(filas);
+        }
+
+        ps.close();
+        System.out.println("consulta exitosa");
+    }catch(Exception e){
+        System.out.println("no se pudo listar dias de diferencia");
     }
     finally{
         con.close();

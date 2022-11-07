@@ -17,18 +17,12 @@
 
 			<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
-			<!-- Estilos extras (Imagenes) -->
-			<link rel="stylesheet" href="assets/css/styles-icons.css">
-
 			<title>Consultar Venta</title>
 
 			<link href="assets/css/app.css" rel="stylesheet">
 			<link rel="stylesheet" href="assets/css/tabla.css">
 			<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-			<!-- Sweet alert -->
-			<link rel="stylesheet" href="assets/css/sweetalert.css">
 
 			<!-- Dark-mode (CSS) -->
 			<link rel="stylesheet" href="assets/css/dark-mode.css">
@@ -190,69 +184,36 @@
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
 											<i class="align-middle" data-feather="bell"></i>
-											<span class="indicator">4</span>
+											<c:forEach var="producto" items="${productoss}">
+											<span class="indicator">${producto.getcantidadRegistros()}</span>
+										</c:forEach>
 										</div>
 									</a>
 									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
 										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productoss}">
 										<div class="dropdown-menu-header">
-											4 New Notifications
+											${producto.getcantidadRegistros()}-Notifications
 										</div>
+									</c:forEach>
 										<div class="list-group">
 											<a href="#" class="list-group-item">
 												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-danger" data-feather="alert-circle"></i>
+													<c:forEach var="producto" items="${productos}">
+														<div class="col-2">
+															<i class="text-danger" data-feather="alert-circle"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto A Vencerse</div>
+															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} está a ${producto.getDIFERENCIA_DIAS()} días de vencerse.
+															</div>
+														</div>
+														<br>
+														<hr>
+													</c:forEach>
 													</div>
-													<div class="col-10">
-														<div class="text-dark">Update completed</div>
-														<div class="text-muted small mt-1">Restart server 12 to complete
-															the update.</div>
-														<div class="text-muted small mt-1">30m ago</div>
-													</div>
-												</div>
 											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-warning" data-feather="bell"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">Lorem ipsum</div>
-														<div class="text-muted small mt-1">Aliquam ex eros, imperdiet
-															vulputate hendrerit et.</div>
-														<div class="text-muted small mt-1">2h ago</div>
-													</div>
-												</div>
-											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-primary" data-feather="home"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">Login from 192.186.1.8</div>
-														<div class="text-muted small mt-1">5h ago</div>
-													</div>
-												</div>
-											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-success" data-feather="user-plus"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">New connection</div>
-														<div class="text-muted small mt-1">Christina accepted your
-															request.</div>
-														<div class="text-muted small mt-1">14h ago</div>
-													</div>
-												</div>
-											</a>
-										</div>
-										<div class="dropdown-menu-footer">
-											<a href="#" class="text-muted">Show all notifications</a>
-										</div>
+											</div>
 									</div>
 								</li>
 								<li class="nav-item dropdown">
@@ -291,12 +252,14 @@
 													<div class="tools">
 														<ul>
 															<li>
-																<td></td>
 																<br><br>
-																	<button class="modo" id="modo">
-																		<span><i class="fa-solid fa-sun"></i></span>
-																		<span><i class="fa-regular fa-moon"></i></span>
-																	</button>
+																<button class="modo" id="modo">
+																	<span id="span1"></span>
+																	<span id="span2"></span>
+																	<span id="span3"></span>
+																	<span id="span4"></span>
+																	Modo ☀️/☽
+																</button>
 																	<p>
 																		| |
 																	</p>

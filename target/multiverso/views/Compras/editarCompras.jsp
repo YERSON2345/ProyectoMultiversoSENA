@@ -201,57 +201,22 @@
 										<div class="list-group">
 											<a href="#" class="list-group-item">
 												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-danger" data-feather="alert-circle"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">Update completed</div>
-														<div class="text-muted small mt-1">Restart server 12 to complete
-															the update.</div>
-														<div class="text-muted small mt-1">30m ago</div>
-													</div>
+													<c:forEach var="producto" items="${productos}">
+														<div class="col-2">
+															<i class="text-danger" data-feather="alert-circle"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto A Vencerse</div>
+															<div class="text-muted small mt-1">El producto
+																${producto.getNombreProducto()} está a
+																${producto.getDIFERENCIA_DIAS()} días de vencerse.
+															</div>
+														</div>
+														<br>
+														
+													</c:forEach>
 												</div>
 											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-warning" data-feather="bell"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">Lorem ipsum</div>
-														<div class="text-muted small mt-1">Aliquam ex eros, imperdiet
-															vulputate hendrerit et.</div>
-														<div class="text-muted small mt-1">2h ago</div>
-													</div>
-												</div>
-											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-primary" data-feather="home"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">Login from 192.186.1.8</div>
-														<div class="text-muted small mt-1">5h ago</div>
-													</div>
-												</div>
-											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-success" data-feather="user-plus"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">New connection</div>
-														<div class="text-muted small mt-1">Christina accepted your
-															request.</div>
-														<div class="text-muted small mt-1">14h ago</div>
-													</div>
-												</div>
-											</a>
-										</div>
-										<div class="dropdown-menu-footer">
-											<a href="#" class="text-muted">Show all notifications</a>
 										</div>
 									</div>
 								</li>
@@ -296,16 +261,18 @@
 											</label>
 
 										</div>
-										<input type="hidden" name="cantidadAntigua" value="${compras.getcantidadTotal()}"
-										placeholder="Fecha Compras" class="form-control">
-										
-										<input type="hidden" name="cantidadActual" value="${compras.getcantidadProducto()}"
-										placeholder="Fecha Compras" class="form-control">
+										<input type="hidden" name="cantidadAntigua"
+											value="${compras.getcantidadTotal()}" placeholder="Fecha Compras"
+											class="form-control">
+
+										<input type="hidden" name="cantidadActual"
+											value="${compras.getcantidadProducto()}" placeholder="Fecha Compras"
+											class="form-control">
 										<br>
 										<input type="hidden" name="idProducto" value="${compras.getIdProducto()}"
-										placeholder="Fecha Compras" class="form-control">
+											placeholder="Fecha Compras" class="form-control">
 
-				
+
 										<p>
 											<label class="font-weight-bold">Fecha Compras<span
 													class="text-danger">*</span></label>
@@ -315,8 +282,9 @@
 										<p>
 											<label class="font-weight-bold">N° Entradas<span
 													class="text-danger">*</span></label>
-											<input type="number" name="getentradasCompras" value="${compras.getentradasCompras()}"
-												placeholder="N° Entradas" class="form-control">
+											<input type="number" name="getentradasCompras"
+												value="${compras.getentradasCompras()}" placeholder="N° Entradas"
+												class="form-control">
 										</p>
 										<p>
 											<label class="font-weight-bold">Precio Del Proveedor<span
@@ -357,6 +325,9 @@
 
 			<script src="assets/js/app.js"></script>
 
+			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		</body>
 
 		</html>

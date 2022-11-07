@@ -418,13 +418,9 @@
 							<!-- Plantilla anterior -->
 							<script src="assets/js/app.js"></script>
 							<!-- CDN SweetAlers(JavaScript) -->
-							<script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-							<!-- Scrip de bienvenida con SweetAlert(Dashboard) -->
-							<script>
-								Swal.fire('¡Bienvenido a Multiverso!.')
-							</script>
-
+							<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+							<!-- Alertas dashboard -->
+							<script src="assets/js/alertas/alertadashboard.js"></script>
 
 		</body>
 

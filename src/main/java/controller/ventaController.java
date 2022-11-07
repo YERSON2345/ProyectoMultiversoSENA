@@ -37,19 +37,29 @@ public class ventaController extends HttpServlet {
       switch(condicion){
   
         case "consultarventa":
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         listar(req,resp);
         break;
         case "cosultarvp":
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         listarfunciones(req,resp);
         case "formulario":
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         consultarnodoccliente(req,resp);
         listarProductos(req, resp);
         break;
         case "eliminar":
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         devolverExistencias(req, resp);
         eliminar(req, resp);
         break;
         case "editar":
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         editar(req, resp);
         break;
         case "index":
@@ -82,6 +92,26 @@ public class ventaController extends HttpServlet {
           }
     }
 
+    private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
+      try{
+          List listardias=p.cantidadDias();
+          System.out.println("diferencia dias:" +po.getcantidadRegistros());
+          req.setAttribute("productoss", listardias);
+          System.out.println("Dias listados melo");
+      } catch (Exception e){
+          System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+      }
+   }
+    private void listarDias(HttpServletRequest req, HttpServletResponse resp){
+      try{
+          List listardias=p.listarDias();
+          System.out.println("diferencia dias:" +po.getDIFERENCIA_DIAS());
+          req.setAttribute("productos", listardias);
+          System.out.println("Dias listados melo");
+      } catch (Exception e){
+          System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+      }
+   }
     private void dashboard(HttpServletRequest req, HttpServletResponse resp) {
       try {
         req.getRequestDispatcher("index-dashboard.jsp").forward(req, resp);
@@ -108,6 +138,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
   try {
       List genero=rd.listarProductoVentas(r.getidProductoFK());
       req.setAttribute("ventas", genero);
+      cantidadDias(req,resp);
+      listarDias(req,resp);
       req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req, resp);//direccion de vista
       System.out.println("Datos listados correctamente para la edicion");
   } catch (Exception e) {
@@ -119,6 +151,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
     private void listarfunciones(HttpServletRequest req, HttpServletResponse resp)
     {
       try {
+        listarDias(req,resp);
+        cantidadDias(req,resp);
         req.getRequestDispatcher("views/venta/actualizarVenta.jsp").forward(req,resp);
         System.out.println("El formulario ha sido abierto correctamente");
       } catch (Exception e) {
@@ -129,6 +163,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
     private void abrirformulario(HttpServletRequest req, HttpServletResponse resp)
     {
       try {
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req,resp);
         System.out.println("El formulario ha sido abierto correctamente");
       } catch (Exception e) {
@@ -192,6 +228,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
           rd.insertar(r);
           rd.ActualizarStock(resultadoss, idProducto);
           System.out.println("Registro insertado correctamente");
+          cantidadDias(req,resp);
+          listarDias(req,resp);
           listar(req, resp);
       } catch (Exception e) {
           System.out.println("Error en la inserción del registro "+e.getMessage().toString());
@@ -217,6 +255,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       int resultadoss = resultados;
         rd.ActualizarStock(resultadoss, idProducto);
         System.out.println("Editar el registro de venta");
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         listar(req, resp);
   
     } catch (Exception e) {
@@ -228,6 +268,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       try {
         List ventas=rd.listar();
         req.setAttribute("ventas", ventas);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         req.getRequestDispatcher("views/venta/consultarventa.jsp").forward(req, resp);
         System.out.println("Datos listados correctamente");      
       } catch (Exception e) {
@@ -248,6 +290,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
 
         List ventas=rd.listarVenta(r.getIdDetalleVenta(),resultadoss);
           req.setAttribute("ventas", ventas);
+          cantidadDias(req,resp);
+          listarDias(req,resp);
           req.getRequestDispatcher("views/venta/editarventa.jsp").forward(req, resp);//direccion de vista
           System.out.println("Datos listados correctamente para la edicion");
       } catch (Exception e) {
@@ -262,6 +306,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       try {
           rd.eliminar(r.getIdDetalleVenta());
           System.out.println("El registro se ha eliminado correctamente");
+          cantidadDias(req,resp);
+          listarDias(req,resp);
           listar(req, resp);
       } catch (Exception e) {
           System.out.println("Error al eliminar el resgistro"+e.getMessage().toString());
@@ -287,6 +333,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       int resultados = resultado.sumarExistencias(cantidadProducto,cantidadSalidas);
       int resultadoss = resultados;
         rd.actualizarExistenciasP(resultadoss ,nombreProducto);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         listar(req, resp);
     } catch (Exception e) {
         System.out.println("Error en la inserción del registro "+e.getMessage().toString());

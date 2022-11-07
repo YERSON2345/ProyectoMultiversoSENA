@@ -28,6 +28,7 @@ import model.detalleComprasVo;
 import model.productoDao;
 
 
+
 public class comprasController extends HttpServlet{
     
     comprasVo c=new comprasVo();
@@ -49,22 +50,27 @@ public class comprasController extends HttpServlet{
 
     switch(a){
         case"listar":
+        listarDias(req,resp);
         listar(req,resp);
         break;
         case"editar":
+        listarDias(req,resp);
         editar(req, resp);
         break;
         case"agregarCompra":
+        listarDias(req,resp);
         consultarProveedor(req,resp);
         listarComprasProducto(req,resp);        
         break;
         case"eliminar":
+        listarDias(req,resp);
         eliminar(req,resp);
         break;
         case"visualizar":
         visualizar(req, resp);
         break;
         case "Add_Compras":
+        listarDias(req,resp);
         consultarProveedor(req,resp);
         consultarProducto(req,resp);
         req.getRequestDispatcher("views/Compras/agregarCompras.jsp").forward(req, resp);
@@ -108,6 +114,16 @@ public class comprasController extends HttpServlet{
         }
     }
 
+    private void listarDias(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List listardias=cp.listarDias();
+            System.out.println("diferencia dias:" +ct.getDIFERENCIA_DIAS());
+            req.setAttribute("productos", listardias);
+            System.out.println("Dias listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+        }
+     }
     private void add(HttpServletRequest req, HttpServletResponse resp){
 
         if(req.getParameter("fecha")!=null){
@@ -142,6 +158,7 @@ public class comprasController extends HttpServlet{
             cd.registrar(c);
 
             System.out.println("registro bien insertado");
+            listarDias(req,resp);
             listarProductos(req, resp);
         }catch(Exception e) {
             System.out.println("error en la insercion del registro" + e.getMessage().toString());
@@ -229,6 +246,7 @@ public class comprasController extends HttpServlet{
 
             cd.actualizarExistencias(resultadoTotal,idProducto);
              System.out.println("editar tipo producto");
+             listarDias(req,resp);
              listar(req, resp);
          }catch (Exception e){
              System.out.println("Buenas noches gente, que descansen, Error al editar"+e.getMessage().toString());
@@ -254,6 +272,7 @@ public class comprasController extends HttpServlet{
 
      
              System.out.println("se elimino correctamente");
+             listarDias(req,resp);
              listar(req, resp);
          }catch(Exception e){
              System.out.println("Error al eliminar"+e.getMessage().toString());

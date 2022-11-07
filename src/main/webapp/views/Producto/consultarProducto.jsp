@@ -196,14 +196,18 @@
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
 											<i class="align-middle" data-feather="bell"></i>
-											<span class="indicator">!</span>
+											<c:forEach var="producto" items="${productoss}">
+											<span class="indicator">${producto.getcantidadRegistros()}</span>
+										</c:forEach>
 										</div>
 									</a>
 									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
 										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productoss}">
 										<div class="dropdown-menu-header">
-											New Notifications
+											${producto.getcantidadRegistros()}-Notifications
 										</div>
+									</c:forEach>
 										<div class="list-group">
 											<a href="#" class="list-group-item">
 												<div class="row g-0 align-items-center">
@@ -251,6 +255,14 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Consultar Producto</h1>
+							<a href="producto?accion=abrirVistaFechas"> <button
+								class="btn btn-danger"
+								type="button">Productos a vencerse (PDF)
+								</button></a>
+								<a href="producto?accion=abrirVistaCantidad"> <button
+									class="btn btn-warning"
+									type="button">Productos con bajo Stock (PDF)
+									</button></a>
 							<div class="" id="prueba">
 								<div class="row">
 									<div class="col-12">
@@ -280,8 +292,11 @@
 																</p>
 																<br><br>
 																<button class="modo" id="modo">
-																	<span><i class="fa-solid fa-sun"></i></span>
-																	<span><i class="fa-regular fa-moon"></i></span>
+																	<span id="span1"></span>
+																	<span id="span2"></span>
+																	<span id="span3"></span>
+																	<span id="span4"></span>
+																	Modo ☀️/☽
 																</button>
 															</ul>
 														</div>

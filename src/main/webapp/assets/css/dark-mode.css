@@ -103,20 +103,81 @@
 
 
 .modo{
-  background: #343D5B;
-  border-radius: 1000px;
-  border: none;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  outline: none;
+position: relative;
+display: inline-block;
+padding: 15px 30px;
+color: #fff;
+background-color: #000;
+letter-spacing: 4px;
+font-size: 12px;
+text-decoration: none;
+overflow: hidden;
+transition: 0.5s;
+}
+
+.modo:hover{
+background: white;
+color: #000;
+box-shadow: 0 0 10px gray, 0 0 40px gray, 0 0 80px gray;
+transition: 3.5s;
 }
 
 .modo span{
-width: 30px;
-height: 30px;
-line-height: 30px;
+position: absolute;
 display: block;
-background: none;
-color: #fff;
+}
+
+#span1{
+top: 0;
+left: -100%;
+width: 100%;
+height: 2px;
+background: linear-gradient(90deg, transparent, #a945c7);
+}
+
+.modo:hover #span1{
+left: 100%;
+transition: 1s;
+}
+
+#span3{
+bottom: 0;
+right: -100%;
+width: 100%;
+height: 2px;
+background: linear-gradient(270deg, transparent, #a945c7);
+}
+
+.modo:hover #span3{
+right: 100%;
+transition: 1s;
+transition-delay: 0.5s;
+}
+
+#span2{
+top: -100%;
+right: 0;
+width: 2px;
+height: 100%;
+background: linear-gradient(180deg, transparent, #a945c7);
+}
+
+.modo:hover #span2{
+top: 100%;
+transition: 1s;
+transition-delay: 0.25s;
+}
+
+#span4{
+bottom: -100%;
+left: 0;
+width: 2px;
+height: 100%;
+background: linear-gradient(360deg, transparent, #a945c7);
+}
+
+.modo:hover #span4{
+bottom: 100%;
+transition: 1s;
+transition-delay: 0.75s;
 }

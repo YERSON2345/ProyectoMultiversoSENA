@@ -235,69 +235,36 @@
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
 											<i class="align-middle" data-feather="bell"></i>
-											<span class="indicator">4</span>
+											<c:forEach var="producto" items="${productoss}">
+											<span class="indicator">${producto.getcantidadRegistros()}</span>
+										</c:forEach>
 										</div>
 									</a>
 									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
 										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productoss}">
 										<div class="dropdown-menu-header">
-											4 New Notifications
+											${producto.getcantidadRegistros()}-Notifications
 										</div>
+									</c:forEach>
 										<div class="list-group">
 											<a href="#" class="list-group-item">
 												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-danger" data-feather="alert-circle"></i>
+													<c:forEach var="producto" items="${productos}">
+														<div class="col-2">
+															<i class="text-danger" data-feather="alert-circle"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto A Vencerse</div>
+															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} está a ${producto.getDIFERENCIA_DIAS()} días de vencerse.
+															</div>
+														</div>
+														<br>
+														<hr>
+													</c:forEach>
 													</div>
-													<div class="col-10">
-														<div class="text-dark">Update completed</div>
-														<div class="text-muted small mt-1">Restart server 12 to complete
-															the update.</div>
-														<div class="text-muted small mt-1">30m ago</div>
-													</div>
-												</div>
 											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-warning" data-feather="bell"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">Lorem ipsum</div>
-														<div class="text-muted small mt-1">Aliquam ex eros, imperdiet
-															vulputate hendrerit et.</div>
-														<div class="text-muted small mt-1">2h ago</div>
-													</div>
-												</div>
-											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-primary" data-feather="home"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">Login from 192.186.1.8</div>
-														<div class="text-muted small mt-1">5h ago</div>
-													</div>
-												</div>
-											</a>
-											<a href="#" class="list-group-item">
-												<div class="row g-0 align-items-center">
-													<div class="col-2">
-														<i class="text-success" data-feather="user-plus"></i>
-													</div>
-													<div class="col-10">
-														<div class="text-dark">New connection</div>
-														<div class="text-muted small mt-1">Christina accepted your
-															request.</div>
-														<div class="text-muted small mt-1">14h ago</div>
-													</div>
-												</div>
-											</a>
-										</div>
-										<div class="dropdown-menu-footer">
-											<a href="#" class="text-muted">Show all notifications</a>
-										</div>
+											</div>
 									</div>
 								</li>
 								<li class="nav-item dropdown">
@@ -326,7 +293,7 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Blank Page</h1>
-							<div class="" >
+							<div class="" id="prueba">
 							<div class="row">
 								<div class="col-12">
 									<div class="card">
@@ -338,8 +305,11 @@
 															<li>
 																<br><br>
 																<button class="modo" id="modo">
-																	<span><i class="fa-solid fa-sun"></i></span>
-																	<span><i class="fa-regular fa-moon"></i></span>
+																	<span id="span1"></span>
+																	<span id="span2"></span>
+																	<span id="span3"></span>
+																	<span id="span4"></span>
+																	Modo ☀️/☽
 																</button>
 															</li>
 														</ul>
@@ -397,10 +367,7 @@
 																		<button class="btn btn-primary"
 																		onclick="return actualizar()">Actualizar</button>
 																	</a>
-																	<a href="proveedor?condicion=eliminar&id=${proveedor.getIdProveedor()}"
-																		onclick="return eliminar()">
-																		<button class="btn btn-danger">Eliminar</button>
-																	</a>
+																		<button class="btn btn-danger" onclick="return eliminar()">Eliminar</button>
 																	</p>
 																</td>
 															</tr>
@@ -499,9 +466,6 @@
 			<script src="assets/js/app.js"></script>
 			<script src="assets/js/jquery-3.3.1.min.js"></script>
 
-			<!-- CDN para alertas -->
-			<script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 			<!-- Datatables -->
 			<script type="text/javascript" charset="utf8"
 				src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
@@ -540,7 +504,10 @@
 				});
 			</script>
 			<!-- CDN SweetAlers(JavaScript) -->
-			<script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+			<!-- Script alertas -->
+			<script src="assets/js/alertas/alertasProveedor.js"></script>
 
 			<!-- Darkmode -->
 			<script src="assets/js/dark-mode.js"></script>

@@ -11,9 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import model.proveedorDao;
 import model.proveedorVo;
 
+import model.productoDao;
+import model.productoVo;
+
 public class proveedorController extends HttpServlet {
   proveedorDao rd = new proveedorDao();
   proveedorVo r = new proveedorVo();
+
+  productoVo p=new productoVo();
+  productoDao pd=new productoDao();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,9 +29,13 @@ public class proveedorController extends HttpServlet {
     switch (condicion) {
 
       case "consultarProveedor":
+      cantidadDias(req,resp);
+        listarDias(req,resp);
         listar(req, resp);
         break;
       case "formulario":
+      cantidadDias(req,resp);
+        listarDias(req,resp);
         abrirformulario(req, resp);
         break;
       case "eliminar":
@@ -34,6 +44,8 @@ public class proveedorController extends HttpServlet {
       case "cambioEstado":
         estado(req, resp);
       case "editar":
+      cantidadDias(req,resp);
+        listarDias(req,resp);
         editar(req, resp);
         break;
       case "index":
@@ -60,8 +72,30 @@ public class proveedorController extends HttpServlet {
 
   }
 
+  private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
+    try{
+        List listardias=pd.cantidadDias();
+        System.out.println("diferencia dias:" +p.getcantidadRegistros());
+        req.setAttribute("productoss", listardias);
+        System.out.println("Dias listados melo");
+    } catch (Exception e){
+        System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+    }
+ }
+     private void listarDias(HttpServletRequest req, HttpServletResponse resp){
+    try{
+        List listardias=pd.listarDias();
+        System.out.println("diferencia dias:" +p.getDIFERENCIA_DIAS());
+        req.setAttribute("productos", listardias);
+        System.out.println("Dias listados melo");
+    } catch (Exception e){
+        System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+    }
+ }
   private void abrirformulario(HttpServletRequest req, HttpServletResponse resp) {
     try {
+      cantidadDias(req,resp);
+        listarDias(req,resp);
       req.getRequestDispatcher("views/proveedor/insertarProveedor.jsp").forward(req, resp);
       System.out.println("El formulario ha sido abierto correctamente");
     } catch (Exception e) {
@@ -94,6 +128,8 @@ public class proveedorController extends HttpServlet {
     }
     try {
       rd.insertar(r);
+      cantidadDias(req,resp);
+        listarDias(req,resp);
       listar(req, resp);
     } catch (Exception e) {
       System.out.println("Error en la inserción del registro " + e.getMessage().toString());
@@ -110,6 +146,8 @@ public class proveedorController extends HttpServlet {
     try {
       rd.actualizar(r);
       System.out.println("Editar el registro de genero");
+      cantidadDias(req,resp);
+        listarDias(req,resp);
       listar(req, resp);
     } catch (Exception e) {
       System.out.println("Error al editar del registro " + e.getMessage().toString());
@@ -120,6 +158,8 @@ public class proveedorController extends HttpServlet {
     try {
       List genero = rd.listar();
       req.setAttribute("datos", genero);
+      cantidadDias(req,resp);
+        listarDias(req,resp);
       req.getRequestDispatcher("views/proveedor/consultarProveedor.jsp").forward(req, resp);
       System.out.println("Datos listados correctamente");
     } catch (Exception e) {
@@ -137,6 +177,8 @@ public class proveedorController extends HttpServlet {
     try {
       rd.cambiarEstado(r.getEstadoProveedor(), r.getIdProveedor());
       System.out.println("El estado se cambio exitosamente");
+      cantidadDias(req,resp);
+        listarDias(req,resp);
       listar(req, resp);
     } catch (Exception e) {
       System.out.println("Error en el cambio de estado " + e.getMessage().toString());
@@ -150,6 +192,8 @@ public class proveedorController extends HttpServlet {
     try {
       List genero = rd.listarProveedor(r.getIdProveedor());
       req.setAttribute("datos", genero);
+      cantidadDias(req,resp);
+        listarDias(req,resp);
       req.getRequestDispatcher("views/proveedor/editarProveedor.jsp").forward(req, resp);// direccion de vista
       System.out.println("Datos listados correctamente para la edicion");
     } catch (Exception e) {
@@ -165,6 +209,8 @@ public class proveedorController extends HttpServlet {
       rd.eliminar(r.getIdProveedor());
       ;
       System.out.println("El registro se ha eliminado correctamente");
+      cantidadDias(req,resp);
+        listarDias(req,resp);
       listar(req, resp);
     } catch (Exception e) {
       System.out.println("Error al eliminar el resgistro" + e.getMessage().toString());

@@ -302,10 +302,17 @@
                                                                         class="btn btn-primary"
                                                                         type="button">Regresar</button></a><br><br>
                                                             </td>
+                                                            <p>
+                                                                ||
+                                                            </p>
                                                             <br><br>
                                                             <button class="modo" id="modo">
-                                                                <span><i class="fa-solid fa-sun"></i></span>
-                                                                <span><i class="fa-regular fa-moon"></i></span>
+                                                                <span id="span1"></span>
+                                                                <span id="span2"></span>
+                                                                <span id="span3"></span>
+                                                                <span id="span4"></span>
+                                                                Modo ☀️/☽
+                                                            </button>
 
                                                         </ul>
                                                     </div>
