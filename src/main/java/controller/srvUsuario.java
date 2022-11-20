@@ -20,6 +20,7 @@ public class srvUsuario extends HttpServlet {
         String accion = request.getParameter("accion");
         try {
             if (accion != null) {
+                System.out.println("Entro al switch");
                 switch (accion) {
                     case "verificar":
                         verificar(request, response);
@@ -27,10 +28,12 @@ public class srvUsuario extends HttpServlet {
                     case "cerrar":
                         cerrarsession(request, response);
                     default:
-                        response.sendRedirect("/views/loginUsuario.jsp");
+                    System.out.println("No se encontro respuesta a su petición 1");
+                        response.sendRedirect("/views/Errores/error404.jsp");
                 }
             } else {
-                response.sendRedirect("/views/loginUsuario.jsp");
+                System.out.println("No se encontro respuesta a su petición 2");
+                response.sendRedirect("/views/Errores/error404.jsp");
             }
         } catch (Exception e) {
             try {
@@ -91,19 +94,19 @@ public class srvUsuario extends HttpServlet {
         usuario = dao.identificar(usuario);
         if (usuario != null && usuario.getRol().getTiporol().equals("Gerente") && usuario.getEstadoUsuario().equals(true)) {
             sesion = request.getSession();
-            sesion.setAttribute("usuario", usuario);
+            sesion.setAttribute("Gerente", usuario);
             request.setAttribute("msje", "Bienvenido al sistema");
             System.out.println("Bienvenido Gerente");
-            this.getServletConfig().getServletContext().getRequestDispatcher("/views/Usuario/peticionesUsuario.jsp").forward(request, response);
+            this.getServletConfig().getServletContext().getRequestDispatcher("/index-dashboard.jsp").forward(request, response);
         }else if(usuario != null && usuario.getRol().getTiporol().equals("Operador") && usuario.getEstadoUsuario().equals(true)){
            sesion = request.getSession();
             sesion.setAttribute("Operador", usuario);
             System.out.println("Bienvenido Operador");
-            this.getServletConfig().getServletContext().getRequestDispatcher("/operador.jsp").forward(request, response); 
+            this.getServletConfig().getServletContext().getRequestDispatcher("/index-dashboard.jsp").forward(request, response); 
         }else{
-            request.setAttribute("msje", "Credenciales Incorrectas");
+            request.setAttribute("msje", "Credenciales incorrectas");
             System.out.println("El correo o la contraseña no se encuentran");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("views/Usuario/loginUsuario.jsp").forward(request, response);
         }
             
     }

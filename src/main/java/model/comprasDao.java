@@ -18,7 +18,7 @@ public class comprasDao {
 
   public List<comprasVo> listar() throws SQLException{
       List<comprasVo> compras=new ArrayList<>();
-      sql="SELECT U.idDetalleCompras,U.fechaCompra,U.entradasCompras,U.precioProveedor,U.noOrdenCompra,O.nombreProveedor,P.nombreProducto,P.cantidadProducto FROM Compras U INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto";
+      sql="SELECT U.idDetalleCompras,U.fechaCompra,U.entradasCompras,U.precioProveedor,U.noOrdenCompra,O.nombreProveedor,P.nombreProducto,P.cantidadProducto,P.idProducto FROM Compras U INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);
@@ -30,6 +30,7 @@ public class comprasDao {
               filas.setentradasCompras(rs.getInt("entradasCompras"));
               filas.setprecioProveedor(rs.getInt("precioProveedor"));
               filas.setnoOrdenCompra(rs.getInt("noOrdenCompra"));
+              filas.setIdProducto(rs.getInt("idProducto"));
               filas.setNombreProducto(rs.getString("nombreProducto"));
               filas.setNombreProveedor(rs.getString("nombreProveedor"));
               filas.setcantidadProducto(rs.getInt("cantidadProducto"));
@@ -101,7 +102,7 @@ public class comprasDao {
 
   public List<comprasVo> editarCompras(int idDetalleCompras, int cantidadTotal) throws SQLException{
       List<comprasVo> Compras=new ArrayList<>();
-      sql="SELECT U.idDetalleCompras,U.fechaCompra,U.entradasCompras,U.precioProveedor,U.noOrdenCompra,O.nombreProveedor,P.nombreProducto,P.cantidadProducto FROM Compras U INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE idDetalleCompras="+idDetalleCompras;
+      sql="SELECT U.idDetalleCompras,U.fechaCompra,U.entradasCompras,U.precioProveedor,U.noOrdenCompra,O.nombreProveedor,P.nombreProducto,P.cantidadProducto,P.idProducto FROM Compras U INNER JOIN Proveedor O ON U.idProveedor = O.idProveedor INNER JOIN Producto P ON U.idProducto = P.idProducto WHERE idDetalleCompras="+idDetalleCompras;
       try{
           con=Conexion.conectar();  
           ps=con.prepareStatement(sql);
@@ -114,6 +115,7 @@ public class comprasDao {
             filas.setprecioProveedor(rs.getInt("precioProveedor"));
             filas.setnoOrdenCompra(rs.getInt("noOrdenCompra"));
             filas.setNombreProducto(rs.getString("nombreProducto"));
+            filas.setIdProducto(rs.getInt("idProducto"));
             filas.setNombreProveedor(rs.getString("nombreProveedor"));
             filas.setcantidadProducto(rs.getInt("cantidadProducto"));
             filas.setcantidadTotal(cantidadTotal);

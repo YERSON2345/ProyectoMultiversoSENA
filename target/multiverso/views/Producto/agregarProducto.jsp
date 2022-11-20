@@ -185,16 +185,15 @@
 						<a class="sidebar-toggle js-sidebar-toggle">
 							<i class="hamburger align-self-center"></i>
 						</a>
+					
 						
-
-
 						<div class="navbar-collapse collapse">
 							<ul class="navbar-nav navbar-align">
 								<li class="nav-item dropdown">
 									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
-											<i class="align-middle" data-feather="bell"></i>
+											<i class="align-middle" data-feather="package"></i>
 											<c:forEach var="producto" items="${productossss}">
 											<span class="indicator">${producto.getcantidad()}</span>
 										</c:forEach>
@@ -236,7 +235,7 @@
 									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
-											<i class="align-middle" data-feather="bell"></i>
+											<i class="align-middle" data-feather="calendar"></i>
 											<c:forEach var="producto" items="${productoss}">
 											<span class="indicator">${producto.getcantidadRegistros()}</span>
 										</c:forEach>
@@ -281,8 +280,7 @@
 											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
-												data-feather="user"></i> Profile</a>
+										
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
 									</div>
@@ -291,12 +289,13 @@
 						</div>
 					</nav>
 
+
 					<div class="content">
 
 						<div class="contact-wrapper animated bounceInUp">
 							<div class="contact-form">
 								<h3>Agregar Productos</h3>
-								<form action="producto" method="post" class="needs-validation" novalidate>
+								<form action="producto" method="post" class="needs-validation" onsubmit="return validarFecha()" >
 
 									<div class="form-group dropdown">
 										<label for="validationCustom01 observaciones" class="font-weight-bold">Fecha De
@@ -304,7 +303,7 @@
 										<div class="col-sm-10">
 											</label> <p>Si el producto vence, click acá:<input type="checkbox" id="muInput"  onclick="myFunction()"></p>
 											<div id="myDropdown" class="dropdown-content">
-												<input type="date" name="fechaVencimiento" id="validationCustom01" placeholder="Fecha Vencimiento" class="form-control">
+												<input type="date" name="fechaVencimiento" id="fechaVencimiento" placeholder="Fecha Vencimiento" class="form-control">
 											  </div>
 											<div class="valid-feedback">
 												¡Fecha Vencimienot insertado con éxito!
@@ -440,7 +439,20 @@
 
 			<script src="assets/js/app.js"></script>
 
-
+			<script>
+				function validarFecha(){
+					var fechaInput = document.getElementById('fechaVencimiento').value;
+					fechaInput = Date.parse(fechaInput);
+					fechaActual = new Date();
+					if(fechaInput < fechaActual){
+						alert("la fecha no puede ser inferior a " + fechaActual.toISOString().split("T")[0]);
+						return false;
+					}else{
+						return true;
+					}
+				}
+			</script>
+			
 			<script>
 				(function () {
 					'use strict'

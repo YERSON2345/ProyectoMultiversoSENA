@@ -55,6 +55,10 @@ public class productoController extends HttpServlet{
         listarStock(req,resp);
         break;
         case"listarSalidas":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         listarSalidas(req, resp);
         break;
         case"editar":
@@ -95,6 +99,10 @@ public class productoController extends HttpServlet{
         // case "actualizarStock":
         // actualizarStock();
         // break;
+        default:
+        error404(req,resp);
+        System.out.println("No se encontro respuesta a su petición");
+        break;
     }
     
     }
@@ -123,6 +131,15 @@ public class productoController extends HttpServlet{
             break;
 
         }
+    }
+    //Error 404(Sin repuesta)
+    private void error404(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/Errores/error404.jsp").forward(req,resp);
+  
+      } catch (Exception e) {
+      }
     }
     //Reporte por cantidad de producto
      private void reporte_Cantidad_Producto(HttpServletRequest req, HttpServletResponse resp){
@@ -193,11 +210,8 @@ public class productoController extends HttpServlet{
         }
      }
 
-    private void add(HttpServletRequest req, HttpServletResponse resp){
-
-        if(req.getParameter("fechaVencimiento")!=null){
+    private void add(HttpServletRequest req, HttpServletResponse resp){  
             p.setfechaVencimiento(req.getParameter("fechaVencimiento"));
-        }
         if(req.getParameter("observaciones")!=null){
             p.setObservacionesProducto(req.getParameter("observaciones"));
         }
@@ -238,6 +252,7 @@ public class productoController extends HttpServlet{
             cantidad(req,resp);
             cantidadProducto(req,resp);
             cantidadDias(req,resp);
+            listarDias(req,resp);
             req.getRequestDispatcher("views/Producto/consultarProducto.jsp").forward(req, resp);
             System.out.println("Datos listados melo");
         } catch (Exception e){
@@ -261,8 +276,9 @@ public class productoController extends HttpServlet{
      }
     private void listarSalidas(HttpServletRequest req, HttpServletResponse resp){
         try{
-            List productolistar=pd.listar();
+            List productolistar=pd.listarStock();
             req.setAttribute("producto", productolistar);
+            req.getRequestDispatcher("views/Producto/salidasStock.jsp").forward(req, resp);
             System.out.println("Datos listados melo");
         } catch (Exception e){
             System.out.println("estas armandoproblemas" + e.getMessage().toString());
@@ -279,6 +295,7 @@ public class productoController extends HttpServlet{
             cantidad(req,resp);
             cantidadProducto(req,resp);
             cantidadDias(req,resp);
+            listarDias(req,resp);
             req.getRequestDispatcher("views/Producto/editarProducto.jsp").forward(req, resp);
             System.out.println("datos listados correctamente para editar");
         }catch(Exception e){
@@ -326,6 +343,7 @@ public class productoController extends HttpServlet{
            cantidad(req,resp);
            cantidadProducto(req,resp);
            cantidadDias(req,resp);
+           listarDias(req,resp);
            req.getRequestDispatcher("views/Producto/consultarProducto.jsp").forward(req, resp);
            System.out.println("datos listados correctamente");
        }  catch(Exception e){

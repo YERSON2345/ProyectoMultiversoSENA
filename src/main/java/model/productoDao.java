@@ -182,7 +182,7 @@ public List<productoVo> cantidadProducto() throws SQLException{
 
   public List<productoVo> listarStock() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT U.idProducto,U.fechaVencimiento,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto;";
+    sql="SELECT U.idProducto,U.fechaVencimiento,U.nombreProducto,U.observacionesProducto,U.cantidadProducto,U.precioProducto,U.idTipoProducto,P.nombreTipoProducto FROM Producto U INNER JOIN tipoProducto P ON U.idTipoProducto = P.idTipoProducto WHERE U.estadoProducto = 1;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);

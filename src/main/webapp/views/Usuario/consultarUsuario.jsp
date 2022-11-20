@@ -14,16 +14,10 @@
 
 			<!-- GOOGLE FONTs -->
 			<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-			<!-- FONT AWESOME -->
-			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-				integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-				crossorigin="anonymous">
 			<!-- ANIMATE CSS -->
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link rel="shortcut icon" href="../img/icons/icon-48x48.png" />
 
-			<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
 
 			<title>Consultar Usuarios</title>
 
@@ -211,21 +205,68 @@
 							<i class="hamburger align-self-center"></i>
 						</a>
 
+
 						<div class="navbar-collapse collapse">
 							<ul class="navbar-nav navbar-align">
 								<li class="nav-item dropdown">
 									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
-											<i class="align-middle" data-feather="bell"></i>
-											<span class="indicator">!</span>
+											<i class="align-middle" data-feather="package"></i>
+											<c:forEach var="producto" items="${productossss}">
+											<span class="indicator">${producto.getcantidad()}</span>
+										</c:forEach>
 										</div>
 									</a>
 									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
 										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productossss}">
 										<div class="dropdown-menu-header">
-											 New Notifications
+											${producto.getcantidad()}-Notifications
 										</div>
+										</c:forEach>
+										<div class="list-group">
+											<a href="#" class="list-group-item">
+												<div class="row g-0 align-items-center">
+													<c:forEach var="producto" items="${productosss}">
+														<div class="col-2">
+															<i class="text-warning" data-feather="bell"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto Con Baja Cantidad</div>
+															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} tiene ${producto.getCantidadProducto()} de cantidad.
+															</div>
+														</div>
+														<br>
+														<hr>
+													</c:forEach>
+													</div>
+											</a>
+											</div>
+									</div>
+								</li>
+								
+
+
+						<div class="navbar-collapse collapse">
+							<ul class="navbar-nav navbar-align">
+								<li class="nav-item dropdown">
+									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+										data-bs-toggle="dropdown">
+										<div class="position-relative">
+											<i class="align-middle" data-feather="calendar"></i>
+											<c:forEach var="producto" items="${productoss}">
+											<span class="indicator">${producto.getcantidadRegistros()}</span>
+										</c:forEach>
+										</div>
+									</a>
+									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productoss}">
+										<div class="dropdown-menu-header">
+											${producto.getcantidadRegistros()}-Notifications
+										</div>
+									</c:forEach>
 										<div class="list-group">
 											<a href="#" class="list-group-item">
 												<div class="row g-0 align-items-center">
@@ -242,10 +283,12 @@
 														<hr>
 													</c:forEach>
 													</div>
-												</a>
+											</a>
 											</div>
 									</div>
 								</li>
+
+
 								<li class="nav-item dropdown">
 									<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
 										data-bs-toggle="dropdown">
@@ -258,8 +301,7 @@
 											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
-												data-feather="user"></i> Profile</a>
+										
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
 									</div>
@@ -271,6 +313,14 @@
 					<main class="content">
 						<div class="container-fluid p-0">
 							<h5 class="card-title">Consultar Usuarios Activos</h5>
+							<a href="#">									
+								<button class="modo" id="modo">
+								<span id="span1"></span>
+								<span id="span2"></span>
+								<span id="span3"></span>
+								<span id="span4"></span>
+								Modo ☀️/☽
+							</button></a>
 							<div class="" id="prueba">
 								<div class="row">
 									<div class="col-12">
@@ -282,13 +332,6 @@
 															<ul>
 																<li>
 																	<br><br>
-																	<button class="modo" id="modo">
-																		<span id="span1"></span>
-																		<span id="span2"></span>
-																		<span id="span3"></span>
-																		<span id="span4"></span>
-																		Modo ☀️/☽
-																	</button>
 																</li>
 															</ul>
 														</div>
@@ -329,8 +372,6 @@
 													</table>
 												</div>
 											</div>
-											<div class="card-body">
-											</div>
 										</div>
 									</div>
 								</div>
@@ -352,8 +393,6 @@
 					</footer>
 				</div>
 			</div>
-
-			<script src="assets/js/app.js"></script>
 			<!-- Estilos de tabla -->
 			<style>
 				.dataTables_length {
@@ -417,48 +456,45 @@
 				}
 			</style>
 
-			<script src="assets/js/app.js"></script>
-			<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/jquery-3.3.1.min.js"></script>
 
-			<!-- Datatables -->
-			<script type="text/javascript" charset="utf8"
-				src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<!-- Datatables -->
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 
-			<script>
-				$(document).ready(function () {
-					$('#datatable').DataTable({
-						language: {
-							processing: "Cargando...",
-							search: "Buscar:",
-							lengthMenu: "Hay un total de _MENU_ tablas en el menú.",
-							info: "Hay _START_ de _END_ resultados ahora mismo (cantidad total de resultados _TOTAL_).",
-							infoEmpty: "Hay 0 de 0 tablas ahora mismo",
-							infoFiltered: "(La cantidad máxima de tablas es _MAX_)",
-							infoPostFix: "",
-							loadingRecords: "Carga en curso...",
-							zeroRecords: "No hemos podidos encontrar ningún resultado a su busqueda.",
-							emptyTable: "No hemos encontrado ningún resultado.",
-							paginate: {
-								first: "Siguiente",
-								previous: "Atrás",
-								next: "Siguiente",
-								last: "Dernier"
-							},
-							aria: {
-								sortAscending: ": activer pour trier la colonne par ordre croissant",
-								sortDescending: ": activer pour trier la colonne par ordre décroissant"
-							}
-						}
-					});
-				});
-			</script>
-
-			<!-- Darkmode -->
-			<script src="assets/js/dark-mode.js"></script>
-
-			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$('#datatable').DataTable({
+			language: {
+				processing: "Cargando...",
+				search: "Buscar:",
+				lengthMenu: "Hay un total de _MENU_ tablas en el menú.",
+				info: "Hay _START_ de _END_ resultados ahora mismo (cantidad total de resultados _TOTAL_).",
+				infoEmpty: "Hay 0 de 0 tablas ahora mismo",
+				infoFiltered: "(La cantidad máxima de tablas es _MAX_)",
+				infoPostFix: "",
+				loadingRecords: "Carga en curso...",
+				zeroRecords: "No hemos podidos encontrar ningún resultado a su busqueda.",
+				emptyTable: "No hemos encontrado ningún resultado.",
+				paginate: {
+					first: "Siguiente",
+					previous: "Atrás",
+					next: "Siguiente",
+					last: "Dernier"
+				},
+				aria: {
+					sortAscending: ": activer pour trier la colonne par ordre croissant",
+					sortDescending: ": activer pour trier la colonne par ordre décroissant"
+				}
+			}
+		});
+	});
+</script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- Darkmode -->
+<script src="assets/js/dark-mode.js"></script>
 			
 		</body>
 

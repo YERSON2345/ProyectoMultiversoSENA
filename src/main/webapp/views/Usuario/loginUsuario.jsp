@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  <%
+  if(session.getAttribute("Gerente") != null || session.getAttribute("Operador") != null) {
+    System.out.println("Ya has iniciado sesión");
+    response.sendRedirect("usuario?condicion=dashboard");
+
+  }else{
+
+%>
     <!doctype html>
     <html lang="en">
 
@@ -61,13 +69,16 @@
 
                 </div>
                 <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="submit">Ingresar</button>
+                  <button class="btn btn-primary" type="submit" name="accion" value="verificar">Ingresar</button>
                 </div>
               </form>
               <br>
+              <h1 class="text-danger">${msje}</h1>
 
               <small class="d-inline-block text-muted">¿No tienes cuenta?<a href="usuario?condicion=formulario">
                   Registrate aqui</a></small>
+                  <small class="d-inline-block text-muted">¿Has olvidado tu contraseña?<a href="usuario?condicion=recuperar">
+                    Click aquí</a></small>
               <br>
             </div>
           </div>
@@ -116,3 +127,6 @@
     </body>
 
     </html>
+    <%        
+  } 
+  %>

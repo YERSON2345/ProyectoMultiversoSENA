@@ -30,11 +30,15 @@ public class tipoProductoController extends HttpServlet{
 
     switch(a){
         case"listar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req,resp);
         break;
         case"editar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         editar(req, resp);
@@ -49,9 +53,15 @@ public class tipoProductoController extends HttpServlet{
         visualizar(req, resp);
         break;
         case "Add_TipoProducto":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         req.getRequestDispatcher("views/tipoProducto/agregarTipoProducto.jsp").forward(req, resp);
+        break;
+        default:
+        error404(req,resp);
+        System.out.println("No se encontro respuesta a su petición");
         break;
     }
     //
@@ -73,6 +83,36 @@ public class tipoProductoController extends HttpServlet{
 
         }
     }
+    //Error 404(Sin repuesta)
+    private void error404(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/Errores/error404.jsp").forward(req,resp);
+  
+      } catch (Exception e) {
+      }
+    }
+    private void cantidad(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List listardias=pd.cantidad();
+            System.out.println("cantidad:" +p.getcantidad());
+            req.setAttribute("productossss", listardias);
+            System.out.println("Dias listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+        }
+     }
+
+    private void cantidadProducto(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List listardias=pd.cantidadProducto();
+            System.out.println("cantidad Producto:" +p.getCantidadProducto());
+            req.setAttribute("productosss", listardias);
+            System.out.println("Dias listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+        }
+     }
 
     private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
         try{
@@ -108,6 +148,8 @@ public class tipoProductoController extends HttpServlet{
         try{
             td.registrar(t);
             System.out.println("registro bien insertado");
+            cantidad(req,resp);
+            cantidadProducto(req,resp);
             cantidadDias(req,resp);
             listarDias(req,resp);
             listar(req, resp);
@@ -119,7 +161,10 @@ public class tipoProductoController extends HttpServlet{
         try{
             List tipoProductolistar=td.listar();
             req.setAttribute("tipoProducto", tipoProductolistar);
+            cantidad(req,resp);
+            cantidadProducto(req,resp);
             cantidadDias(req,resp);
+            listarDias(req,resp);
             req.getRequestDispatcher("views/tipoProducto/consultarTipoProducto.jsp").forward(req, resp);
             System.out.println("Datos listados melo");
         } catch (Exception e){
@@ -133,7 +178,10 @@ public class tipoProductoController extends HttpServlet{
         try{
             List tipoProductolistar=td.editarTipoProducto(t.getIdTipoProducto());
             req.setAttribute("tipoProducto", tipoProductolistar);
+            cantidad(req,resp);
+            cantidadProducto(req,resp);
             cantidadDias(req,resp);
+            listarDias(req,resp);
             req.getRequestDispatcher("views/tipoProducto/editarTipoProducto.jsp").forward(req, resp);
             System.out.println("datos listados correctamente para editar");
         }catch(Exception e){
@@ -156,8 +204,10 @@ public class tipoProductoController extends HttpServlet{
          try{
              td.actualizar(t);
              System.out.println("editar tipo producto");
-             cantidadDias(req,resp);
-             listarDias(req,resp);
+             cantidad(req,resp);
+            cantidadProducto(req,resp);
+            cantidadDias(req,resp);
+            listarDias(req,resp);
              listar(req, resp);
          }catch (Exception e){
              System.out.println("Error al editar"+e.getMessage().toString());
@@ -167,7 +217,10 @@ public class tipoProductoController extends HttpServlet{
        try{
            List tipoProductolistar=td.listar();
            req.setAttribute("tipoProductolistar", tipoProductolistar);
+           cantidad(req,resp);
+           cantidadProducto(req,resp);
            cantidadDias(req,resp);
+           listarDias(req,resp);
            req.getRequestDispatcher("views/tipoProducto/consultarTipoProducto.jsp").forward(req, resp);
            System.out.println("datos listados correctamente");
        }  catch(Exception e){
@@ -185,6 +238,8 @@ public class tipoProductoController extends HttpServlet{
        try{
            td.estado(t.getEstadoTipoProducto(),t.getIdTipoProducto());
            System.out.println("El estado se cambio");
+           cantidad(req,resp);
+           cantidadProducto(req,resp);
            cantidadDias(req,resp);
            listarDias(req,resp);
            listar(req, resp);
@@ -200,6 +255,8 @@ public class tipoProductoController extends HttpServlet{
          try{
              td.eliminar(t.getIdTipoProducto());
              System.out.println("se elimino correctamente");
+             cantidad(req,resp);
+             cantidadProducto(req,resp);
              cantidadDias(req,resp);
              listarDias(req,resp);
              listar(req, resp);

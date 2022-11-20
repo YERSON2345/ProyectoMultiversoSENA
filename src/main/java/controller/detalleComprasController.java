@@ -38,6 +38,10 @@ public class detalleComprasController extends HttpServlet{
         case "Add_detalleCompras":
         req.getRequestDispatcher("views/detalleCompras/agregarDetalleCompras.jsp").forward(req, resp);
         break;
+        default:
+        error404(req,resp);
+        System.out.println("No se encontro respuesta a su petición");
+        break;
     }
     //
     
@@ -58,7 +62,15 @@ public class detalleComprasController extends HttpServlet{
 
         }
     }
-
+    //Error 404(Sin repuesta)
+    private void error404(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/Errores/error404.jsp").forward(req,resp);
+  
+      } catch (Exception e) {
+      }
+    }
     private void add(HttpServletRequest req, HttpServletResponse resp){
         if(req.getParameter("fecha")!=null){
             d.setFechaVencimientoProducto(req.getParameter("fecha"));

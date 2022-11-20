@@ -193,7 +193,48 @@
 									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
-											<i class="align-middle" data-feather="bell"></i>
+											<i class="align-middle" data-feather="package"></i>
+											<c:forEach var="producto" items="${productossss}">
+											<span class="indicator">${producto.getcantidad()}</span>
+										</c:forEach>
+										</div>
+									</a>
+									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productossss}">
+										<div class="dropdown-menu-header">
+											${producto.getcantidad()}-Notifications
+										</div>
+										</c:forEach>
+										<div class="list-group">
+											<a href="#" class="list-group-item">
+												<div class="row g-0 align-items-center">
+													<c:forEach var="producto" items="${productosss}">
+														<div class="col-2">
+															<i class="text-warning" data-feather="bell"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto Con Baja Cantidad</div>
+															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} tiene ${producto.getCantidadProducto()} de cantidad.
+															</div>
+														</div>
+														<br>
+														<hr>
+													</c:forEach>
+													</div>
+											</a>
+											</div>
+									</div>
+								</li>
+
+								
+						<div class="navbar-collapse collapse">
+							<ul class="navbar-nav navbar-align">
+								<li class="nav-item dropdown">
+									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+										data-bs-toggle="dropdown">
+										<div class="position-relative">
+											<i class="align-middle" data-feather="calendar"></i>
 											<c:forEach var="producto" items="${productoss}">
 											<span class="indicator">${producto.getcantidadRegistros()}</span>
 										</c:forEach>
@@ -238,8 +279,7 @@
 											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
-												data-feather="user"></i> Profile</a>
+										
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
 									</div>

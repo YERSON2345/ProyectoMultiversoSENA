@@ -1,0 +1,25 @@
+.content{
+    margin-top: 230px;
+    margin-left: 400px;
+    display:flexbox;
+    width: 700px;
+    height: 250px;
+    border: 1px solid black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #ACE0E4;
+}
+
+.text{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-accept{
+    width: 150px;
+    height: 40px;
+    color: black;
+    background-color: #83F352;
+    border: 0px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}

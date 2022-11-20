@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+  
+  <%
+  if(session.getAttribute("Gerente") != null || session.getAttribute("Operador") != null) {
+    System.out.println("Ya has iniciado sesión");
+    response.sendRedirect("usuario?condicion=dashboard");
+  }else{
+%>
     <!doctype html>
     <html lang="en">
 
@@ -15,6 +21,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap">
       <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
       <link href="assets/css/perobueno.css" rel="stylesheet" type="text/css" />
+      
       <title>Registrarse</title>
     </head>
 
@@ -32,7 +39,7 @@
               <h1 class="font-weight-bold">Crea tu cuenta gratis</h1>
 
               <p class="text-muted mb5">Ingresa la siguiente información para registrarte</p>
-              <form class="needs-validation" novalidate id="signupForm">
+              <form class="needs-validation" action="usuario" method="post" novalidate id="signupForm">
                 <div class="form-group mb-3">
                   <label class="font-weight-bold">Número de documento <span class="text-danger">*</span> </label>
                   <input type="number" min="100000000" max="2200000000" class="form-control" id="validationCustom20"
@@ -113,7 +120,7 @@
                 <div class="form-group mb-3">
                   <label for="validationCustom04" class="font-weight-bold">Rol <span class="text-danger">*</span>
                   </label>
-                  <select class="form-select" id="validationCustom04" required>
+                  <select class="form-select" id="validationCustom04" name="rol" required>
                     <option selected disabled value="">Seleccione</option>
                     <c:forEach var="rol" items="${rol}">
                       <option value="${rol.getIdRol()}">${rol.getTiporol()}</option>
@@ -138,7 +145,7 @@
                   </div>
                 </div>
                 <div class="form-group mb-3">
-                  <button class="btn btn-primary" type="submit">Registrarse</button>
+                  <button class="btn btn-primary" type="submit" name="condicion" value="insertar">Registrarse</button>
                 </div>
               </form>
               <br>
@@ -172,7 +179,9 @@
         })()
       </script>
       <!-- Optional JavaScript; choose one of the two! -->
-
+      <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+      <script type="text/javascript"> emailjs.init('KiDnSc8K2cdR70JBU')</script>
+      <script src="assets/js/correoRegistro.js"></script>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://code.jquery.com/jquery-1.12.4.min.js"
         integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
@@ -192,3 +201,6 @@
     </body>
 
     </html>
+    <%        
+  } 
+  %>

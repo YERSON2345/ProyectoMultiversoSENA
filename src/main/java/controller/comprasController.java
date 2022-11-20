@@ -50,19 +50,31 @@ public class comprasController extends HttpServlet{
 
     switch(a){
         case"listar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req,resp);
         break;
         case"editar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         editar(req, resp);
         break;
         case"agregarCompra":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         consultarProveedor(req,resp);
         listarComprasProducto(req,resp);        
         break;
         case"eliminar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         eliminar(req,resp);
         break;
@@ -70,14 +82,30 @@ public class comprasController extends HttpServlet{
         visualizar(req, resp);
         break;
         case "Add_Compras":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         consultarProveedor(req,resp);
         consultarProducto(req,resp);
         req.getRequestDispatcher("views/Compras/agregarCompras.jsp").forward(req, resp);
         break;
+        default:
+        error404(req,resp);
+        System.out.println("No se encontro respuesta a su petición");
+        break;
     }
     //
     
+    }
+        //Error 404(Sin repuesta)
+    private void error404(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/Errores/error404.jsp").forward(req,resp);
+  
+      } catch (Exception e) {
+      }
     }
     private void consultarProveedor(HttpServletRequest req, HttpServletResponse resp) {
         try{
@@ -113,11 +141,40 @@ public class comprasController extends HttpServlet{
 
         }
     }
+    private void cantidad(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List listardias=cp.cantidad();
+            System.out.println("cantidad:" );
+            req.setAttribute("productossss", listardias);
+            System.out.println("Dias listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+        }
+     }
+    private void cantidadProducto(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List listardias=cp.cantidadProducto();
+            System.out.println("cantidad Producto:");
+            req.setAttribute("productosss", listardias);
+            System.out.println("Dias listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+        }
+     }
 
-    private void listarDias(HttpServletRequest req, HttpServletResponse resp){
+    private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
+        try{
+            List listardias=cp.cantidadDias();
+            System.out.println("diferencia dias:" );
+            req.setAttribute("productoss", listardias);
+            System.out.println("Dias listados melo");
+        } catch (Exception e){
+            System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+        }
+     }
+         private void listarDias(HttpServletRequest req, HttpServletResponse resp){
         try{
             List listardias=cp.listarDias();
-            System.out.println("diferencia dias:" +ct.getDIFERENCIA_DIAS());
             req.setAttribute("productos", listardias);
             System.out.println("Dias listados melo");
         } catch (Exception e){
@@ -158,6 +215,9 @@ public class comprasController extends HttpServlet{
             cd.registrar(c);
 
             System.out.println("registro bien insertado");
+            cantidad(req,resp);
+            cantidadProducto(req,resp);
+            cantidadDias(req,resp);
             listarDias(req,resp);
             listarProductos(req, resp);
         }catch(Exception e) {
@@ -220,32 +280,33 @@ public class comprasController extends HttpServlet{
             System.out.println("hay un problema al listar los datos" +e.getMessage().toString());
         }
      }
+
      private void edit(HttpServletRequest req, HttpServletResponse resp){
         if(req.getParameter("fecha")!=null){
             c.setFechaCompra(req.getParameter("fecha"));
         }
-        if(req.getParameter("entradaCompras")!=null){
-            c.setentradasCompras(Integer.parseInt(req.getParameter("entradaCompras")));
+        if(req.getParameter("getentradasCompras")!=null){
+            c.setentradasCompras(Integer.parseInt(req.getParameter("getentradasCompras")));
         }
         if(req.getParameter("precioProveedor")!=null){
             c.setprecioProveedor(Integer.parseInt(req.getParameter("precioProveedor")));
-        }
-        if(req.getParameter("noOrdenCompra")!=null){
-            c.setnoOrdenCompra(Integer.parseInt(req.getParameter("noOrdenCompra")));
         }
          try{
             cd.actualizar(c);
             int cantidadAntigua=Integer.parseInt(req.getParameter("cantidadAntigua"));
             int cantidadProducto=Integer.parseInt(req.getParameter("cantidadActual"));
-            int cantidadEntradas=Integer.parseInt(req.getParameter("entradaCompras"));
+            int cantidadEntradas=Integer.parseInt(req.getParameter("getentradasCompras"));
             int idProducto = Integer.parseInt(req.getParameter("idProducto"));
             comprasVo resultado = new comprasVo();
             
             int resultados = resultado.actualizarExistencias(cantidadProducto,cantidadEntradas,cantidadAntigua);
             int resultadoTotal = resultados;
 
-            cd.actualizarExistencias(resultadoTotal,idProducto);
+                cd.actualizarExistencias(resultadoTotal,idProducto);
              System.out.println("editar tipo producto");
+             cantidad(req,resp);
+             cantidadProducto(req,resp);
+             cantidadDias(req,resp);
              listarDias(req,resp);
              listar(req, resp);
          }catch (Exception e){
@@ -272,6 +333,9 @@ public class comprasController extends HttpServlet{
 
      
              System.out.println("se elimino correctamente");
+             cantidad(req,resp);
+             cantidadProducto(req,resp);
+             cantidadDias(req,resp);
              listarDias(req,resp);
              listar(req, resp);
          }catch(Exception e){

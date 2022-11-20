@@ -36,36 +36,60 @@ public class usuarioController extends HttpServlet {
       switch(condicion){
   
         case "consultarUsuario":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req,resp);
         break;
         case "abrirPeticion":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         abrirVista(req, resp);
         break;
         case "listarPeticion":
-        listarDias(req,resp);
         listarPeticiones(req, resp);
         break;
         case "formulario":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         consultarRol(req, resp);
         abrirformulario(req,resp);
+        recuperar(req,resp);
         break;
         case "login":
         abrirlogin(req,resp);
         break;
         case "eliminar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         eliminar(req, resp);
+        break;
+        case "dashboard":
+        Dashboard(req, resp);
         break;
         case "cambioEstado":
         estado(req,resp);
         case "editar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
         editar(req, resp);
         case "index":
         home(req, resp);
         break;
+        case "error403":
+        error403(req, resp);
+        break; 
         default:
+        error404(req,resp);
         System.out.println("No se encontro respuesta a su petición");
         break;
       }
@@ -85,8 +109,68 @@ public class usuarioController extends HttpServlet {
           }
   
     }
+    //Redirección al dashboard
+    private void Dashboard(HttpServletRequest req, HttpServletResponse resp) {
+      try {
+        req.getRequestDispatcher("index-dashboard.jsp").forward(req, resp);
+        System.out.println("El dashboard ha sido abierto correctamente");
+      } catch (Exception e) {
+        System.out.println("El dashboard NO ha sido abierto"+e.getMessage().toString());
+      }
+    }
+    //Error 403(Sin permisos)
+    private void error403(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+         req.getRequestDispatcher("views/Errores/error403.jsp").forward(req,resp);
+      
+      } catch (Exception e) {
+      }
+    }
+    //Error 404(Sin repuesta)
+    private void error404(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/Errores/error404.jsp").forward(req,resp);
+  
+      } catch (Exception e) {
+      }
+    }
 
-    private void listarDias(HttpServletRequest req, HttpServletResponse resp){
+    private void cantidad(HttpServletRequest req, HttpServletResponse resp){
+      try{
+          List listardias=pd.cantidad();
+          System.out.println("cantidad:" +p.getcantidad());
+          req.setAttribute("productossss", listardias);
+          System.out.println("Cantidad registros melo");
+      } catch (Exception e){
+          System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+      }
+   }
+
+  private void cantidadProducto(HttpServletRequest req, HttpServletResponse resp){
+      try{
+          List listardias=pd.cantidadProducto();
+          System.out.println("cantidad Producto:" +p.getCantidadProducto());
+          req.setAttribute("productosss", listardias);
+          System.out.println("Cantidad Producto listado melo");
+      } catch (Exception e){
+          System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+      }
+   }
+
+  private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
+      try{
+          List listardias=pd.cantidadDias();
+          System.out.println("diferencia dias:" +p.getcantidadRegistros());
+          req.setAttribute("productoss", listardias);
+          System.out.println("Dias listados melo");
+      } catch (Exception e){
+          System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+      }
+   }
+
+       private void listarDias(HttpServletRequest req, HttpServletResponse resp){
       try{
           List listardias=pd.listarDias();
           System.out.println("diferencia dias:" +p.getDIFERENCIA_DIAS());
@@ -96,20 +180,35 @@ public class usuarioController extends HttpServlet {
           System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
       }
    }
+
     private void abrirformulario(HttpServletRequest req, HttpServletResponse resp)
     {
       try {
-        listarDias(req,resp);
         req.getRequestDispatcher("views/Usuario/registrarse.jsp").forward(req,resp);
         System.out.println("El formulario ha sido abierto correctamente");
       } catch (Exception e) {
         System.out.println("El formulario NO ha sido abierto"+e.getMessage().toString());
       }
     }
+
+    private void recuperar(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
+        req.getRequestDispatcher("views/Usuario/recuperarC.jsp").forward(req,resp);
+        System.out.println("El formulario ha sido abierto correctamente");
+      } catch (Exception e) {
+        System.out.println("El formulario NO ha sido abierto"+e.getMessage().toString());
+      }
+    }
+
+
     private void abrirVista(HttpServletRequest req, HttpServletResponse resp)
     {
       try {
-        listarDias(req,resp);
         req.getRequestDispatcher("views/Usuario/page-Usuario.jsp").forward(req,resp);
         System.out.println("El Menu a sido abierto correctamente");
       } catch (Exception e) {
@@ -119,7 +218,6 @@ public class usuarioController extends HttpServlet {
     private void abrirlogin(HttpServletRequest req, HttpServletResponse resp)
     {
       try {
-        listarDias(req,resp);
         req.getRequestDispatcher("views/Usuario/loginUsuario.jsp").forward(req,resp);
         System.out.println("El login ha sido abierto correctamente");
       } catch (Exception e) {
@@ -173,10 +271,9 @@ public class usuarioController extends HttpServlet {
       try {
           rd.insertar(r);
           System.out.println("Registro insertado correctamente");
-          List album=rd.listar();
+          List album=rd.listarUsuario(r.getNoDocUsuario());
           req.setAttribute("datos", album);
-          listarDias(req,resp);
-          req.getRequestDispatcher("views/Usuario/consultarUsuario.jsp").forward(req, resp);
+          req.getRequestDispatcher("views/Usuario/afterRegistro.jsp").forward(req, resp);
       } catch (Exception e) {
           System.out.println("Error en la inserción del registro "+e.getMessage().toString());
       }
@@ -213,6 +310,9 @@ public class usuarioController extends HttpServlet {
     try {
         rd.actualizar(r);
         System.out.println("Editar el registro de genero");
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req, resp);
   
@@ -225,6 +325,9 @@ public class usuarioController extends HttpServlet {
       try {
         List album=rd.listar();
         req.setAttribute("datos", album);
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
         listarDias(req,resp);
         req.getRequestDispatcher("views/Usuario/consultarUsuario.jsp").forward(req, resp);
         System.out.println("Datos listados correctamente");      
@@ -255,7 +358,10 @@ public class usuarioController extends HttpServlet {
       try {
           rd.cambiarEstado(r.getEstadoUsuario(), r.getNoDocUsuario());
           System.out.println("El estado se cambio exitosamente");
-          listarDias(req,resp);
+          cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
           listarPeticiones(req, resp);
       } catch (Exception e) {
           System.out.println("Error en el cambio de estado "+e.getMessage().toString());
@@ -269,7 +375,10 @@ public class usuarioController extends HttpServlet {
       try {
           List album=rd.listarUsuario(r.getNoDocUsuario());
           req.setAttribute("datos", album);
-          listarDias(req,resp);
+          cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
           req.getRequestDispatcher("views/Usuario/editarUsuario.jsp").forward(req, resp);//direccion de vista
           System.out.println("Datos listados correctamente para la edicion");
       } catch (Exception e) {
@@ -284,7 +393,10 @@ public class usuarioController extends HttpServlet {
       try {
           rd.eliminar(r.getNoDocUsuario());;
           System.out.println("El registro se ha eliminado correctamente");
-          listarDias(req,resp);
+          cantidad(req,resp);
+        cantidadProducto(req,resp);
+        cantidadDias(req,resp);
+        listarDias(req,resp);
           listarPeticiones(req, resp);
       } catch (Exception e) {
           System.out.println("Error al eliminar el resgistro"+e.getMessage().toString());

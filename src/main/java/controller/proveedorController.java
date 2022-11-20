@@ -29,11 +29,15 @@ public class proveedorController extends HttpServlet {
     switch (condicion) {
 
       case "consultarProveedor":
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req, resp);
         break;
       case "formulario":
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
         abrirformulario(req, resp);
@@ -44,6 +48,8 @@ public class proveedorController extends HttpServlet {
       case "cambioEstado":
         estado(req, resp);
       case "editar":
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
         editar(req, resp);
@@ -52,6 +58,7 @@ public class proveedorController extends HttpServlet {
         home(req, resp);
         break;
       default:
+        error404(req,resp);
         System.out.println("No se encontro respuesta a su petición");
         break;
     }
@@ -71,6 +78,36 @@ public class proveedorController extends HttpServlet {
     }
 
   }
+    //Error 404(Sin repuesta)
+    private void error404(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/Errores/error404.jsp").forward(req,resp);
+  
+      } catch (Exception e) {
+      }
+    }
+  private void cantidad(HttpServletRequest req, HttpServletResponse resp){
+    try{
+        List listardias=pd.cantidad();
+        System.out.println("cantidad:" +p.getcantidad());
+        req.setAttribute("productossss", listardias);
+        System.out.println("Dias listados melo");
+    } catch (Exception e){
+        System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+    }
+ }
+
+private void cantidadProducto(HttpServletRequest req, HttpServletResponse resp){
+    try{
+        List listardias=pd.cantidadProducto();
+        System.out.println("cantidad Producto:" +p.getCantidadProducto());
+        req.setAttribute("productosss", listardias);
+        System.out.println("Dias listados melo");
+    } catch (Exception e){
+        System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+    }
+ }
 
   private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
     try{
@@ -94,6 +131,8 @@ public class proveedorController extends HttpServlet {
  }
   private void abrirformulario(HttpServletRequest req, HttpServletResponse resp) {
     try {
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
       req.getRequestDispatcher("views/proveedor/insertarProveedor.jsp").forward(req, resp);
@@ -128,6 +167,8 @@ public class proveedorController extends HttpServlet {
     }
     try {
       rd.insertar(r);
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
       listar(req, resp);
@@ -146,6 +187,8 @@ public class proveedorController extends HttpServlet {
     try {
       rd.actualizar(r);
       System.out.println("Editar el registro de genero");
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
       listar(req, resp);
@@ -158,6 +201,8 @@ public class proveedorController extends HttpServlet {
     try {
       List genero = rd.listar();
       req.setAttribute("datos", genero);
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
       req.getRequestDispatcher("views/proveedor/consultarProveedor.jsp").forward(req, resp);
@@ -177,6 +222,8 @@ public class proveedorController extends HttpServlet {
     try {
       rd.cambiarEstado(r.getEstadoProveedor(), r.getIdProveedor());
       System.out.println("El estado se cambio exitosamente");
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
       listar(req, resp);
@@ -192,6 +239,8 @@ public class proveedorController extends HttpServlet {
     try {
       List genero = rd.listarProveedor(r.getIdProveedor());
       req.setAttribute("datos", genero);
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
       req.getRequestDispatcher("views/proveedor/editarProveedor.jsp").forward(req, resp);// direccion de vista
@@ -209,6 +258,8 @@ public class proveedorController extends HttpServlet {
       rd.eliminar(r.getIdProveedor());
       ;
       System.out.println("El registro se ha eliminado correctamente");
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
         listarDias(req,resp);
       listar(req, resp);

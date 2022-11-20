@@ -5,9 +5,9 @@
     --secondary-color: #2a3338;
     --highlight-color: #3282b8;
 
-    --dt-status-available-color: greenyellow;
+    --dt-status-available-color: green;
     --dt-status-away-color: lightsalmon;
-    --dt-status-offline-color: lightgray;
+    --dt-status-offline-color: red;
 
     --dt-padding: 12px;
     --dt-padding-s: 6px;
@@ -144,8 +144,8 @@
 }
 
 .datatable-container .datatable tbody tr .available::after{
-    content: 'Online';
-    color: var(--dt-status-available-color);
+    content: 'Activo';
+    color: green;
 }
 
 .datatable-container .datatable tbody tr .away::after{
@@ -154,14 +154,23 @@
 }
 
 .datatable-container .datatable tbody tr .offline::after{
-    content: 'Offline';
-    color: var(--dt-status-offline-color);
+    content: 'Inactivo';
+    color: red;
 }
 
-.datatable-container .datatable tbody tr .available::before,
+.datatable-container .datatable tbody tr .available::before
+{
+    content: 'Activo';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
 .datatable-container .datatable tbody tr .away::before,
 .datatable-container .datatable tbody tr .offline::before{
-    content: '';
+    content: 'Inactivo';
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -171,7 +180,7 @@
 }
 
 .datatable-container .datatable tbody tr .available::before{
-    background-color: var(--dt-status-available-color);
+    background-color: green;
 }
 
 .datatable-container .datatable tbody tr .away::before{
@@ -179,44 +188,5 @@
 }
 
 .datatable-container .datatable tbody tr .offline::before{
-    background-color: var(--dt-status-offline-color);
-}
-
-/* Data Table */
-
-.dataTables_length{
-    padding-left: 30px;
-    padding-top: 15px;
-    width: 45%;
-}
-
-.dataTables_filter{
-    margin-right: 15px;
-    float: right;
-    width: 30%;
-}
-
-.datatable-container .dataTables_wrapper .dataTables_filter label input{
-    margin-top: 10px;
-    width: 75%;
-    background-color: var(--dt-input-background-color);
-    box-sizing: border-box;
-    border-radius: var(--dt-border-radius);
-    border: solid 1px black;
-    color: var(--dt-input-color); 
-}
-
-.dataTables_info{
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: black;
-}
-
-.dataTables_paginate{
-    float: left;
-    padding-bottom: 15px;
-    padding-right: 30px;
-    padding-top: 30px;
-    color: black;
+    background-color: red;
 }

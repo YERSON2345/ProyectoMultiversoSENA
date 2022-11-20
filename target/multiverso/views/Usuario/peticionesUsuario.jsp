@@ -42,6 +42,8 @@
 					}
 				}
 			</script>
+						    <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+							<script type="text/javascript"> emailjs.init('KiDnSc8K2cdR70JBU')</script>
 			<!-- //Meta-Tags -->
 
 			<!-- css files -->
@@ -90,6 +92,17 @@
 
 									</div>
 									<div class="buy-button">
+										<form id="Form">
+											<input type="hidden" value="${usuario.getNombreUsuario()}" name="Nombre">
+											<input type="hidden" value="${usuario.getApellidoUsuario()}" name="Apellido">
+											<input type="hidden" value="${usuario.getNoDocUsuario()}" name="noDocumento">
+											<input type="hidden" value="${usuario.getCorreoUsuario()}" name="Correo">
+	
+											<center>
+												<button class="buy-button" id="button" type="submit">Enviar notificación</button>
+											</center>
+	
+									</form>
 										<a class="popup-with-zoom-anim"
 											href="usuario?condicion=cambioEstado&id=${usuario.getNoDocUsuario()}&estado=true"
 											onclick="return confirmar()">Aceptar</a>
@@ -168,7 +181,7 @@
 				});
 			</script>
 			<!-- //Pop-up for pricing tables -->
-
+			<script src="assets/js/correoPeticiones.js"></script>
 		</body>
 
 		</html>

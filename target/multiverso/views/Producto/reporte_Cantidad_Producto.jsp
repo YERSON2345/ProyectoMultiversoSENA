@@ -9,12 +9,12 @@
     <!-- El script de la librería-->
     <script src="assets/reportes/js/html2pdf.bundle.min.js"></script>
     <!--Nuestro script, que se encarga de crear el PDF usando la librería-->
-    <script src="assets/reportes/js/script.js"></script>
+    <script src="assets/reportes/js/scriptCantidad.js"></script>
     <!-- Algunos estilos -->
     <link rel="stylesheet" href="assets/reportes/css/style.css">
 
 </head>
-<center><img src="assets/reportes/img/multiversoo.jpeg" alt="Una imagen" width="250px"><br><h1>Reporte de productos a vencerse</h1></center>
+<center><img src="assets/reportes/img/multiversoo.jpeg" alt="Una imagen" width="250px"><br><h1>Reporte de productos con bajo stock</h1></center>
 <body>
     <table>
         <thead>

@@ -15,8 +15,6 @@
 			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-			<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
-
 			<title>Consultar Venta</title>
 
 			<link href="assets/css/app.css" rel="stylesheet">
@@ -26,8 +24,10 @@
 
 			<!-- Dark-mode (CSS) -->
 			<link rel="stylesheet" href="assets/css/dark-mode.css">
-			<!-- Fontawesome -->
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+			<!-- Reportes -->
+			<link rel="stylesheet" href="assets/css/reportes/css/styles.css">
+			<!-- Botones de PDF -->
+			<link rel="stylesheet" href="assets/css/botones.css">
 
 		</head>
 
@@ -195,7 +195,49 @@
 									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
-											<i class="align-middle" data-feather="bell"></i>
+											<i class="align-middle" data-feather="package"></i>
+											<c:forEach var="producto" items="${productossss}">
+											<span class="indicator">${producto.getcantidad()}</span>
+										</c:forEach>
+										</div>
+									</a>
+									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productossss}">
+										<div class="dropdown-menu-header">
+											${producto.getcantidad()}-Notifications
+										</div>
+										</c:forEach>
+										<div class="list-group">
+											<a href="#" class="list-group-item">
+												<div class="row g-0 align-items-center">
+													<c:forEach var="producto" items="${productosss}">
+														<div class="col-2">
+															<i class="text-warning" data-feather="bell"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto Con Baja Cantidad</div>
+															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} tiene ${producto.getCantidadProducto()} de cantidad.
+															</div>
+														</div>
+														<br>
+														<hr>
+													</c:forEach>
+													</div>
+											</a>
+											</div>
+									</div>
+								</li>
+
+								
+
+						<div class="navbar-collapse collapse">
+							<ul class="navbar-nav navbar-align">
+								<li class="nav-item dropdown">
+									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+										data-bs-toggle="dropdown">
+										<div class="position-relative">
+											<i class="align-middle" data-feather="calendar"></i>
 											<c:forEach var="producto" items="${productoss}">
 											<span class="indicator">${producto.getcantidadRegistros()}</span>
 										</c:forEach>
@@ -240,8 +282,7 @@
 											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
-												data-feather="user"></i> Profile</a>
+										
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
 									</div>
@@ -255,13 +296,21 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Consultar Producto</h1>
+							<a href="#">									
+								<button class="modo" id="modo">
+								<span id="span1"></span>
+								<span id="span2"></span>
+								<span id="span3"></span>
+								<span id="span4"></span>
+								Modo ☀️/☽
+							</button></a>
 							<a href="producto?accion=abrirVistaFechas"> <button
-								class="btn btn-danger"
-								type="button">Productos a vencerse (PDF)
+								class="btnp btnp1"
+								type="button">Productos a vencerse <img class="pdf_img" src="assets/img/PDF.png">
 								</button></a>
 								<a href="producto?accion=abrirVistaCantidad"> <button
-									class="btn btn-warning"
-									type="button">Productos con bajo Stock (PDF)
+									class="btnp btnp2"
+									type="button">Productos con bajo Stock <img class="pdf_img" src="assets/img/PDF.png">
 									</button></a>
 							<div class="" id="prueba">
 								<div class="row">
@@ -274,30 +323,11 @@
 															<ul>
 																<td>
 																	<a href="producto?accion=Stock"> <button
-																			class="btn btn-success"
+																			class="btn btn-primary"
 																			type="button">Agregar
-																			compra/venta</button></a><br><br>
+																			compra/venta/salida</button></a><br><br>
 																</td>
-																<p>
-																	| |
-																</p>
-																<td>
-																	<a href="producto?accion=listarSalidas"> <button
-																			class="btn btn-danger"
-																			type="button">Descontar
-																			producto</button></a><br><br>
-																</td>
-																<p>
-																	| |
-																</p>
 																<br><br>
-																<button class="modo" id="modo">
-																	<span id="span1"></span>
-																	<span id="span2"></span>
-																	<span id="span3"></span>
-																	<span id="span4"></span>
-																	Modo ☀️/☽
-																</button>
 															</ul>
 														</div>
 													</div>
@@ -376,7 +406,7 @@
 																		test="${producto.getEstadoProducto() == true}">
 																		<td>
 																			<p class="white"><span
-																					class="available"></span></p>
+																					class="available">Activo</span></p>
 																		</td>
 																	</c:if>
 
@@ -384,7 +414,7 @@
 																		test="${producto.getEstadoProducto() == false}">
 																		<td>
 																			<p class="white"><span
-																					class="offline"></span></p>
+																					class="offline">Inactivo</span></p>
 																		</td>
 																	</c:if>
 																	<c:if
@@ -392,7 +422,7 @@
 																		<td>
 																			<p class="white"><a
 																					href="producto?accion=estadoProducto&idProducto=${producto.getIdProducto()}&estadoProducto=false"><button
-																						class="btn btn-success"
+																						class="btn btn-danger"
 																						type="button">
 																						Inactivar</button></a></p>
 																		</td>
@@ -412,11 +442,6 @@
 																	</c:if>
 																	<td>
 																		<p class="white">
-																			<a
-																				href="producto?accion=eliminar&idProducto=${producto.getIdProducto()}">
-																				<button class="btn btn-danger"
-																					type="button">
-																					Eliminar</button></a><br>
 																			<a
 																				href="producto?accion=editar&idProducto=${producto.getIdProducto()}">
 																				<button class="btn btn-primary"
@@ -517,6 +542,9 @@
 
 				.datatable-container {
 					width: 1200px;
+				}
+				.modo{
+					margin-left: 20px;
 				}
 			</style>
 

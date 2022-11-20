@@ -42,32 +42,37 @@
 				}
 			</script>
 
-			<script>
-				function actualizar() {
-					Swal.fire({
-						title: 'Are you sure?',
-						text: "You won't be able to revert this!",
-						icon: 'warning',
-						showCancelButton: true,
-						confirmButtonColor: '#3085d6',
-						cancelButtonColor: '#d33',
-						confirmButtonText: 'Yes, delete it!'
-					}).then((result) => {
-						if (result.isConfirmed) {
-							var url = "proveedor?condicion=editar&id=${proveedor.getIdProveedor()}";
-							console.log("Hora de sexo");
-							$.ajax({
-								type: 'POST',
-								url: url,
-								async: true,
-								success: function (r) {
-								}
-							})
-						} else {
-							return false;
-						}
-					})
-				}
+<script>
+				alert("Actualizar")
+				function actualizar(id){
+
+swal({
+	title: "¿Estas seguro que desea actualizar?",
+	text: "Se te redireccionará a un formulario para actualizar el proveedor",
+	icon: "warning",
+	buttons: true,
+	dangerMode: true,
+  })
+  .then((OK) => {
+	if (OK) {
+		$.ajax({
+			url:"proveedor?condicion=editar&id="+id,
+			success: function(res){
+				console.log(res);
+			}
+		});
+	  swal("Se esta redireccionando...", {
+		icon: "success",
+	  }).then((OK)=>{
+            if(OK){
+                location.href="proveedor?condicion=editar&id="+id
+            }
+          });
+	} else {
+	  swal("Se ha cancelado la operación");
+	}
+  });
+}
 			</script>
 
 			<section class="wrapper">
@@ -148,12 +153,6 @@
 							</li>
 
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="ventas?condicion=formulario">
-									<i class="align-middle" data-feather="dollar-sign"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
-							</li>
-							<li class="sidebar-item">
 								<a class="sidebar-link" href="ventas?condicion=consultarventa">
 									<i class="align-middle" data-feather="database"></i> <span
 										class="align-middle">Consultar</span>
@@ -197,12 +196,6 @@
 							</li>
 
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="salidas?condicion=formulario">
-									<i class="align-middle" data-feather="x-square"></i> <span
-										class="align-middle">Agregar</span>
-								</a>
-							</li>
-
 							<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 								<i class="align-middle" data-feather="database"></i> <span
 									class="align-middle">Consultar</span>
@@ -228,13 +221,55 @@
 							<i class="hamburger align-self-center"></i>
 						</a>
 
+						
 						<div class="navbar-collapse collapse">
 							<ul class="navbar-nav navbar-align">
 								<li class="nav-item dropdown">
 									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
-											<i class="align-middle" data-feather="bell"></i>
+											<i class="align-middle" data-feather="package"></i>
+											<c:forEach var="producto" items="${productossss}">
+											<span class="indicator">${producto.getcantidad()}</span>
+										</c:forEach>
+										</div>
+									</a>
+									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productossss}">
+										<div class="dropdown-menu-header">
+											${producto.getcantidad()}-Notifications
+										</div>
+										</c:forEach>
+										<div class="list-group">
+											<a href="#" class="list-group-item">
+												<div class="row g-0 align-items-center">
+													<c:forEach var="producto" items="${productosss}">
+														<div class="col-2">
+															<i class="text-warning" data-feather="bell"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto Con Baja Cantidad</div>
+															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} tiene ${producto.getCantidadProducto()} de cantidad.
+															</div>
+														</div>
+														<br>
+														<hr>
+													</c:forEach>
+													</div>
+											</a>
+											</div>
+									</div>
+								</li>
+
+
+						<div class="navbar-collapse collapse">
+							<ul class="navbar-nav navbar-align">
+								<li class="nav-item dropdown">
+									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+										data-bs-toggle="dropdown">
+										<div class="position-relative">
+											<i class="align-middle" data-feather="calendar"></i>
 											<c:forEach var="producto" items="${productoss}">
 											<span class="indicator">${producto.getcantidadRegistros()}</span>
 										</c:forEach>
@@ -279,8 +314,7 @@
 											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
-												data-feather="user"></i> Profile</a>
+									
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
 									</div>
@@ -292,7 +326,15 @@
 					<main class="content">
 						<div class="container-fluid p-0">
 
-							<h1 class="h3 mb-3">Blank Page</h1>
+							<h1 class="h3 mb-3">Consultar proveedores</h1>
+							<a href="#">									
+								<button class="modo" id="modo">
+								<span id="span1"></span>
+								<span id="span2"></span>
+								<span id="span3"></span>
+								<span id="span4"></span>
+								Modo ☀️/☽
+							</button></a>
 							<div class="" id="prueba">
 							<div class="row">
 								<div class="col-12">
@@ -304,13 +346,6 @@
 														<ul>
 															<li>
 																<br><br>
-																<button class="modo" id="modo">
-																	<span id="span1"></span>
-																	<span id="span2"></span>
-																	<span id="span3"></span>
-																	<span id="span4"></span>
-																	Modo ☀️/☽
-																</button>
 															</li>
 														</ul>
 													</div>
@@ -364,9 +399,9 @@
 																</c:if>
 																<td class="text-left">
 																	<p class="white">
-																		<button class="btn btn-primary"
-																		onclick="return actualizar()">Actualizar</button>
-																	</a>
+																		<a onclick="actualizar([[${proveedor.getIdProveedor()}]])">
+																			<button class="btn btn-primary">Actualizar</button>
+																		</a>
 																		<button class="btn btn-danger" onclick="return eliminar()">Eliminar</button>
 																	</p>
 																</td>
@@ -511,6 +546,8 @@
 
 			<!-- Darkmode -->
 			<script src="assets/js/dark-mode.js"></script>
+			
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 		</body>
 

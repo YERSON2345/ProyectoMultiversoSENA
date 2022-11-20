@@ -15,19 +15,13 @@
 			<link rel="preconnect" href="https://fonts.gstatic.com">
 			<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-			<link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
-
 			<title>Consultar Venta</title>
-
-			<link href="assets/css/app.css" rel="stylesheet">
-			<link rel="stylesheet" href="assets/css/tabla.css">
+			<link rel="stylesheet" href="assets/css/app.css">
 			<link rel="stylesheet" href="assets/css/jquery.dataTables.min.css">
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 			<!-- Dark-mode (CSS) -->
 			<link rel="stylesheet" href="assets/css/dark-mode.css">
-			<!-- Fontawesome -->
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 		</head>
 
 		<body>
@@ -177,25 +171,67 @@
 							<i class="hamburger align-self-center"></i>
 						</a>
 
+
 						<div class="navbar-collapse collapse">
 							<ul class="navbar-nav navbar-align">
 								<li class="nav-item dropdown">
 									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
 										data-bs-toggle="dropdown">
 										<div class="position-relative">
-											<i class="align-middle" data-feather="bell"></i>
-											<c:forEach var="producto" items="${productoss}">
-											<span class="indicator">${producto.getcantidadRegistros()}</span>
+											<i class="align-middle" data-feather="package"></i>
+											<c:forEach var="producto" items="${productossss}">
+											<span class="indicator">${producto.getcantidad()}</span>
 										</c:forEach>
 										</div>
 									</a>
 									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
 										aria-labelledby="alertsDropdown">
-										<c:forEach var="producto" items="${productoss}">
+										<c:forEach var="producto" items="${productossss}">
 										<div class="dropdown-menu-header">
-											${producto.getcantidadRegistros()}-Notifications
+											${producto.getcantidad()}-Notifications
 										</div>
-									</c:forEach>
+										</c:forEach>
+										<div class="list-group">
+											<a href="#" class="list-group-item">
+												<div class="row g-0 align-items-center">
+													<c:forEach var="producto" items="${productosss}">
+														<div class="col-2">
+															<i class="text-warning" data-feather="bell"></i>
+														</div>
+														<div class="col-8">
+															<div class="text-dark">Producto Con Baja Cantidad</div>
+															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} tiene ${producto.getCantidadProducto()} de cantidad.
+															</div>
+														</div>
+														<br>
+														<hr>
+													</c:forEach>
+													</div>
+											</a>
+											</div>
+									</div>
+								</li>
+
+								
+						<div class="navbar-collapse collapse">
+							<ul class="navbar-nav navbar-align">
+								<li class="nav-item dropdown">
+									<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown"
+										data-bs-toggle="dropdown">
+										<div class="position-relative">
+											<i class="align-middle" data-feather="calendar"></i>
+											<c:forEach var="producto" items="${productoss}">
+												<span class="indicator">${producto.getcantidadRegistros()}</span>
+											</c:forEach>
+										</div>
+									</a>
+									<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0"
+										aria-labelledby="alertsDropdown">
+										<c:forEach var="producto" items="${productoss}">
+											<div class="dropdown-menu-header">
+												${producto.getcantidadRegistros()}-Notifications
+											</div>
+										</c:forEach>
 										<div class="list-group">
 											<a href="#" class="list-group-item">
 												<div class="row g-0 align-items-center">
@@ -205,15 +241,17 @@
 														</div>
 														<div class="col-8">
 															<div class="text-dark">Producto A Vencerse</div>
-															<div class="text-muted small mt-1">El producto ${producto.getNombreProducto()} está a ${producto.getDIFERENCIA_DIAS()} días de vencerse.
+															<div class="text-muted small mt-1">El producto
+																${producto.getNombreProducto()} está a
+																${producto.getDIFERENCIA_DIAS()} días de vencerse.
 															</div>
 														</div>
 														<br>
 														<hr>
 													</c:forEach>
-													</div>
+												</div>
 											</a>
-											</div>
+										</div>
 									</div>
 								</li>
 								<li class="nav-item dropdown">
@@ -228,8 +266,7 @@
 											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
-										<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
-												data-feather="user"></i> Profile</a>
+										
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
 									</div>
@@ -242,86 +279,114 @@
 						<div class="container-fluid p-0">
 
 							<h1 class="h3 mb-3">Consultar Ventas</h1>
+							<a href="#">									
+								<button class="modo" id="modo">
+								<span id="span1"></span>
+								<span id="span2"></span>
+								<span id="span3"></span>
+								<span id="span4"></span>
+								Modo ☀️/☽
+							</button></a>
 							<div class="" id="prueba">
-							<div class="row">
-								<div class="col-12">
-									<div class="card">
-										<div class="card-header">
-											<div class="datatable-container">
-												<div class="header-tools">
-													<div class="tools">
-														<ul>
-															<li>
-																<br><br>
-																<button class="modo" id="modo">
-																	<span id="span1"></span>
-																	<span id="span2"></span>
-																	<span id="span3"></span>
-																	<span id="span4"></span>
-																	Modo ☀️/☽
-																</button>
-																	<p>
-																		| |
-																	</p>
-																<div class="form-group">
-																	<form action="ventas">
-																		<button type="submit" name="condicion" value="ExportarPDF" class="btn btn-primary"><i class="material-icons left"><img class="timg" src="assets/img/PDF.png"></i> Exportar PDF</button>
-																	</form>
-																</div>
-															</li>
-														</ul>
+								<div class="row">
+									<div class="col-12">
+										<div class="card">
+											<div class="card-header">
+												<div class="datatable-container">
+													<div class="header-tools">
+														<div class="tools">
+															<ul>
+																<li>
+																	<br><br>
+																</li>
+															</ul>
+														</div>
 													</div>
-												</div>
 
-												<table class="datatable" id="datatable">
-													<thead>
-														<tr>
-															<th><p class="white"></p></th>
-															<th><p class="white">Cantidad vendida</p></th>
-															<th><p class="white">Precio Total</p></th>
-															<th><p class="white">Producto</p></th>
-															<th><p class="white">No doc Cliente</p></th>
-															<th><p class="white">Nombre del cliente</p></th>
-															<th><p class="white">Cantidad del Producto</p></th>
-															<th><p class="white">Acciones</p></th>
-														</tr>
-													</thead>
-
-													<tbody>
-														<c:forEach var="ventas" items="${ventas}">
+													<table class="datatable" id="datatable">
+														<thead>
 															<tr>
-																<td><p class="white"></p></td>
-																<td><p class="white">${ventas.getCantidadVendida()}</p></td>
-																<td><p class="white">${ventas.getPrecioTotal()}</p></td>
-																<td><p class="white">${ventas.getNombreProducto()}</p></td>
-																<td><p class="white">${ventas.getNoDocCliente()}</p></td>
-																<td><p class="white">${ventas.getNombreCliente()}</p></td>
-																<td><p class="white">${ventas.getcantidadProducto()}</p></td>
-																<td class="text-left">
-																	<p class="white">
-																		<a
-																		href="ventas?condicion=editar&id=${ventas.getIdDetalleVenta()}&cantidadActualProducto=${ventas.getcantidadProducto()}&cantidadDescontada=${ventas.getCantidadVendida()}">
-																		<button
-																			class="btn btn-primary">Actualizar</button>
-																	</a>
-																	<a href="ventas?condicion=eliminar&id=${ventas.getIdDetalleVenta()}&nombreP=${ventas.getNombreProducto()}&cantidadS=${ventas.getcantidadProducto()}&cantidadP=${ventas.getcantidadProducto()}"
-																		onclick="return eliminar()">
-																		<button class="btn btn-danger">Eliminar</button>
-																	</a>
-																	</p>
-																</td>
+																<th>
+																	<p class="white"></p>
+																</th>
+																<th>
+																	<p class="white">Cantidad vendida</p>
+																</th>
+																<th>
+																	<p class="white">Precio Total</p>
+																</th>
+																<th>
+																	<p class="white">Producto</p>
+																</th>
+																<th>
+																	<p class="white">No doc Cliente</p>
+																</th>
+																<th>
+																	<p class="white">Nombre del cliente</p>
+																</th>
+																<th>
+																	<p class="white">Cantidad del Producto</p>
+																</th>
+																<th>
+																	<p class="white">Acciones</p>
+																</th>
 															</tr>
-														</c:forEach>
-													</tbody>
-												</table>
+														</thead>
+
+														<tbody>
+															<c:forEach var="ventas" items="${ventas}">
+																<tr>
+																	<td>
+																		<p class="white"></p>
+																	</td>
+																	<td>
+																		<p class="white">${ventas.getCantidadVendida()}
+																		</p>
+																	</td>
+																	<td>
+																		<p class="white">${ventas.getPrecioTotal()}</p>
+																	</td>
+																	<td>
+																		<p class="white">${ventas.getNombreProducto()}
+																		</p>
+																	</td>
+																	<td>
+																		<p class="white">${ventas.getNoDocCliente()}</p>
+																	</td>
+																	<td>
+																		<p class="white">${ventas.getNombreCliente()}
+																		</p>
+																	</td>
+																	<td>
+																		<p class="white">${ventas.getcantidadProducto()}
+																		</p>
+																	</td>
+																	<td class="text-left">
+																		<p class="white">
+																			<a
+																				href="ventas?condicion=editar&id=${ventas.getIdDetalleVenta()}&cantidadActualProducto=${ventas.getcantidadProducto()}&cantidadDescontada=${ventas.getCantidadVendida()}">
+																				<button
+																					class="btn btn-primary">Actualizar</button>
+																			</a>
+																			<a href="ventas?condicion=eliminar&id=${ventas.getIdDetalleVenta()}&nombreP=${ventas.getNombreProducto()}&cantidadS=${ventas.getcantidadProducto()}&cantidadP=${ventas.getcantidadProducto()}"
+																				onclick="return eliminar()">
+																				<button
+																					class="btn btn-danger">Eliminar</button>
+																			</a>
+																		</p>
+																	</td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</div>
 											</div>
-										</div>
-										<div class="card-body">
+											<div class="card-body">
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						</div>
 					</main>
 
@@ -403,6 +468,270 @@
 
 				.datatable-container {
 					width: 900px;
+				}
+
+				/* Botón de dark-mode */
+				.modo {
+					position: relative;
+					display: inline-block;
+					padding: 15px 30px;
+					color: #fff;
+					background-color: #000;
+					letter-spacing: 4px;
+					font-size: 12px;
+					text-decoration: none;
+					overflow: hidden;
+					transition: 0.5s;
+				}
+
+				.modo:hover {
+					background: white;
+					color: #000;
+					box-shadow: 0 0 10px gray, 0 0 40px gray, 0 0 80px gray;
+					transition: 3.5s;
+				}
+
+				.modo span {
+					position: absolute;
+					display: block;
+				}
+
+				#span1 {
+					top: 0;
+					left: -100%;
+					width: 100%;
+					height: 2px;
+					background: linear-gradient(90deg, transparent, #a945c7);
+				}
+
+				.modo:hover #span1 {
+					left: 100%;
+					transition: 1s;
+				}
+
+				#span3 {
+					bottom: 0;
+					right: -100%;
+					width: 100%;
+					height: 2px;
+					background: linear-gradient(270deg, transparent, #a945c7);
+				}
+
+				.modo:hover #span3 {
+					right: 100%;
+					transition: 1s;
+					transition-delay: 0.5s;
+				}
+
+				#span2 {
+					top: -100%;
+					right: 0;
+					width: 2px;
+					height: 100%;
+					background: linear-gradient(180deg, transparent, #a945c7);
+				}
+
+				.modo:hover #span2 {
+					top: 100%;
+					transition: 1s;
+					transition-delay: 0.25s;
+				}
+
+				#span4 {
+					bottom: -100%;
+					left: 0;
+					width: 2px;
+					height: 100%;
+					background: linear-gradient(360deg, transparent, #a945c7);
+				}
+
+				.modo:hover #span4 {
+					bottom: 100%;
+					transition: 1s;
+					transition-delay: 0.75s;
+				}
+
+
+				:root {
+					--primary-color: white;
+					--secondary-color: #2a3338;
+					--highlight-color: #3282b8;
+
+					--dt-status-available-color: greenyellow;
+					--dt-status-away-color: lightsalmon;
+					--dt-status-offline-color: lightgray;
+
+					--dt-padding: 12px;
+					--dt-padding-s: 6px;
+					--dt-padding-xs: 2px;
+
+					--dt-border-radius: 3px;
+
+					--dt-background-color-container: #1f232b;
+					--dt-border-color: var(--secondary-color);
+					--dt-bg-color: var(--highlight-color);
+					--dt-text-color: var(--primary-color);
+					--dt-bg-active-button: var(--highlight-color);
+					--dt-text-color-button: var(--primary-color);
+					--dt-text-color-active-button: var(--primary-color);
+					--dt-hover-cell-color: var(--highlight-color);
+					--dt-even-row-color: var(--secondary-color);
+					--dt-focus-color: var(--highlight-color);
+					--dt-input-background-color: var(--secondary-color);
+					--dt-input-color: var(--primary-color);
+				}
+
+				/* ICONOS */
+
+				.material-icons {
+					font-size: 16px;
+				}
+
+				/* HEADER (ENCABEZADO) */
+
+				.datatable-container {
+					font-family: 'Noto Sans', sans-serif;
+					background-color: var(--dt-background-color-container);
+					border-radius: var(--dt-border-radius);
+					color: var(--dt-text-color);
+					width: 850px;
+					margin: 0 auto;
+					font-size: 12px;
+				}
+
+				.datatable-container .header-tools {
+					border-bottom: 1px solid black;
+					padding: var(--dt-padding);
+					display: flex;
+					align-items: baseline;
+				}
+
+				.datatable-container .header-tools .tools {
+					width: 70%;
+				}
+
+				.datatable-container .header-tools .tools ul {
+					margin: 0;
+					padding: 0;
+					display: flex;
+					justify-content: start;
+					align-items: baseline;
+				}
+
+				.datatable-container .header-tools .tools ul li {
+					display: inline-block;
+					margin: 0 var(--dt-padding-xs);
+					align-items: baseline;
+				}
+
+				/* FOOTER (PIES) */
+
+				.datatable-container .footer-tools {
+					padding: var(--dt-padding);
+					display: flex;
+					align-items: baseline;
+				}
+
+				.datatable-container .footer-tools .list-items {
+					width: 50%;
+				}
+
+				.datatable-container .footer-tools .pages {
+					margin-left: auto;
+					margin-right: 0;
+					width: 50%;
+				}
+
+				.datatable-container .footer-tools .pages ul {
+					margin: 0;
+					padding: 0;
+					display: flex;
+					align-items: baseline;
+					justify-content: flex-end;
+				}
+
+				.datatable-container .footer-tools .pages ul li {
+					display: inline-block;
+					margin: 0 var(--dt-padding-xs);
+				}
+
+				/* TABLA (CUERPO) */
+
+				.datatable-container .datatable {
+					border-collapse: collapse;
+					width: 100%;
+				}
+
+				.datatable-container .datatable,
+				.datatable-container .datatable th,
+				.datatable-container .datatable td {
+					padding: var(--dt-padding) var(--dt-padding);
+				}
+
+				.datatable-container .datatable th {
+					font-weight: bolder;
+					text-align: left;
+					border-bottom: 1px solid black;
+				}
+
+				.datatable-container .datatable td {
+					border-bottom: 1px solid black;
+				}
+
+				.datatable-container .datatable tbody tr:nth-child(even) {
+					background-color: var(--dt-even-row-color);
+				}
+
+				.datatable-container .datatable tbody tr:hover {
+					background-color: var(--dt-hover-cell-color);
+				}
+
+				/* COLUMNA ESTADO */
+
+				.datatable-container .datatable tbody tr .available::after,
+				.datatable-container .datatable tbody tr .away::after,
+				.datatable-container .datatable tbody tr .offline::after {
+					display: inline-block;
+					vertical-align: middle;
+				}
+
+				.datatable-container .datatable tbody tr .available::after {
+					content: 'Online';
+					color: var(--dt-status-available-color);
+				}
+
+				.datatable-container .datatable tbody tr .away::after {
+					content: 'Away';
+					color: var(--dt-status-away-color);
+				}
+
+				.datatable-container .datatable tbody tr .offline::after {
+					content: 'Offline';
+					color: var(--dt-status-offline-color);
+				}
+
+				.datatable-container .datatable tbody tr .available::before,
+				.datatable-container .datatable tbody tr .away::before,
+				.datatable-container .datatable tbody tr .offline::before {
+					content: '';
+					display: inline-block;
+					width: 10px;
+					height: 10px;
+					margin-right: 10px;
+					border-radius: 50%;
+					vertical-align: middle;
+				}
+
+				.datatable-container .datatable tbody tr .available::before {
+					background-color: var(--dt-status-available-color);
+				}
+
+				.datatable-container .datatable tbody tr .away::before {
+					background-color: var(--dt-status-away-color);
+				}
+
+				.datatable-container .datatable tbody tr .offline::before {
+					background-color: var(--dt-status-offline-color);
 				}
 			</style>
 

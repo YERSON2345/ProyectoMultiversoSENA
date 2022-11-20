@@ -37,27 +37,37 @@ public class ventaController extends HttpServlet {
       switch(condicion){
   
         case "consultarventa":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req,resp);
         break;
         case "cosultarvp":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         listarfunciones(req,resp);
         case "formulario":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         consultarnodoccliente(req,resp);
         listarProductos(req, resp);
         break;
         case "eliminar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         devolverExistencias(req, resp);
         eliminar(req, resp);
         break;
         case "editar":
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         editar(req, resp);
@@ -72,6 +82,7 @@ public class ventaController extends HttpServlet {
         ExportarPDF(req,resp);
         break;
         default:
+        error404(req,resp);
         System.out.println("No se encontro respuesta a su petición");
         break;
       }
@@ -91,6 +102,38 @@ public class ventaController extends HttpServlet {
               break;
           }
     }
+    //Error 404(Sin repuesta)
+    private void error404(HttpServletRequest req, HttpServletResponse resp)
+    {
+      try {
+        req.getRequestDispatcher("views/Errores/error404.jsp").forward(req,resp);
+  
+      } catch (Exception e) {
+      }
+    }
+
+    private void cantidad(HttpServletRequest req, HttpServletResponse resp){
+      try{
+          List listardias=p.cantidad();
+          System.out.println("cantidad:" +po.getcantidad());
+          req.setAttribute("productossss", listardias);
+          System.out.println("Dias listados melo");
+      } catch (Exception e){
+          System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+      }
+   }
+
+  private void cantidadProducto(HttpServletRequest req, HttpServletResponse resp){
+      try{
+          List listardias=p.cantidadProducto();
+          System.out.println("cantidad Producto:" +po.getCantidadProducto());
+          req.setAttribute("productosss", listardias);
+          System.out.println("Dias listados melo");
+      } catch (Exception e){
+          System.out.println("estas armandoproblemas con los dias" + e.getMessage().toString());
+      }
+   }
+
 
     private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
       try{
@@ -138,6 +181,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
   try {
       List genero=rd.listarProductoVentas(r.getidProductoFK());
       req.setAttribute("ventas", genero);
+      cantidad(req,resp);
+        cantidadProducto(req,resp);
       cantidadDias(req,resp);
       listarDias(req,resp);
       req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req, resp);//direccion de vista
@@ -151,6 +196,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
     private void listarfunciones(HttpServletRequest req, HttpServletResponse resp)
     {
       try {
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         listarDias(req,resp);
         cantidadDias(req,resp);
         req.getRequestDispatcher("views/venta/actualizarVenta.jsp").forward(req,resp);
@@ -163,6 +210,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
     private void abrirformulario(HttpServletRequest req, HttpServletResponse resp)
     {
       try {
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         req.getRequestDispatcher("views/venta/agregarventa.jsp").forward(req,resp);
@@ -228,6 +277,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
           rd.insertar(r);
           rd.ActualizarStock(resultadoss, idProducto);
           System.out.println("Registro insertado correctamente");
+          cantidad(req,resp);
+        cantidadProducto(req,resp);
           cantidadDias(req,resp);
           listarDias(req,resp);
           listar(req, resp);
@@ -255,6 +306,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       int resultadoss = resultados;
         rd.ActualizarStock(resultadoss, idProducto);
         System.out.println("Editar el registro de venta");
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req, resp);
@@ -268,6 +321,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       try {
         List ventas=rd.listar();
         req.setAttribute("ventas", ventas);
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         req.getRequestDispatcher("views/venta/consultarventa.jsp").forward(req, resp);
@@ -290,6 +345,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
 
         List ventas=rd.listarVenta(r.getIdDetalleVenta(),resultadoss);
           req.setAttribute("ventas", ventas);
+          cantidad(req,resp);
+        cantidadProducto(req,resp);
           cantidadDias(req,resp);
           listarDias(req,resp);
           req.getRequestDispatcher("views/venta/editarventa.jsp").forward(req, resp);//direccion de vista
@@ -306,6 +363,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       try {
           rd.eliminar(r.getIdDetalleVenta());
           System.out.println("El registro se ha eliminado correctamente");
+          cantidad(req,resp);
+        cantidadProducto(req,resp);
           cantidadDias(req,resp);
           listarDias(req,resp);
           listar(req, resp);
@@ -333,6 +392,8 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       int resultados = resultado.sumarExistencias(cantidadProducto,cantidadSalidas);
       int resultadoss = resultados;
         rd.actualizarExistenciasP(resultadoss ,nombreProducto);
+        cantidad(req,resp);
+        cantidadProducto(req,resp);
         cantidadDias(req,resp);
         listarDias(req,resp);
         listar(req, resp);

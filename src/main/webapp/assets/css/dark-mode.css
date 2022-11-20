@@ -104,7 +104,6 @@
 
 .modo{
 position: relative;
-display: inline-block;
 padding: 15px 30px;
 color: #fff;
 background-color: #000;
@@ -113,6 +112,7 @@ font-size: 12px;
 text-decoration: none;
 overflow: hidden;
 transition: 0.5s;
+display: inline-block;
 }
 
 .modo:hover{
