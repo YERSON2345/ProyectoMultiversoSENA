@@ -262,13 +262,14 @@
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="assets/img/avatar.jpg" class="avatar img-fluid rounded me-1"
-											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
 										
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -367,11 +368,6 @@
 																				href="ventas?condicion=editar&id=${ventas.getIdDetalleVenta()}&cantidadActualProducto=${ventas.getcantidadProducto()}&cantidadDescontada=${ventas.getCantidadVendida()}">
 																				<button
 																					class="btn btn-primary">Actualizar</button>
-																			</a>
-																			<a href="ventas?condicion=eliminar&id=${ventas.getIdDetalleVenta()}&nombreP=${ventas.getNombreProducto()}&cantidadS=${ventas.getcantidadProducto()}&cantidadP=${ventas.getcantidadProducto()}"
-																				onclick="return eliminar()">
-																				<button
-																					class="btn btn-danger">Eliminar</button>
 																			</a>
 																		</p>
 																	</td>

@@ -118,40 +118,11 @@
 				</div>
 				</div>
 			</c:forEach>
-			<div class="pricing">
-				<div class="w3l-pricing-grids">
-					<div class="agileits-pricing-grid first">
-						<div class="pricing_grid">
-							<div class="wthree-pricing-info pricing-top">
-								<h3>Petición no aceptada</h3>
-								<p><span>Yerson Bohorquez</span></p>
-							</div>
-							<div class="pricing-bottom">
-								<div class="pricing-bottom-bottom">
-									<p><span class="fa fa-check"></span>Número de documento: <span>110173174</span></p>
-									<p><span class="fa fa-check"></span>Tipo de documento: <span>CC</span></p>
-									<p><span class="fa fa-check"></span>Correo electronico:
-										<span>Yerson.Bohorqueza14@gmail.com</span></p>
-									<p><span class="fa fa-check"></span>Rol: <span>Gerente</span></p>
-								</div>
-								<div class="buy-button">
-									<a class="popup-with-zoom-anim" href="#small-dialog">Aceptar</a>
-									<a class="btn btn-warning" href="#small-dialog">Rechazar</a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 			</div>
 			<!-- //pricing plans -->
 			<!--//main-->
 			<!--footer-->
-			<div class="footer">
-				<p>&copy; 2018 Fitness Pricing Tables. All Rights Reserved | Design By <a
-						href="http://w3layouts.com">W3layouts</a></p>
-			</div>
+
 			<!--//footer-->
 
 			<!--pop-up-grid-->

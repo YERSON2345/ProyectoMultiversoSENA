@@ -108,7 +108,7 @@ public class productoController extends HttpServlet{
     }
     private void consultartipoproducto(HttpServletRequest req, HttpServletResponse resp) {
         try{
-            List idTipoProducto=tp.listar();
+            List idTipoProducto=tp.listarActivo();
             req.setAttribute("idTipoProducto", idTipoProducto);
             System.out.println("datos listados correctamente de tipo producto");
         }catch (Exception e){

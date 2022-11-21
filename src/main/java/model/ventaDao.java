@@ -76,13 +76,13 @@ public List<comprasVo> listarProductoVentas(int idProducto) throws SQLException{
 }
 
 
-public int insertar(ventaVo ventas) throws SQLException{   
+public int insertar(ventaVo ventas, int precioTotal) throws SQLException{   
   sql="INSERT INTO ventas(cantidadVendida,precioTotal,idProductoFK,noDocCliente) values(?,?,?,?)";
   try{
       con=Conexion.conectar(); //abrir conexión
       ps=con.prepareStatement(sql); //preparar sentencia
       ps.setInt(1, ventas.getCantidadVendida());
-      ps.setInt(2, ventas.getPrecioTotal());
+      ps.setInt(2, precioTotal);
       ps.setInt(3, ventas.getidProductoFK());
       ps.setInt(4, ventas.getNoDocCliente());
       System.out.println(ps);

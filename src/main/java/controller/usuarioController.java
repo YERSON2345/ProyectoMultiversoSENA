@@ -59,7 +59,6 @@ public class usuarioController extends HttpServlet {
         listarDias(req,resp);
         consultarRol(req, resp);
         abrirformulario(req,resp);
-        recuperar(req,resp);
         break;
         case "login":
         abrirlogin(req,resp);
@@ -244,7 +243,7 @@ public class usuarioController extends HttpServlet {
       }
     }
     
-    private void Insertar(HttpServletRequest req, HttpServletResponse resp) {
+    private void Insertar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
   
       if(req.getParameter("Nombre")!=null){
           r.setNombreUsuario(req.getParameter("Nombre"));
@@ -276,6 +275,7 @@ public class usuarioController extends HttpServlet {
           req.getRequestDispatcher("views/Usuario/afterRegistro.jsp").forward(req, resp);
       } catch (Exception e) {
           System.out.println("Error en la inserción del registro "+e.getMessage().toString());
+       
       }
   }
   

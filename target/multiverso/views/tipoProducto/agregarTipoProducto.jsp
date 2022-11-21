@@ -275,13 +275,14 @@
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="assets/img/avatar.jpg" class="avatar img-fluid rounded me-1"
-											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
 										
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -293,10 +294,10 @@
 							<div class="contact-form">
 								<h3>Tipo Producto</h3>
 								<form action="tipoProducto" method="post" class="needs-validation" novalidate>
-
+									<br>
 									<div class="form-group">
 										<label for="nombreTipoProducto validationCustom01"
-											class="col-sm-2 control-label">Nombre del tipo de producto</label>
+											class="col-sm-5 control-label">Nombre del tipo de producto</label>
 										<div class="col-sm-10">
 											<input type="text" name="nombre"
 												value="${tipoProducto.getNombreTipoProducto()}" class="form-control"
@@ -310,17 +311,13 @@
 											</div>
 										</div>
 									</div>
-
-									<div>
+									<br>
+								<div class="form-group">
+									<div class="col-sm-10">
 										<input type="checkbox" name="estadoTipoProducto" id="estadoTipoProducto">
-									</div>
-									<div class="form-check">
-										<label class="form-check-label text-muted"
-											for="estadoTipoProducto">Activo</label>
-									</div>
-
-									<p>
-									</p>
+										<label class="form-check-label text-muted" for="estadoTipoProducto">Activo</label>
+								</div>
+								<br>
 									<p class="block">
 										<button class="btn btn-primary width-100" name="accion"
 											value="Registrar">Enviar</button>

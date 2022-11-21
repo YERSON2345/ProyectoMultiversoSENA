@@ -194,11 +194,12 @@ private void cantidadDias(HttpServletRequest req, HttpServletResponse resp){
         cantidadDias(req,resp);
         listarDias(req,resp);
         rd.actualizarExistencias(resultadoss ,idProducto);
-        listarSalidas(req,resp);
-    } catch (Exception e) {
+        listar(req,resp);
+      } catch (Exception e) {
         System.out.println("Error en la inserción del registro "+e.getMessage().toString());
+  }
+        
     }
-}
 
 private void Editar(HttpServletRequest req, HttpServletResponse resp) {
 if(req.getParameter("cantidad")!=null){
@@ -230,6 +231,7 @@ if(req.getParameter("nombreProducto")!=null){
 
   } catch (Exception e) {
       System.out.println("Error al editar del registro "+e.getMessage().toString());
+   
   }
 }
 

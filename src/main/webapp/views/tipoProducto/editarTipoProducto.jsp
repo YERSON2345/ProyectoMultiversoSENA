@@ -271,13 +271,14 @@
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
 										
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -289,12 +290,14 @@
 						<div class="contact-wrapper animated bounceInUp">
 							<div class="contact-form">
 								<h3>Editar Tipo Producto</h3>
+								<br>
+								
 								<c:forEach var="tipoProducto" items="${tipoProducto}">
 									<form action="tipoProducto" method="post" class="needs-validation" novalidate>
 
 										<div class="form-group">
 											<label for="nombreTipoProducto validationCustom01"
-												class="col-sm-2 control-label">Nombre del tipo de producto</label>
+												class="col-sm-15 control-label">Nombre del tipo de producto</label>
 											<div class="col-sm-10">
 												<input type="text" name="nombreTipoProducto"
 													value="${tipoProducto.getNombreTipoProducto()}" class="form-control"
@@ -308,12 +311,12 @@
 												</div>
 											</div>
 										</div>
-
-
+										<br>
 
 										<input type="checkbox" name="estadoTipoProducto" id="estadoTipoProducto"
 											value="${tipoProducto.getEstadoTipoProducto()}">
 										<label for="estadoTipoProducto">Activo</label>
+										<br>
 
 										<p class="block">
 											<button name="accion" class="btn btn-primary" value="Editar">Enviar</button>

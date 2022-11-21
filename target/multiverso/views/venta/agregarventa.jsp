@@ -141,12 +141,6 @@
 				Salidas
 			</li>
 
-			<li class="sidebar-item">
-				<a class="sidebar-link" href="salidas?condicion=formulario">
-	  <i class="align-middle" data-feather="x-square"></i> <span class="align-middle">Agregar</span>
-	</a>
-			</li>
-
 	<a class="sidebar-link" href="salidas?condicion=consultarSalidas">
 		<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 	  </a>
@@ -256,13 +250,16 @@
                 <i class="align-middle" data-feather="settings"></i>
               </a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <img src="assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
-              </a>
+			  <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+			  data-bs-toggle="dropdown">
+			  <img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+				  alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+				  <span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
+		  </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+								<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 							</div>
 						</li>
 					</ul>
@@ -274,8 +271,8 @@
         <div class="contact-wrapper animated bounceInUp">
             <div class="contact-form">
                 <h3>Agregar venta</h3>
+				<c:forEach var="ventas" items="${ventas}">
                 <form action="ventas" method="post" class="needs-validation" novalidate>
-					<c:forEach var="ventas" items="${ventas}">
 						<div class="form-group">
 							<h3>Informacion del producto:</h3>
 							ID Producto: ${ventas.getIdProducto()}<br>
@@ -285,42 +282,30 @@
 							Cantidad: ${ventas.getcantidadProducto()}<br>
 							Tipo Producto: ${ventas.getNombreTipoProducto()}<br>
 								<p>
-									<input type="hidden" name="cantidadProducto"  class="form-control" value="${ventas.getcantidadProducto()}">
+										<input type="hidden" name="cantidadProducto"  class="form-control" value="${ventas.getcantidadProducto()}">
 										<input type="hidden" name="idProducto"  class="form-control" value="${ventas.getIdProducto()}">
+										<input type="hidden" name="precioProducto"  class="form-control" value="${ventas.getprecioProducto()}">
 								</p>
 						</div>
-					</c:forEach>
+				
 
 					<div class="form-group">
 							<label for="cantidadVendida validationCustom01" class="col-sm-2 control-label">Cantidad vendida</label>
 						<div class="col-sm-10">
-							<input placeholder="Cantidad vendida (10, 20, 30, ...)" type="text" id="cantidadVendida validationCustom01" name="cantidadVendida" class="form-control" required>
-		
+							<input name="cantidadVendida" type="number" class ="form-control" id="validationCustom20" min="1" max="${ventas.getcantidadProducto()}" ma placeholder="20, 30, 40..." required>
+
 							<div class="valid-feedback">
 							  ¡Cantidad colocado con éxito!
 							</div>
 							<div class="invalid-feedback">
-							  Por favor, coloque la cantidad vendida.
+							 ¡Tenga en cuenta la cantidad del producto total!
 							</div>
 						</div>
 					</div>
+					<br>
 
-				<div class="form-group">
-						<label for="precioTotal validationCustom02" class="col-sm-2 control-label">Precio total</label>
-					<div class="col-sm-10">
-						<input placeholder="$10.000, $5.000, ..." type="text" id="precioTotal validationCustom02" name="precioTotal" class="form-control" required>
-	
-						<div class="valid-feedback">
-						  ¡Precio colocado con éxito!
-						</div>
-						<div class="invalid-feedback">
-						  Por favor, coloque el precio total.
-						</div>
-					</div>
-				</div>
-
-				  <div class="col-md-3 filter">
-					<label for="validationCustom04" class="form-label">Cliente</label>
+				  <div class="col-md-3">
+					<label for="validationCustom04" class="form-label c">Cliente</label>
 					<select class="form-select select" id="noDocCliente validationCustom04" name="noDocCliente" required>
 						<option selected disabled value="">Seleccione...</option>
 						<c:forEach var="noDocCliente" items="${noDocCliente}">
@@ -342,6 +327,7 @@
                         <button class="btn btn-primary width-100" name="condicion" value="insertar">Agregar ventas</button>
                     </p>
                 </form>
+			</c:forEach>
             </div>
         </div>
     </div>

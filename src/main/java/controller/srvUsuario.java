@@ -113,9 +113,10 @@ public class srvUsuario extends HttpServlet {
 
     private void cerrarsession(HttpServletRequest request, HttpServletResponse response) throws Exception{
         HttpSession sesion = request.getSession();
-        sesion.setAttribute("usuario", null);
+        sesion.setAttribute("Gerente", null);
+        sesion.setAttribute("Operador", null);
         sesion.invalidate();
-        response.sendRedirect("/views/loginUsuario.jsp");
+        response.sendRedirect("usuario?condicion=index");
         
     }
 

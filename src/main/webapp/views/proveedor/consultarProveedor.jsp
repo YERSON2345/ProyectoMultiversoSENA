@@ -43,7 +43,6 @@
 			</script>
 
 <script>
-				alert("Actualizar")
 				function actualizar(id){
 
 swal({
@@ -310,13 +309,14 @@ swal({
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
 									
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -402,7 +402,6 @@ swal({
 																		<a onclick="actualizar([[${proveedor.getIdProveedor()}]])">
 																			<button class="btn btn-primary">Actualizar</button>
 																		</a>
-																		<button class="btn btn-danger" onclick="return eliminar()">Eliminar</button>
 																	</p>
 																</td>
 															</tr>

@@ -16,9 +16,36 @@ public class tipoProductoDao {
     String sql=null;
     int t;
 
+//Listar todos los tipos de producto
   public List<tipoProductoVo> listar() throws SQLException{
       List<tipoProductoVo> tipoProducto=new ArrayList<>();
       sql="SELECT *FROM TipoProducto";
+      try{
+          con=Conexion.conectar();
+          ps=con.prepareStatement(sql);
+          rs=ps.executeQuery(sql);
+          while(rs.next()){
+            tipoProductoVo filas=new tipoProductoVo();
+              filas.setIdTipoProducto(rs.getInt("idTipoProducto"));
+              filas.setNombreTipoProducto(rs.getString("nombreTipoProducto"));
+              filas.setEstadoTipoProducto(rs.getBoolean("estadoTipoProducto"));
+              tipoProducto.add(filas);
+          }
+          ps.close();
+          System.out.println("consulta exitosa");
+      }catch(Exception e){
+          System.out.println("La consulta no se pudo");
+      }
+      finally{
+          con.close();
+      }
+      return tipoProducto;
+  }
+
+//Listar tipos de producto activos
+    public List<tipoProductoVo> listarActivo() throws SQLException{
+      List<tipoProductoVo> tipoProducto=new ArrayList<>();
+      sql="SELECT *FROM TipoProducto WHERE estadoTipoProducto = 1";
       try{
           con=Conexion.conectar();
           ps=con.prepareStatement(sql);

@@ -276,13 +276,14 @@
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="assets/img/avatar.jpg" class="avatar img-fluid rounded me-1"
-											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
 										
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -291,31 +292,11 @@
 
 
 					<div class="content">
-
 						<div class="contact-wrapper animated bounceInUp">
 							<div class="contact-form">
 								<h3>Agregar Productos</h3>
-								<form action="producto" method="post" class="needs-validation" onsubmit="return validarFecha()" >
-
-									<div class="form-group dropdown">
-										<label for="validationCustom01 observaciones" class="font-weight-bold">Fecha De
-											Vencimiento<span class="text-danger">*</span>
-										<div class="col-sm-10">
-											</label> <p>Si el producto vence, click acá:<input type="checkbox" id="muInput"  onclick="myFunction()"></p>
-											<div id="myDropdown" class="dropdown-content">
-												<input type="date" name="fechaVencimiento" id="fechaVencimiento" placeholder="Fecha Vencimiento" class="form-control">
-											  </div>
-											<div class="valid-feedback">
-												¡Fecha Vencimienot insertado con éxito!
-											</div>
-											<div class="invalid-feedback">
-												Por favor, coloque la Fecha de Vencimiento
-											</div>
-										</div>
-									</div>
-									<br>
-									 <br>
-									 <br>
+								<form action="producto" method="post" class="needs-validation" onsubmit="return validarFecha()" novalidate>
+								<br>
 									<div class="form-group">
 										<label for="validationCustom01 nombre" class="col-sm-2 control-label">Nombre del
 											producto</label>
@@ -331,7 +312,7 @@
 											</div>
 										</div>
 									</div>
-
+									<br>
 									<div class="form-group">
 										<label for="validationCustom01 nombre" class="col-sm-2 control-label">Precio Del
 											Producto</label>
@@ -347,26 +328,26 @@
 											</div>
 										</div>
 									</div>
-
+									<br>
 									<div class="form-group">
 										<label for="validationCustom01 nombre" class="col-sm-2 control-label">Cantidad
 											Del Producto</label>
 										<div class="col-sm-10">
 											<input type="number" id="validationCustom01" name="cantidad"
-												class="form-control" placeholder="Cantidad Del Producto" required>
+												class="form-control" placeholder="Cantidad Del Producto" min="1" required>
 
 											<div class="valid-feedback">
 												¡Cantidad Del Producto Insertado Con Éxito!
 											</div>
 											<div class="invalid-feedback">
-												Por favor, coloque la cantidad del producto.
+												Inserte una cantidad valida.
 											</div>
 										</div>
 									</div>
-
+									<br>
 									<div class="form-group">
 										<label for="validationCustom01 observaciones"
-											class="col-sm-2 control-label">Observaciones del producto</label>
+											class="col-sm-15 control-label">Observaciones del producto</label>
 										<div class="col-sm-10">
 											<textarea rows="4" cols="50" type="text" id="validationCustom01" name="observaciones"
 												class="form-control" minlength="5" maxlength="150" placeholder="Observaciones Del Producto" required></textarea>
@@ -379,21 +360,13 @@
 											</div>
 										</div>
 									</div>
-
-									<div>
-										<input type="checkbox" name="estadoProducto" id="estadoProducto">
-									</div>
-									<div class="form-check">
-										<label class="form-check-label text-muted" for="estadoProducto">Activo</label>
-									</div>
-
+									<br>
+								</div>
 									<div class="col-md-3">
 										<label for="validationCustom04" class="form-label">Tipo Producto</label>
 										<select class="form-select select" id="noDocCliente validationCustom04"
 											name="IdTipoProducto" required>
-											<option selected disabled value="">Seleccione</option>
-
-											
+											<option selected disabled value="">Seleccione</option>							
 											<c:forEach var="idTipoProducto" items="${idTipoProducto}">
 												<option value="${idTipoProducto.getIdTipoProducto()}">
 													${idTipoProducto.getNombreTipoProducto()}
@@ -411,7 +384,31 @@
 										</div>
 									</div>
 									<br>
-									<br>
+									
+
+										<div class="form-group dropdown">
+											<div class="col-sm-15">
+												</label> <p>Si el producto vence, click acá:<input type="checkbox" id="muInput"  onclick="myFunction()"></p>
+												<div id="myDropdown" class="dropdown-content">
+													<input type="date" name="fechaVencimiento" id="fechaVencimiento" placeholder="Fecha Vencimiento" class="form-control">
+												  </div>
+												<div class="valid-feedback">
+													¡Fecha Vencimienot insertado con éxito!
+												</div>
+												<div class="invalid-feedback">
+													Por favor, coloque la Fecha de Vencimiento
+												</div>
+											</div>
+										</div>
+										<br>
+										 <br>
+										 <br>
+										 <div class="form-group">
+											<div class="col-sm-10">
+											<input type="checkbox" name="estadoProducto" id="estadoProducto">
+											<label class="form-check-label text-muted" for="estadoProducto">Activo</label>
+										</div>
+										<br>
 									<p class="block">
 										<button class="btn btn-primary width-100" name="accion"
 											value="Registrar">Enviar</button>

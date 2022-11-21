@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%
+    if (session.getAttribute("Gerente") != null || session.getAttribute("Operador") != null) {
+	%>
 		<!DOCTYPE html>
 		<html lang="en">
 
@@ -43,6 +46,68 @@
 					}
 				}
 			</script>
+			<script>
+			function Inactivar(id){
+
+swal({
+	title: "¿Estas seguro que desea cambiar el estado a inactivo?",
+	text: "El producto no aparecerá en algunos registros",
+	icon: "warning",
+	buttons: true,
+	dangerMode: true,
+  })
+  .then((OK) => {
+	if (OK) {
+		$.ajax({
+			url:"producto?accion=estadoProducto&estadoProducto=false&idProducto="+id,
+			success: function(res){
+				console.log(res);
+			}
+		});
+	  swal("Se esta cambiando a inactivo...", {
+		icon: "success",
+	  }).then((OK)=>{
+            if(OK){
+                location.href="producto?accion=estadoProducto&estadoProducto=false&idProducto="+id
+            }
+          });
+	} else {
+	  swal("Se ha cancelado la operación");
+	}
+  });
+}
+			</script>
+			<script>
+				function Activar(id){
+	
+	swal({
+		title: "¿Estas seguro que desea cambiar el estado a Activo?",
+		text: "El producto volverá a aparecer en algunos registros",
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	  })
+	  .then((OK) => {
+		if (OK) {
+			$.ajax({
+				url:"producto?accion=estadoProducto&estadoProducto=true&idProducto="+id,
+				success: function(res){
+					console.log(res);
+				}
+			});
+		  swal("Se esta cambiando a activo...", {
+			icon: "success",
+		  }).then((OK)=>{
+				if(OK){
+					location.href="producto?accion=estadoProducto&estadoProducto=true&idProducto="+id
+				}
+			  });
+		} else {
+		  swal("Se ha cancelado la operación");
+		}
+	  });
+	}
+				</script>
 			<div class="wrapper">
 				<nav id="sidebar" class="sidebar js-sidebar">
 					<div class="sidebar-content js-simplebar">
@@ -278,13 +343,14 @@
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="assets/img/avatar.jpg" class="avatar img-fluid rounded me-1"
-											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
 										
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -366,7 +432,7 @@
 																	<p class="white">Activar o Inactivar</p>
 																</th>
 																<th>
-																	<p class="white">acciones</p>
+																	<p class="white">Acciones</p>
 																</th>
 															</tr>
 														</thead>
@@ -406,7 +472,7 @@
 																		test="${producto.getEstadoProducto() == true}">
 																		<td>
 																			<p class="white"><span
-																					class="available">Activo</span></p>
+																					class="available"></span></p>
 																		</td>
 																	</c:if>
 
@@ -414,14 +480,14 @@
 																		test="${producto.getEstadoProducto() == false}">
 																		<td>
 																			<p class="white"><span
-																					class="offline">Inactivo</span></p>
+																					class="offline"></span></p>
 																		</td>
 																	</c:if>
 																	<c:if
 																		test="${producto.getEstadoProducto() == true}">
 																		<td>
 																			<p class="white"><a
-																					href="producto?accion=estadoProducto&idProducto=${producto.getIdProducto()}&estadoProducto=false"><button
+																					onclick="Inactivar([[${producto.getIdProducto()}]])"><button
 																						class="btn btn-danger"
 																						type="button">
 																						Inactivar</button></a></p>
@@ -433,7 +499,7 @@
 																		<td>
 																			<p class="white">
 																				<a
-																					href="producto?accion=estadoProducto&idProducto=${producto.getIdProducto()}&estadoProducto=true"><button
+																				onclick="Activar([[${producto.getIdProducto()}]])"><button
 																						class="btn btn-success"
 																						type="button">
 																						Activar</button></a>
@@ -585,7 +651,15 @@
 			</script>
 			<!-- Darkmode -->
 			<script src="assets/js/dark-mode.js"></script>
+			
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 		</body>
 
 		</html>
+		<%        
+    } else {
+		System.out.println("No ha iniciado sesión");
+        response.sendRedirect("usuario?condicion=login");
+    }
+%>

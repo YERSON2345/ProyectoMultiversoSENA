@@ -257,13 +257,16 @@
                 <i class="align-middle" data-feather="settings"></i>
               </a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                 <img src="assets/img/avatar.jpg" alt="" class="avatar img-fluid rounded me-1" /> <span class="text-dark">Nicolas Peraza</span>
-              </a>
+			  <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+			  data-bs-toggle="dropdown">
+			  <img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+				  alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+				  <span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
+		  </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="register.html">Log out</a>
+								<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 							</div>
 						</li>
 					</ul>
@@ -317,7 +320,7 @@
 									<br>
 									<div class ="form-group">
 										
-										<label class="col-sm-2 control-label">Cantidad que desea descontar</label>
+										<label class="col-sm-15 control-label">Cantidad que desea descontar</label>
 										<div class="col-sm-5">
 										<input name="cantidad" type="number" class ="form-control" id="validationCustom20" min="1" max="${salir.getCantidadProducto()}" ma placeholder="20, 30, 40..." required>
 										<div class="invalid-feedback">

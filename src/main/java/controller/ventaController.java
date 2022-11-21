@@ -255,9 +255,6 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
       if(req.getParameter("cantidadVendida")!=null){
         r.setCantidadVendida(Integer.parseInt(req.getParameter("cantidadVendida")));
       }
-      if(req.getParameter("precioTotal")!=null){
-      r.setPrecioTotal(Integer.parseInt(req.getParameter("precioTotal")));
-      }
       if(req.getParameter("idProductoFK")!=null){
         r.setidProductoFK(Integer.parseInt(req.getParameter("idProductoFK")));
       }
@@ -273,8 +270,14 @@ private void listarProductos(HttpServletRequest req, HttpServletResponse resp) {
         req.setAttribute("area", resultado.restarExistencias(cantidadProducto,cantidadSalidas)); 
         int resultados = resultado.restarExistencias(cantidadProducto,cantidadSalidas);
         int resultadoss = resultados;
+        // Calcular total venta
+        int cantidadVenta = Integer.parseInt(req.getParameter("cantidadVendida"));
+        int precioProducto = Integer.parseInt(req.getParameter("precioProducto"));
+        ventaVo resultadoVenta = new ventaVo();
+        int resultadoTotal = resultadoVenta.calcularTotal(cantidadVenta,precioProducto);
+        int rresultado = resultadoTotal;
 
-          rd.insertar(r);
+          rd.insertar(r,rresultado);
           rd.ActualizarStock(resultadoss, idProducto);
           System.out.println("Registro insertado correctamente");
           cantidad(req,resp);

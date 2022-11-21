@@ -14,6 +14,7 @@ public class ventaVo extends ventaclass{
     private int CantidadSalida;
     private String ObservacionesProducto;
     private int PrecioProducto;
+    private int resultadoTotal;
 
     private int cantidadTotal;
 
@@ -24,7 +25,7 @@ public class ventaVo extends ventaclass{
 
     public ventaVo(int idDetalleVenta, int cantidadVendida, int precioTotal, int idProductoFK, int noDocCliente,
             String nombreProducto, String nombreCliente, int resultadoResta, int cantidadProducto,int CantidadSalida,
-            String ObservacionesProducto, int PrecioProducto,int cantidadTotal) {
+            String ObservacionesProducto, int PrecioProducto,int cantidadTotal,int resultadoTotal) {
         this.idDetalleVenta = idDetalleVenta;
         this.cantidadVendida = cantidadVendida;
         this.precioTotal = precioTotal;
@@ -38,7 +39,15 @@ public class ventaVo extends ventaclass{
         this.ObservacionesProducto = ObservacionesProducto;
         this.PrecioProducto = PrecioProducto;
         this.cantidadTotal = cantidadTotal;
+        this.resultadoTotal = resultadoTotal;
+ }
+    public void setresultadoTotal(int resultadoTotal){
+        this.resultadoTotal = resultadoTotal;
     }
+    public int getresultadoTotal(){
+        return resultadoTotal;
+    }
+    
     public void setcantidadTotal(int cantidadTotal){
         this.cantidadTotal = cantidadTotal;
     }
@@ -173,6 +182,18 @@ public class ventaVo extends ventaclass{
         System.out.println("El resultado es de " + resultadoResta);
 
     return resultadoResta;
+
+    }
+
+    @Override
+    public int calcularTotal(int A,int B) {
+
+        System.out.println(A);
+        System.out.println(B);
+        resultadoTotal = A * B;
+        System.out.println("El resultado es de " + resultadoTotal);
+
+    return resultadoTotal;
 
     }
 

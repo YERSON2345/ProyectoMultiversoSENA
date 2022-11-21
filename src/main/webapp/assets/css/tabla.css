@@ -1,13 +1,11 @@
-
-
 :root{
     --primary-color:white;
     --secondary-color: #2a3338;
     --highlight-color: #3282b8;
 
-    --dt-status-available-color: green;
+    --dt-status-available-color: rgb(0, 255, 13);
     --dt-status-away-color: lightsalmon;
-    --dt-status-offline-color: red;
+    --dt-status-offline-color: rgb(207, 0, 0);
 
     --dt-padding: 12px;
     --dt-padding-s: 6px;
@@ -103,6 +101,22 @@
     margin: 0 var(--dt-padding-xs);
 }
 
+/* FOOTER - HEADER BUTTONS (CABEZA Y PIES) */
+.datatable-container .footer-tools .pages ul li button:hover{
+    background: var(--dt-bg-active-button);
+    color: var(--dt-text-color-active-button);
+}
+
+.datatable-container .footer-tools .pages ul li span.active{
+    background: var(--dt-bg-color);
+    border-radius: var(--dt-border-radius);
+}
+
+.datatable-container .footer-tools .pages ul li button,
+.datatable-container .footer-tools .pages ul li span{
+    padding: var(--dt-padding-s) var(--dt-padding);
+}
+
 /* TABLA (CUERPO) */
 
 .datatable-container .datatable{
@@ -145,32 +159,18 @@
 
 .datatable-container .datatable tbody tr .available::after{
     content: 'Activo';
-    color: green;
-}
-
-.datatable-container .datatable tbody tr .away::after{
-    content: 'Away';
-    color: var(--dt-status-away-color);
+    color: var(--dt-status-available-color);
 }
 
 .datatable-container .datatable tbody tr .offline::after{
     content: 'Inactivo';
-    color: red;
+    color: var(--dt-status-offline-color);
 }
 
-.datatable-container .datatable tbody tr .available::before
-{
-    content: 'Activo';
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-right: 10px;
-    border-radius: 50%;
-    vertical-align: middle;
-}
+.datatable-container .datatable tbody tr .available::before,
 .datatable-container .datatable tbody tr .away::before,
 .datatable-container .datatable tbody tr .offline::before{
-    content: 'Inactivo';
+    content: '';
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -180,7 +180,7 @@
 }
 
 .datatable-container .datatable tbody tr .available::before{
-    background-color: green;
+    background-color: var(--dt-status-available-color);
 }
 
 .datatable-container .datatable tbody tr .away::before{
@@ -188,5 +188,44 @@
 }
 
 .datatable-container .datatable tbody tr .offline::before{
-    background-color: red;
+    background-color: var(--dt-status-offline-color);
+}
+
+/* Data Table */
+
+.dataTables_length{
+    padding-left: 30px;
+    padding-top: 15px;
+    width: 45%;
+}
+
+.dataTables_filter{
+    margin-right: 15px;
+    float: right;
+    width: 30%;
+}
+
+.datatable-container .dataTables_wrapper .dataTables_filter label input{
+    margin-top: 10px;
+    width: 75%;
+    background-color: var(--dt-input-background-color);
+    box-sizing: border-box;
+    border-radius: var(--dt-border-radius);
+    border: solid 1px black;
+    color: var(--dt-input-color); 
+}
+
+.dataTables_info{
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+}
+
+.dataTables_paginate{
+    float: left;
+    padding-bottom: 15px;
+    padding-right: 30px;
+    padding-top: 30px;
+    color: black;
 }

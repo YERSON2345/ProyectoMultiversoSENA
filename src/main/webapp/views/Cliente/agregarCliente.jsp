@@ -101,9 +101,6 @@
 					</li>
 		
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="compras?accion=Add_Compras">
-			  <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Agregar</span>
-			</a>
 			<a class="sidebar-link" href="compras?accion=listar">
 				<i class="align-middle" data-feather="database"></i> <span class="align-middle">Consultar</span>
 			  </a>
@@ -111,11 +108,6 @@
 					<li class="sidebar-header">
 						Ventas
 					</li>
-		
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="ventas?condicion=formulario">
-			  <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Agregar</span>
-			</a>
 					</li>
 					<li class="sidebar-item">
 			<a class="sidebar-link" href="ventas?condicion=consultarventa">
@@ -126,7 +118,7 @@
 						Cliente
 					</li>
 		
-					<li class="sidebar-item">
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="cliente?condicion=formulario">
 			  <i class="align-middle" data-feather="user"></i> <span class="align-middle">Agregar</span>
 			</a>
@@ -271,12 +263,15 @@
 						<i class="align-middle" data-feather="settings"></i>
 					  </a>
 		
-									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-						<img src="assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
-					  </a>
+					  <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+					  data-bs-toggle="dropdown">
+					  <img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+						  alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+						  <span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
+				  </a>
 									<div class="dropdown-menu dropdown-menu-end">
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>

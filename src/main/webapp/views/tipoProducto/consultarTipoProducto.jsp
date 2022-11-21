@@ -277,13 +277,14 @@
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="assets/img/avatar.jpg" class="avatar img-fluid rounded me-1"
-											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">
 										
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -349,7 +350,7 @@
 																		<p class="white">
 																			<a
 																			href="tipoProducto?accion=estadoTipoProducto&idTipoProducto=${tipoProducto.getIdTipoProducto()}&estadoTipoProducto=false"><button
-																				class="btn btn-success" type="button">
+																				class="btn btn-danger" type="button">
 																				Inactivar</button></a>
 																		</p>
 																	</td>
@@ -368,10 +369,6 @@
 																</c:if>
 																<td>
 																	<p class="white">
-																		<a
-																		href="tipoProducto?accion=eliminar&idTipoProducto=${tipoProducto.getIdTipoProducto()}">
-																		<button type="button" class="btn btn-danger">
-																			Eliminar</button></a><br>
 																	<a
 																		href="tipoProducto?accion=editar&idTipoProducto=${tipoProducto.getIdTipoProducto()}">
 																		<button type="button" class="btn btn-primary">

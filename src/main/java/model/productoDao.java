@@ -88,7 +88,7 @@ public class productoDao {
 
   public List<productoVo> cantidadDias() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT COUNT(*) AS cantidadRegistros FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30;";
+    sql="SELECT COUNT(*) AS cantidadRegistros FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30 AND estadoProducto = 1;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class productoDao {
 
 public List<productoVo> cantidad() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT COUNT(*) AS cantidad FROM producto WHERE cantidadProducto <= 10;";
+    sql="SELECT COUNT(*) AS cantidad FROM producto WHERE cantidadProducto <= 10 AND estadoProducto = 1;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -134,7 +134,7 @@ public List<productoVo> cantidad() throws SQLException{
 
 public List<productoVo> cantidadProducto() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT nombreProducto,cantidadProducto FROM producto WHERE cantidadProducto <= 10;";
+    sql="SELECT nombreProducto,cantidadProducto FROM producto WHERE cantidadProducto <= 10 AND estadoProducto = 1;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -158,7 +158,7 @@ public List<productoVo> cantidadProducto() throws SQLException{
 
   public List<productoVo> listarDias() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT nombreProducto, NOW() AS fechaActual, DATEDIFF(fechaVencimiento, NOW()) AS DIFERENCIA_DIAS FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30;";
+    sql="SELECT nombreProducto, NOW() AS fechaActual, DATEDIFF(fechaVencimiento, NOW()) AS DIFERENCIA_DIAS FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30 AND estadoProducto = 1;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -212,7 +212,7 @@ public List<productoVo> cantidadProducto() throws SQLException{
 //Listar productos con 30 o menos a vencerse
 public List<productoVo> listar_Producto_Fechas() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT nombreProducto,cantidadProducto,fechaVencimiento,observacionesProducto, NOW() AS fechaActual, DATEDIFF(fechaVencimiento, NOW()) AS DIFERENCIA_DIAS FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30;";
+    sql="SELECT nombreProducto,cantidadProducto,fechaVencimiento,observacionesProducto, NOW() AS fechaActual, DATEDIFF(fechaVencimiento, NOW()) AS DIFERENCIA_DIAS FROM producto WHERE DATEDIFF(fechaVencimiento,NOW()) <= 30 AND estadoProducto = 1;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);
@@ -240,7 +240,7 @@ public List<productoVo> listar_Producto_Fechas() throws SQLException{
 //Listar productos con menos de 10 cantidades
 public List<productoVo> listar_Producto_Cantidad() throws SQLException{
     List<productoVo> producto=new ArrayList<>();
-    sql="SELECT P.idProducto,NOW() AS fechaActual,P.nombreProducto,P.cantidadProducto,P.observacionesProducto,P.precioProducto,T.nombreTipoProducto FROM Producto P INNER JOIN tipoProducto T ON P.idTipoProducto = T.idTipoProducto WHERE P.cantidadProducto <=10;";
+    sql="SELECT P.idProducto,NOW() AS fechaActual,P.nombreProducto,P.cantidadProducto,P.observacionesProducto,P.precioProducto,T.nombreTipoProducto FROM Producto P INNER JOIN tipoProducto T ON P.idTipoProducto = T.idTipoProducto WHERE P.cantidadProducto <=10 AND estadoProducto = 1;";
     try{
         con=Conexion.conectar();
         ps=con.prepareStatement(sql);

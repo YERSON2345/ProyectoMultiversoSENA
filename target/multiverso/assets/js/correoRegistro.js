@@ -1,4 +1,4 @@
-alert("CorreoRegistro")
+
 
 const btn = document.getElementById('button');
 

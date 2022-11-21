@@ -62,13 +62,10 @@
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
                                  <li class="nav-item active">
-                                    <a class="nav-link" href="#">Inicio</a>
+                                    <a class="nav-link" href="usuario?condicion=dashboard">Inicio</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="producto?accion=listar">Inventario</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="ventas?condicion=dashboard">Dashboard</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="usuario?condicion=formulario">Registrarse</a>
@@ -169,9 +166,8 @@
                         <div class="Informa helpful">
                            <h3>Enlaces utiles</h3>
                            <ul>
-                              <li><a href="#">Inicio</a></li>
+                              <li><a href="ventas?condicion=dashboard">Inicio</a></li>
                               <li><a href="producto?condicion=consultarProducto">Inventario</a></li>
-                              <li><a href="ventas?condicion=dashboard">Dashboard</a></li>
                               <li><a href="usuario?condicion=formulario">Registrarse</a></li>
                               <li><a href="usuario?condicion=form">Login</a></li>
                            </ul>
@@ -188,8 +184,6 @@
                               <li>se basa en llevar inventario,
                               </li>
                               <li>ventas,etc...
-                              </li>
-                              <li>Al toque mi rey
                               </li>
                            </ul>
                         </div>
@@ -219,7 +213,7 @@
                   <div class="container">
                      <div class="row d_flex">
                         <div class="col-md-6">
-                           <p>© 2020 All Rights Reserved. <a href="https://html.design/"> Multiverso</a></p>
+                           <p>© 2022 All Rights Reserved. <a href="https://html.design/"> Multiverso</a></p>
                         </div>
                         <div class="col-md-6">
                            <ul class="social_icon text_align_center">

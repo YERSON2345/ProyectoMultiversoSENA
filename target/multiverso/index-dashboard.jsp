@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%
+    if (session.getAttribute("Gerente") != null || session.getAttribute("Operador") != null) {
+	%>
 		<!DOCTYPE html>
 		<html lang="en">
 
@@ -174,7 +177,7 @@
 								<div class="mb-3 text-sm">
 								</div>
 								<div class="d-grid">
-									<a href="usuario?condicion=formulario" class="btn btn-primary">Cerrar seión</a>
+									<a href="srvUsuario?accion=cerrar" class="btn btn-primary">Cerrar sesión</a>
 								</div>
 							</div>
 						</div>
@@ -186,12 +189,38 @@
 						<a class="sidebar-toggle js-sidebar-toggle">
 							<i class="hamburger align-self-center"></i>
 						</a>
+					
+						
+						<div class="navbar-collapse collapse">
+							<ul class="navbar-nav navbar-align">
+								
+								<li class="nav-item dropdown">
+									<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
+										data-bs-toggle="dropdown">
+										<i class="align-middle" data-feather="settings"></i>
+									</a>
+
+									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+										data-bs-toggle="dropdown">
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end">
+										
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
+									</div>
+								</li>
+							</ul>
+						</div>
 					</nav>
 
 					<!-- Logo Area -->
 					<hr>
 					<div class="logo-area text-center">
 						<div class="container h-100">
+							<h1 class="h3 mb-3">Bienvenido ${Gerente.nombreUsuario} ${Gerente.apellidoUsuario} ${Operador.nombreUsuario} ${Operador.apellidoUsuario} </h1>
 							<div class="row h-100 align-items-center">
 								<div class="col-12">
 									<a href="index.jsp" class="original-logo"><img src="assets/img/multiversoo.jpeg"
@@ -331,3 +360,10 @@
 		</body>
 
 		</html>
+
+		<%        
+    } else {
+		System.out.println("No ha iniciado sesión");
+        response.sendRedirect("usuario?condicion=login");
+    }
+%>

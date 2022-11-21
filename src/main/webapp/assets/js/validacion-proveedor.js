@@ -1,4 +1,3 @@
-alert("Hola");
 
 $.validator.setDefaults( {
     submitHandler: function () {

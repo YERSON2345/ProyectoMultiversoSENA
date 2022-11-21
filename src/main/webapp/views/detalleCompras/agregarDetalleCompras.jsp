@@ -259,7 +259,7 @@
 
 									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 										data-bs-toggle="dropdown">
-										<img src="../img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
 											alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-end">

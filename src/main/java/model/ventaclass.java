@@ -8,4 +8,7 @@ public abstract class ventaclass{
 
     public abstract int actualizarExistencias(int A, int B, int C );
 
+    public abstract int calcularTotal( int A,int B);
+
 }
+

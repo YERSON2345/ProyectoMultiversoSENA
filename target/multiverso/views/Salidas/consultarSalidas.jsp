@@ -84,7 +84,7 @@
                                         class="align-middle">Agregar</span>
                                 </a>
                             </li>
-                            <li class="sidebar-item active">
+                            <li class="sidebar-item">
                                 <a class="sidebar-link" href="producto?accion=listar">
                                     <i class="align-middle" data-feather="package"></i> <span
                                         class="align-middle">Consultar</span>
@@ -162,7 +162,7 @@
                                 Salidas
                             </li>
 
-                            <li class="sidebar-item">
+                            <li class="sidebar-item active">
                                 <a class="sidebar-link" href="salidas?condicion=consultarSalidas">
                                     <i class="align-middle" data-feather="database"></i> <span
                                         class="align-middle">Consultar</span>
@@ -280,14 +280,15 @@
                                     </a>
 
                                     <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
-                                        data-bs-toggle="dropdown">
-                                        <img src="assets/img/avatar.jpg" class="avatar img-fluid rounded me-1"
-                                            alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
-                                    </a>
+										data-bs-toggle="dropdown">
+										<img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+											alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+											<span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
+									</a>
                                     <div class="dropdown-menu dropdown-menu-end">
                                         
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+                                        <a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
                                     </div>
                                 </li>
                             </ul>

@@ -1,4 +1,4 @@
-alert("CorreoPeticiones")
+
 
 const btn = document.getElementById('button');
 

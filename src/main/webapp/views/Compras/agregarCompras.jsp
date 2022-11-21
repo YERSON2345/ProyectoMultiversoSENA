@@ -262,13 +262,16 @@
 						<i class="align-middle" data-feather="settings"></i>
 					  </a>
 		
-									<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-						<img src="assets/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Nicolas Peraza</span>
-					  </a>
+					  <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+					  data-bs-toggle="dropdown">
+					  <img src="assets/img/avatar.jpeg" class="avatar img-fluid rounded me-1"
+						  alt="Charles Hall" /> <span class="text-dark">${Gerente.nombreUsuario} ${Gerente.apellidoUsuario}</span>
+						  <span class="text-dark">${Operador.nombreUsuario} ${Operador.apellidoUsuario}</span>
+				  </a>
 									<div class="dropdown-menu dropdown-menu-end">
 										
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="usuario?condicion=formulario">Log out</a>
+										<a class="dropdown-item" href="srvUsuario?accion=cerrar">Log out</a>
 									</div>
 								</li>
 							</ul>
@@ -323,6 +326,7 @@
 										</div>
 									</div>
 									<br>
+									<br>
 									<div class="form-group dropdown">
 										<label for="validationCustom01 observaciones" class="font-weight-bold">Precio
 											del Proveedor<span class="text-danger">*</span>
@@ -336,10 +340,8 @@
 												Por favor, coloque Precio del Proveedor.
 											</div>
 										</div>
-									</div>
-									</p>
+									</div>		
 									<br>
-									<p>
 									<div class="form-group">
 										<label for="validationCustom01 observaciones" class="font-weight-bold">Cantidad
 											Del Producto<span class="text-danger">*</span></label>
@@ -359,7 +361,7 @@
 									</p>
 									
 									<div class="col-md-3">
-										<label class="form-label">Proveedro del
+										<label class="form-label">Proveedor del
 											Producto</label>
 										<select class="form-select select" id="noDocCliente "
 											name="idProveedor">
