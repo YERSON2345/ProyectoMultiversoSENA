@@ -219,7 +219,7 @@ public class comprasController extends HttpServlet{
             cantidadProducto(req,resp);
             cantidadDias(req,resp);
             listarDias(req,resp);
-            listarProductos(req, resp);
+            listar(req, resp);
         }catch(Exception e) {
             System.out.println("error en la insercion del registro" + e.getMessage().toString());
 
